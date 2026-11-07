@@ -8,7 +8,7 @@
     { "tier": 5, "name": "Hail Mary",         "points": 100, "distance": 100, "restShare": 0.25, "color": "#ffd23f", "emoji": "🟡", "icon": "trophy",  "quip": "True obscurity. Touchdown from your own goal line." }
   ],
   "miss": { "name": "Incomplete", "points": 0, "emoji": "❌", "color": "#6b7590", "quip": "the clock beat you to it." },
-  "noHuddle": {
+  "streakBonus": {
     "_comment": "Consecutive answers at minTier or better build a streak; the Nth answer in the streak scores multipliers[N-1] (last value repeats). A lower tier or a miss resets it.",
     "minTier": 3,
     "multipliers": [1, 1.5, 2],

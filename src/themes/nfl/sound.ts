@@ -61,7 +61,7 @@ export const sounds: ThemeSounds = {
         a.noise({ dur: 0.06, gain: 0.15, filter: { type: 'highpass', freq: 2000 } })
         crowd(Math.min(1, tier / 5), 0.8 + tier * 0.3)
         break
-      case 'touchdown':
+      case 'jackpot':
         crowd(1, 2.6)
         for (const [i, f] of [220, 277.2, 329.6].entries()) a.tone({ freq: f, dur: 0.9, gain: 0.07, type: 'sawtooth', delay: 0.05 * i })
         whistle(0.9, 0.3)

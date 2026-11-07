@@ -16,7 +16,7 @@ export function shareEmojis(cfg: TierConfig, plays: readonly ScoredPlay[]): stri
     .map((p) => {
       if (p.tier === null) return cfg.miss.emoji
       const e = cfg.tiers.find((t) => t.tier === p.tier)?.emoji ?? '?'
-      return p.multiplier > 1 ? e + cfg.noHuddle.emoji : e
+      return p.multiplier > 1 ? e + cfg.streakBonus.emoji : e
     })
     .join('')
 }

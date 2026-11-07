@@ -11,7 +11,7 @@ const cfg: TierConfig = {
     color: '#fff', emoji: ['a', 'b', 'c', 'd', 'e'][i], icon: '', quip: '',
   })),
   miss: { name: 'miss', points: 0, emoji: 'x', color: '#000', quip: '' },
-  noHuddle: { minTier: 3, multipliers: [1, 1.5, 2], emoji: '!' },
+  streakBonus: { minTier: 3, multipliers: [1, 1.5, 2], emoji: '!' },
 }
 const tiers = (...t: (number | null)[]) => t.map((tier) => ({ tier }))
 

@@ -137,7 +137,8 @@ def _team_prompts() -> list[Prompt]:
         for fr in teams:
             out.append(Prompt(
                 id=f"team-{fr.lower()}-{group.lower()}", category="team",
-                text=f"Name a {FRANCHISE_NAMES[fr]} {label[group]}", qualifier=f"since {R}",
+                text=f"Name {'an' if FRANCHISE_NAMES[fr][0] in 'AEIOU' else 'a'} {FRANCHISE_NAMES[fr]} {label[group]}",
+                qualifier=f"since {R}",
                 mixed=False, build=team_position(fr, group), franchise=fr,
             ))
     return out

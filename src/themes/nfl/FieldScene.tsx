@@ -154,7 +154,6 @@ export function FieldScene(props: ThrowSceneProps) {
       let ground = QB_YARD + 0.6
       let height = 0
       let ballX = cx + 3
-      let flight = 0 // 0..1 progress of the flight
       let qbPose: HTMLCanvasElement = img.idle
       let holding = true
       const elapsed = (now - s.start) / 1000
@@ -163,7 +162,6 @@ export function FieldScene(props: ThrowSceneProps) {
         const windup = 0.22 / speed
         const dur = FLIGHT[tierIdx] / speed
         const t = Math.min(1, Math.max(0, (elapsed - windup) / dur))
-        flight = t
         holding = elapsed < windup
         qbPose = holding ? img.windup : elapsed < windup + 0.5 ? img.follow : img.idle
         if (!holding) {
@@ -175,7 +173,7 @@ export function FieldScene(props: ThrowSceneProps) {
             s.landedAt = now
             sounds.play('land', { tier: s.tier })
             if (s.tier === TD_TIER) {
-              sounds.play('touchdown')
+              sounds.play('jackpot')
               td.current?.classList.add('is-on')
             }
           }

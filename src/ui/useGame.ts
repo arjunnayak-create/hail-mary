@@ -1,0 +1,218 @@
+/** Game flow state machine: load → home → (pre → play → throw → reveal) × N → end. */
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { dailyPromptIds, dayIndex } from '../engine/daily'
+import { buildNameIndex, createMatcher, type NameIndex, type PromptMatcher } from '../engine/matcher'
+import {
+  completeDay, currentStreak, emptySave, recordPlay, resumeDay, startDay, type DayRecord, type SaveState,
+  type SavedPlay,
+} from '../engine/progress'
+import { scorePlays, totals } from '../engine/scoring'
+import { createStore } from '../engine/storage'
+import type { Prompt, PromptsFile } from '../engine/types'
+import type { Theme } from './theme'
+
+export type Phase = 'loading' | 'error' | 'home' | 'pre' | 'play' | 'throw' | 'reveal' | 'end'
+
+export interface Feedback {
+  text: string
+  key: number
+}
+
+export interface ThrowInfo {
+  key: number
+  mode: 'idle' | 'throw' | 'miss'
+  tier: number | null
+  label: string
+}
+
+export function useGame(theme: Theme, inputRef: React.RefObject<HTMLInputElement | null>) {
+  const store = useMemo(() => createStore<SaveState>(`${theme.id}:v1`, emptySave), [theme.id])
+  const [phase, setPhase] = useState<Phase>('loading')
+  const [prompts, setPrompts] = useState<Prompt[]>([])
+  const [save, setSave] = useState<SaveState>(() => store.load())
+  const [rec, setRec] = useState<DayRecord | null>(null)
+  const [today, setToday] = useState(0)
+  const [countdown, setCountdown] = useState(0)
+  const [clockStart, setClockStart] = useState<number | null>(null)
+  const [feedback, setFeedback] = useState<Feedback | null>(null)
+  const [throwInfo, setThrowInfo] = useState<ThrowInfo>({ key: 0, mode: 'idle', tier: null, label: '' })
+  const known = useRef<NameIndex | null>(null)
+  const matchers = useRef(new Map<string, PromptMatcher>())
+  const saveRef = useRef(save)
+  saveRef.current = save
+  const recRef = useRef(rec)
+  recRef.current = rec
+
+  useEffect(() => theme.sounds.setMuted(save.muted), [save.muted, theme.sounds])
+
+  // ---- load
+  useEffect(() => {
+    let cancelled = false
+    Promise.all([
+      fetch(theme.dataUrl).then((r) => r.json() as Promise<PromptsFile>),
+      fetch(theme.namesUrl).then((r) => r.json() as Promise<{ names: string[] }>).catch(() => ({ names: [] })),
+    ])
+      .then(([data, names]) => {
+        if (cancelled) return
+        known.current = buildNameIndex(names.names)
+        const day = dayIndex(new Date(), theme.daily)
+        const byId = new Map(data.prompts.map((p) => [p.id, p]))
+        const ids = dailyPromptIds(data.prompts.map((p) => ({ id: p.id, category: p.category })), day, theme.daily)
+        const s0 = store.load()
+        const r0 = startDay(s0, day, ids)
+        const r1 = resumeDay(r0)
+        let s1 = { ...s0, days: { ...s0.days, [day]: r1 } }
+        if (r1.completed) s1 = completeDay(s1, r1)
+        store.save(s1)
+        setToday(day)
+        setPrompts(ids.map((id) => byId.get(id)!).filter(Boolean))
+        setSave(s1)
+        setRec(r1)
+        setPhase(r1.completed ? 'end' : 'home')
+      })
+      .catch(() => !cancelled && setPhase('error'))
+    return () => {
+      cancelled = true
+    }
+  }, [theme, store])
+
+  const persist = useCallback(
+    (r: DayRecord) => {
+      let s = { ...saveRef.current, days: { ...saveRef.current.days, [r.day]: r } }
+      if (r.completed) s = completeDay(s, r)
+      store.save(s)
+      setSave(s)
+      setRec(r)
+    },
+    [store],
+  )
+
+  const index = rec?.plays.length ?? 0
+  const prompt = prompts[index] as Prompt | undefined
+  const matcher = useMemo(() => {
+    if (!prompt) return null
+    let m = matchers.current.get(prompt.id)
+    if (!m) {
+      m = createMatcher(prompt, known.current ?? undefined)
+      matchers.current.set(prompt.id, m)
+    }
+    return m
+  }, [prompt])
+
+  // ---- pre-prompt countdown
+  const countdownTimer = useRef<number | null>(null)
+  const beginCountdown = useCallback(() => {
+    // focus synchronously inside the tap so iOS opens the keyboard
+    inputRef.current?.focus({ preventScroll: true })
+    setFeedback(null)
+    setThrowInfo((t) => ({ ...t, mode: 'idle' }))
+    setPhase('pre')
+    let n = theme.countdownSeconds
+    setCountdown(n)
+    theme.sounds.play('countdown')
+    if (countdownTimer.current) window.clearInterval(countdownTimer.current)
+    countdownTimer.current = window.setInterval(() => {
+      n -= 1
+      if (n > 0) {
+        setCountdown(n)
+        theme.sounds.play('countdown')
+        return
+      }
+      window.clearInterval(countdownTimer.current!)
+      countdownTimer.current = null
+      theme.sounds.play('go')
+      const r = recRef.current
+      if (r) persist({ ...r, activeIndex: r.plays.length })
+      if (inputRef.current) inputRef.current.value = ''
+      setClockStart(performance.now())
+      setPhase('play')
+    }, 1000)
+  }, [inputRef, persist, theme])
+
+  useEffect(() => () => {
+    if (countdownTimer.current) window.clearInterval(countdownTimer.current)
+  }, [])
+
+  const kickOff = useCallback(() => {
+    theme.sounds.unlock()
+    theme.sounds.play('start')
+    beginCountdown()
+  }, [beginCountdown, theme])
+
+  const resolve = useCallback(
+    (play: SavedPlay, mode: 'throw' | 'miss', label: string) => {
+      const r = recRef.current
+      if (!r) return
+      persist(recordPlay(r, play))
+      setClockStart(null)
+      setFeedback(null)
+      inputRef.current?.blur()
+      setThrowInfo((t) => ({ key: t.key + 1, mode, tier: play.tier, label }))
+      setPhase('throw')
+    },
+    [inputRef, persist],
+  )
+
+  const submit = useCallback(
+    (guess: string) => {
+      if (phase !== 'play' || !prompt || !matcher) return
+      const g = guess.trim()
+      if (!g) return
+      const res = matcher.match(g)
+      if (res.kind === 'correct') {
+        resolve({ promptId: prompt.id, guess: g, answerId: res.answer.id, tier: res.answer.tier }, 'throw', res.answer.name)
+        return
+      }
+      const text =
+        res.kind === 'outOfRange' ? theme.copy.outOfRange(g) : res.kind === 'ambiguous' ? theme.copy.ambiguous(g) : theme.copy.wrong(g)
+      setFeedback((f) => ({ text, key: (f?.key ?? 0) + 1 }))
+      theme.sounds.play('wrong')
+      // improve on the reference: select the bad guess so typing replaces it
+      const el = inputRef.current
+      if (el) {
+        el.focus({ preventScroll: true })
+        el.setSelectionRange(0, el.value.length)
+      }
+    },
+    [phase, prompt, matcher, resolve, theme, inputRef],
+  )
+
+  const timeout = useCallback(() => {
+    if (!prompt) return
+    resolve({ promptId: prompt.id, guess: '', answerId: null, tier: null }, 'miss', '')
+  }, [prompt, resolve])
+
+  const throwDone = useCallback(() => {
+    setPhase('reveal')
+    const last = recRef.current?.plays.at(-1)
+    if (last?.tier) theme.sounds.play('reveal', { tier: last.tier })
+    else theme.sounds.play('miss')
+  }, [theme])
+
+  const next = useCallback(() => {
+    theme.sounds.play('click')
+    if (recRef.current?.completed) {
+      theme.sounds.play('end')
+      setThrowInfo((t) => ({ ...t, mode: 'idle' }))
+      setPhase('end')
+      return
+    }
+    beginCountdown()
+  }, [beginCountdown, theme])
+
+  const toggleMute = useCallback(() => {
+    theme.sounds.unlock()
+    const s = { ...saveRef.current, muted: !saveRef.current.muted }
+    store.save(s)
+    setSave(s)
+  }, [store, theme])
+
+  const scored = useMemo(() => scorePlays(theme.tiers, (rec?.plays ?? []).map((p) => ({ tier: p.tier }))), [rec, theme.tiers])
+  const sums = useMemo(() => totals(scored), [scored])
+
+  return {
+    phase, prompts, prompt, index, rec, save, today, countdown, clockStart, feedback, throwInfo,
+    scored, sums, streak: currentStreak(save, today),
+    kickOff, submit, timeout, throwDone, next, toggleMute,
+  }
+}

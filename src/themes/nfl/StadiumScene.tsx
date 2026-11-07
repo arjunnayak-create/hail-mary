@@ -44,7 +44,7 @@ export function StadiumScene({ variant }: { variant: 'home' | 'end' }) {
       : ['#140b33', '#2b1350', '#55206a', '#8c2f73', '#c9476f', '#f06b5e', '#ff9a55']
 
     const frame = (now: number) => {
-      const t = (now - t0) / 1000
+      const t = Math.max(0, (now - t0) / 1000) // rAF timestamps can predate t0
       const horizon = Math.round(vh * 0.56)
       // banded pixel sky
       const band = Math.ceil(horizon / sky.length)

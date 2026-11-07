@@ -45,7 +45,7 @@ export interface TierRule {
   tier: number
   name: string
   points: number
-  /** Where the answer lands in the theme's scene (e.g. yards, metres). */
+  /** Where the answer lands in the theme's scene (e.g. distance units). */
   distance: number
   color: string
   emoji: string
@@ -59,5 +59,5 @@ export interface TierRule {
 export interface TierConfig {
   tiers: TierRule[]
   miss: { name: string; points: number; emoji: string; color: string; quip: string }
-  noHuddle: { minTier: number; multipliers: number[]; emoji: string }
+  streakBonus: { minTier: number; multipliers: number[]; emoji: string }
 }

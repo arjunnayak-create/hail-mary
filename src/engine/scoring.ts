@@ -1,4 +1,4 @@
-/** Points, distance and the No Huddle streak multiplier. */
+/** Points, distance and the streak multiplier. */
 import type { TierConfig, TierRule } from './types'
 
 export interface PlayResult {
@@ -11,7 +11,7 @@ export interface ScoredPlay {
   base: number
   multiplier: number
   points: number
-  /** Length of the No Huddle streak including this play (0 if it doesn't qualify). */
+  /** Length of the bonus streak including this play (0 if it doesn't qualify). */
   streak: number
 }
 
@@ -29,9 +29,9 @@ export function maxBaseScore(cfg: TierConfig, plays: number): number {
 export function scorePlay(cfg: TierConfig, tier: number | null, streakBefore: number): ScoredPlay {
   if (tier === null) return { tier, base: cfg.miss.points, multiplier: 1, points: cfg.miss.points, streak: 0 }
   const base = tierRule(cfg, tier).points
-  if (tier < cfg.noHuddle.minTier) return { tier, base, multiplier: 1, points: base, streak: 0 }
+  if (tier < cfg.streakBonus.minTier) return { tier, base, multiplier: 1, points: base, streak: 0 }
   const streak = streakBefore + 1
-  const m = cfg.noHuddle.multipliers
+  const m = cfg.streakBonus.multipliers
   const multiplier = m[Math.min(streak, m.length) - 1]
   return { tier, base, multiplier, points: Math.round(base * multiplier), streak }
 }

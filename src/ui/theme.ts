@@ -8,7 +8,7 @@ import type { TierConfig } from '../engine/types'
 
 export type SoundName =
   | 'click' | 'start' | 'countdown' | 'go' | 'tick' | 'wrong' | 'throw' | 'linePass'
-  | 'land' | 'reveal' | 'touchdown' | 'miss' | 'end'
+  | 'land' | 'reveal' | 'jackpot' | 'miss' | 'end'
 
 export interface ThemeSounds {
   unlock(): void
