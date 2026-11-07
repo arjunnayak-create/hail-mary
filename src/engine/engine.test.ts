@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { dailyPromptIds, dateKey, dayIndex, msUntilNextDay, type DailyConfig } from './daily'
-import { completeDay, currentStreak, emptySave, recordPlay, resumeDay, startDay } from './progress'
+import { completeDay, computeStats, currentStreak, emptySave, finalizeDay, recordPlay, resumeDay, startDay } from './progress'
 import { maxBaseScore, scorePlay, scorePlays, totals } from './scoring'
 import { buildShareText, shareEmojis } from './share'
 import type { TierConfig } from './types'
@@ -41,11 +41,16 @@ describe('scoring', () => {
 })
 
 describe('share text', () => {
-  it('one emoji per play, a flame on multiplied plays, x for misses', () => {
-    const s = scorePlays(cfg, tiers(1, 3, 4, null, 5))
-    expect(shareEmojis(cfg, s)).toBe('acd!xe')
+  it('exactly one emoji per play, x for misses, streak count in the header', () => {
+    const s = scorePlays(cfg, tiers(1, 3, 4, null, 5, 5, 5))
+    expect(shareEmojis(cfg, s)).toBe('acdxeee')
+    expect([...shareEmojis(cfg, s)]).toHaveLength(7)
     expect(buildShareText(cfg, { title: 'G', gameNumber: 3, total: 300, unit: 'pts', plays: s, url: 'u' }))
-      .toBe('G #3 — 300 pts\nacd!xe\nu')
+      .toBe('G #3 · 300 pts · !×3\nacdxeee\nu')
+  })
+  it('omits the streak part when nothing was multiplied', () => {
+    const s = scorePlays(cfg, tiers(1, 2, 1))
+    expect(buildShareText(cfg, { title: 'G', gameNumber: 1, total: 50, unit: 'pts', plays: s, url: 'u' })).toBe('G #1 · 50 pts\naba\nu')
   })
 })
 
@@ -127,5 +132,33 @@ describe('progress and streak', () => {
     expect(s.streak).toBe(1)
     expect(s.bestStreak).toBe(2)
     expect(completeDay(s, done(6)).streak).toBe(1) // completing twice doesn't double count
+  })
+})
+
+describe('stats', () => {
+  const game = (day: number, t: (number | null)[]) =>
+    finalizeDay({ day, promptIds: t.map((_, i) => `p${i}`), plays: t.map((tier, i) => ({ promptId: `p${i}`, guess: '', answerId: tier ? 'x' : null, tier })), activeIndex: null, completed: true }, cfg, 'g', new Date('2026-11-07T12:00:00Z'))
+
+  it('snapshots the result with a stable game id', () => {
+    const r = game(4, [3, 3, null])
+    expect(r.result).toEqual({ gameId: 'g:4', completedAt: '2026-11-07T12:00:00.000Z', total: 150, base: 120, bonus: 30, tiers: [3, 3, null] })
+  })
+
+  it('aggregates played, average, high, tier counts and history', () => {
+    let s = emptySave()
+    s = completeDay(s, game(0, [1, 2, null]))
+    s = completeDay(s, game(1, [5, 5, 5]))
+    s = { ...s, days: { ...s.days, 2: { day: 2, promptIds: ['a'], plays: [], activeIndex: null, completed: false } } }
+    const st = computeStats(s, 2, cfg)
+    expect(st.played).toBe(2)
+    expect(st.high).toBe(100 + 150 + 200)
+    expect(st.average).toBe(Math.round((40 + 450) / 2))
+    expect(st.tierCounts).toEqual({ miss: 1, 1: 1, 2: 1, 3: 0, 4: 0, 5: 3 })
+    expect(st.history).toEqual([{ day: 0, total: 40 }, { day: 1, total: 450 }])
+    expect(st.streak).toBe(2)
+  })
+
+  it('every save gets a device id for later account merges', () => {
+    expect(emptySave().deviceId).toMatch(/.{8,}/)
   })
 })

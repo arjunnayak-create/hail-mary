@@ -11,18 +11,16 @@ export interface ShareInput {
   url: string
 }
 
+/** Exactly one emoji per play: the tier emoji, or the miss emoji. */
 export function shareEmojis(cfg: TierConfig, plays: readonly ScoredPlay[]): string {
-  return plays
-    .map((p) => {
-      if (p.tier === null) return cfg.miss.emoji
-      const e = cfg.tiers.find((t) => t.tier === p.tier)?.emoji ?? '?'
-      return p.multiplier > 1 ? e + cfg.streakBonus.emoji : e
-    })
-    .join('')
+  return plays.map((p) => (p.tier === null ? cfg.miss.emoji : cfg.tiers.find((t) => t.tier === p.tier)?.emoji ?? '?')).join('')
 }
 
+/** "<title> #N · 348 pts · 🔥×2" (the streak part is omitted when no play was multiplied). */
 export function buildShareText(cfg: TierConfig, s: ShareInput): string {
-  return `${s.title} #${s.gameNumber} — ${s.total} ${s.unit}\n${shareEmojis(cfg, s.plays)}\n${s.url}`
+  const hot = s.plays.filter((p) => p.multiplier > 1).length
+  const head = [`${s.title} #${s.gameNumber}`, `${s.total} ${s.unit}`, ...(hot ? [`${cfg.streakBonus.emoji}×${hot}`] : [])]
+  return `${head.join(' · ')}\n${shareEmojis(cfg, s.plays)}\n${s.url}`
 }
 
 export async function copyText(text: string): Promise<boolean> {

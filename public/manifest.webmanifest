@@ -1,0 +1,16 @@
+{
+  "name": "Hail Mary: the daily NFL heave",
+  "short_name": "Hail Mary",
+  "description": "Daily NFL trivia. 7 prompts, 25 seconds each. Rarer answers fly farther.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070a1a",
+  "theme_color": "#070a1a",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

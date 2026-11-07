@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 import { msUntilNextDay } from '../engine/daily'
 import type { SavedPlay } from '../engine/progress'
-import { maxBaseScore, type ScoredPlay } from '../engine/scoring'
+import { createMatcher, normalize, type NameIndex } from '../engine/matcher'
+import type { ScoredPlay } from '../engine/scoring'
 import { buildShareText, copyText, shareText } from '../engine/share'
-import type { Prompt } from '../engine/types'
+import type { Answer, AnswerRef, Prompt } from '../engine/types'
 import { useTheme } from './theme'
 
 function useCountUp(target: number, ms = 1200) {
@@ -81,8 +82,121 @@ function PlayChart({ scored }: { scored: ScoredPlay[] }) {
   )
 }
 
-function FilmRoom({ prompts, plays, scored }: { prompts: Prompt[]; plays: SavedPlay[]; scored: ScoredPlay[] }) {
+/** Expanded round: every answer (rarest first) with a search box that uses the game matcher. */
+function RoundAnswers({ prompt, mine, known }: { prompt: Prompt; mine: string | null; known: NameIndex | null }) {
   const { tiers, copy, TierIcon } = useTheme()
+  const [q, setQ] = useState('')
+  const matcher = useMemo(() => createMatcher(prompt, known ?? undefined), [prompt, known])
+  const nq = normalize(q)
+  const searching = nq.length >= 2
+  const hit = searching ? matcher.match(q) : null
+  const byName = (n: string) => [...prompt.answers, ...prompt.outOfRange].filter((a) => a.name === n)
+  const hitIds = new Set<string>(
+    hit?.kind === 'correct' ? [hit.answer.id]
+      : hit?.kind === 'outOfRange' ? [hit.entry.id]
+      : hit?.kind === 'suggest' ? hit.suggestions.flatMap((n) => byName(n).map((a) => a.id))
+      : [],
+  )
+  // a single suggestion that is in this prompt reads like a direct hit
+  const single = hit?.kind === 'suggest' && hit.suggestions.length === 1 ? byName(hit.suggestions[0])[0] : undefined
+  const singleAnswer = single && 'tier' in single ? (single as Answer) : undefined
+  const singleOor = single && !('tier' in single) ? single : undefined
+  const visible = (a: AnswerRef) =>
+    !searching || hitIds.has(a.id) || normalize(a.name).includes(nq) || a.aliases.some((x) => normalize(x).includes(nq))
+  const rarestFirst = [...tiers.tiers].sort((a, b) => b.tier - a.tier)
+  const tierOf = (a: Answer) => tiers.tiers.find((t) => t.tier === a.tier)!
+
+  let summary: React.ReactNode = null
+  const answerHit = hit?.kind === 'correct' ? hit.answer : singleAnswer
+  const oorHit = hit?.kind === 'outOfRange' ? hit.entry : singleOor
+  if (answerHit) {
+    const t = tierOf(answerHit)
+    summary = (
+      <span style={{ ['--c' as string]: t.color }} className="search-hit">
+        <TierIcon tier={t.tier} size={14} /> {answerHit.name} · <b>{t.name.toUpperCase()} · {t.points}</b>
+      </span>
+    )
+  } else if (oorHit) {
+    summary = <span className="search-hit is-oor">{oorHit.name} · <b>{copy.outOfRangeTag}</b></span>
+  } else if (hit?.kind === 'suggest') {
+    summary = (
+      <span className="search-hit">
+        {copy.didYouMean} {hit.suggestions.map((n) => {
+          const a = byName(n)[0]
+          const t = a && 'tier' in a ? tierOf(a as Answer) : null
+          return (
+            <b key={n} style={{ ['--c' as string]: t?.color ?? 'var(--dim)' }}>
+              {n}{t ? ` (${t.name})` : a ? ` (${copy.outOfRangeTag})` : ' (not an answer)'}
+            </b>
+          )
+        })}
+      </span>
+    )
+  } else if (searching) {
+    summary = <span className="search-hit dim">{copy.searchNoMatch}</span>
+  }
+
+  const groups = rarestFirst.map((t) => ({ t, list: prompt.answers.filter((a) => a.tier === t.tier && visible(a)).reverse() }))
+  const oor = prompt.outOfRange.filter(visible)
+  return (
+    <div className="film-list">
+      <div className="film-search">
+        <input
+          type="search"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder={copy.searchPlaceholder}
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck={false}
+          enterKeyHint="search"
+          aria-label="search answers"
+        />
+        <p className="film-search-result" aria-live="polite">{summary}</p>
+      </div>
+      {groups.map(({ t, list }) =>
+        list.length === 0 ? null : (
+          <div key={t.tier} className="film-tier" style={{ ['--c' as string]: t.color }}>
+            <div className="film-tier-head">
+              <TierIcon tier={t.tier} size={14} />
+              <span>{t.name.toUpperCase()} · {t.points}</span>
+              <span className="dim">{list.length}</span>
+            </div>
+            <div className="chips">
+              {list.map((a) => (
+                <span key={a.id} className={`chip ${a.id === mine ? 'is-mine' : ''} ${hitIds.has(a.id) ? 'is-hit' : ''}`} title={a.blurb}>
+                  {a.name}
+                </span>
+              ))}
+            </div>
+            {list.filter((a) => a.blurb).slice(0, 1).map((a) => (
+              <p key={a.id} className="film-blurb">{a.name}: {a.blurb}</p>
+            ))}
+          </div>
+        ),
+      )}
+      {oor.length > 0 && (
+        <div className="film-tier is-oor" style={{ ['--c' as string]: tiers.miss.color }}>
+          <div className="film-tier-head">
+            <span>{copy.outOfRangeTag.toUpperCase()}</span>
+            <span className="dim">{oor.length}</span>
+          </div>
+          <div className="chips">
+            {oor.map((a) => (
+              <span key={a.id} className={`chip ${hitIds.has(a.id) ? 'is-hit' : ''}`}>
+                {a.name} <em className="oor-tag">{copy.outOfRangeTag}</em>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function FilmRoom({ prompts, plays, scored, known }: { prompts: Prompt[]; plays: SavedPlay[]; scored: ScoredPlay[]; known: NameIndex | null }) {
+  const { copy, TierIcon } = useTheme()
   const [open, setOpen] = useState<number | null>(null)
   return (
     <section className="end-block panel">
@@ -93,7 +207,6 @@ function FilmRoom({ prompts, plays, scored }: { prompts: Prompt[]; plays: SavedP
           const s = scored[i]
           const ans = play?.answerId ? p.answers.find((a) => a.id === play.answerId) : null
           const isOpen = open === i
-          const rarestFirst = [...tiers.tiers].sort((a, b) => b.tier - a.tier)
           return (
             <li key={p.id} className={isOpen ? 'is-open' : ''}>
               <button className="film-row" onClick={() => setOpen(isOpen ? null : i)} aria-expanded={isOpen}>
@@ -102,33 +215,7 @@ function FilmRoom({ prompts, plays, scored }: { prompts: Prompt[]; plays: SavedP
                 <TierIcon tier={s?.tier ?? null} size={20} />
                 <span className="film-pts">{s ? s.points : 0}</span>
               </button>
-              {isOpen && (
-                <div className="film-list">
-                  {rarestFirst.map((t) => {
-                    const list = p.answers.filter((a) => a.tier === t.tier).reverse()
-                    if (!list.length) return null
-                    return (
-                      <div key={t.tier} className="film-tier" style={{ ['--c' as string]: t.color }}>
-                        <div className="film-tier-head">
-                          <TierIcon tier={t.tier} size={14} />
-                          <span>{t.name.toUpperCase()} · {t.points}</span>
-                          <span className="dim">{list.length}</span>
-                        </div>
-                        <div className="chips">
-                          {list.map((a) => (
-                            <span key={a.id} className={`chip ${a.id === play?.answerId ? 'is-mine' : ''}`} title={a.blurb}>
-                              {a.name}
-                            </span>
-                          ))}
-                        </div>
-                        {list.filter((a) => a.blurb).slice(0, 1).map((a) => (
-                          <p key={a.id} className="film-blurb">{a.name}: {a.blurb}</p>
-                        ))}
-                      </div>
-                    )
-                  })}
-                </div>
-              )}
+              {isOpen && <RoundAnswers prompt={p} mine={play?.answerId ?? null} known={known} />}
             </li>
           )
         })}
@@ -144,8 +231,12 @@ export function EndScreen(props: {
   scored: ScoredPlay[]
   total: number
   bonus: number
+  base: number
   streak: number
+  known: NameIndex | null
+  label?: string
   onMenu: () => void
+  onStats: () => void
 }) {
   const theme = useTheme()
   const { copy, tiers, bands, Backdrop } = theme
@@ -170,14 +261,17 @@ export function EndScreen(props: {
           <header className="end-head">
             <button className="icon-btn" aria-label="menu" onClick={props.onMenu}><span className="burger" /></button>
             <span className="glitch logo-sm" data-text={copy.title}>{copy.title}</span>
-            <span className="label">{copy.completeTitle(props.gameNumber)}</span>
+            <span className="label">{props.label ?? copy.completeTitle(props.gameNumber)}</span>
           </header>
           <section className="end-score">
             <span className="big-score">{shown}</span>
-            <span className="of">/{maxBaseScore(tiers, props.prompts.length)}</span>
+            <span className="of">{copy.pointsUnit}</span>
+            <p className="score-split">
+              {copy.basePoints} {props.base}
+              {props.bonus > 0 && <span className="hot"> + 🔥 {props.bonus} {copy.multiplierLabel}</span>}
+            </p>
             <p className="label">
               {distance} {copy.distanceUnit} total · {copy.streakLabel} {props.streak}
-              {props.bonus > 0 && <span className="hot"> · 🔥 +{props.bonus} {copy.multiplierLabel}</span>}
             </p>
           </section>
           <PlayChart scored={props.scored} />
@@ -212,8 +306,11 @@ export function EndScreen(props: {
               {copy.share}
             </button>
             <pre className="share-preview">{text}</pre>
+            <button className="btn btn-secondary btn-wide" onClick={props.onStats}>
+              {copy.statsButton}
+            </button>
           </div>
-          <FilmRoom prompts={props.prompts} plays={props.plays} scored={props.scored} />
+          <FilmRoom prompts={props.prompts} plays={props.plays} scored={props.scored} known={props.known} />
           <NextGame />
         </div>
       </div>

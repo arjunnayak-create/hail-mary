@@ -43,7 +43,7 @@ export interface ThemeCopy {
   submit: string
   wrong: (guess: string) => string
   outOfRange: (guess: string) => string
-  ambiguous: (guess: string) => string
+  didYouMean: string
   multiplierLabel: string
   next: string
   final: string
@@ -61,6 +61,20 @@ export interface ThemeCopy {
   nextGameIn: string
   shareTitle: string
   credits: string[]
+  basePoints: string
+  searchPlaceholder: string
+  searchNoMatch: string
+  outOfRangeTag: string
+  statsTitle: string
+  statsButton: string
+  statPlayed: string
+  statAverage: string
+  statHigh: string
+  statStreak: string
+  statBest: string
+  statTiers: string
+  statHistory: (n: number) => string
+  statEmpty: string
 }
 
 export interface ThrowSceneProps {

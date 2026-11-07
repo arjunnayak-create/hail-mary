@@ -73,7 +73,10 @@ export function InputDock(props: {
   remaining: number
   total: number
   feedback: Feedback | null
+  suggestions: string[]
   onSubmit: (v: string) => void
+  onPick: (name: string) => void
+  onType: () => void
 }) {
   const { copy } = useTheme()
   const danger = props.active && props.remaining <= 5000
@@ -86,10 +89,33 @@ export function InputDock(props: {
     el.classList.add('is-shake')
   }, [props.feedback])
 
-  const submit = () => props.inputRef.current && props.onSubmit(props.inputRef.current.value)
+  const showChips = props.active && props.suggestions.length > 0
+  // Enter with a suggestion showing submits the first (most likely) suggestion
+  const submit = () => {
+    if (showChips) props.onPick(props.suggestions[0])
+    else if (props.inputRef.current) props.onSubmit(props.inputRef.current.value)
+  }
   return (
     <footer className="dock">
-      <p ref={lineRef} className="feedback" aria-live="polite">{props.active ? props.feedback?.text ?? '' : ''}</p>
+      {showChips ? (
+        <div className="suggest" aria-live="polite">
+          <span className="suggest-label">{copy.didYouMean}</span>
+          {props.suggestions.map((n) => (
+            <button
+              key={n}
+              type="button"
+              className="suggest-chip"
+              // keep the input focused so the keyboard stays up
+              onPointerDown={(e) => e.preventDefault()}
+              onClick={() => props.onPick(n)}
+            >
+              {n}?
+            </button>
+          ))}
+        </div>
+      ) : (
+        <p ref={lineRef} className="feedback" aria-live="polite">{props.active ? props.feedback?.text ?? '' : ''}</p>
+      )}
       <form
         className="dock-row"
         onSubmit={(e) => {
@@ -111,6 +137,7 @@ export function InputDock(props: {
           readOnly={false}
           onChange={(e) => {
             if (!props.active) e.currentTarget.value = '' // no typing ahead during the countdown
+            props.onType() // typing more dismisses a suggestion
           }}
         />
         <button

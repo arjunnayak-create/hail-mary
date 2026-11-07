@@ -1,10 +1,10 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { scorePlays, totals } from '../engine/scoring'
 import { useCountdown } from '../engine/timer'
 import { prefersReducedMotion, useVisualViewport } from '../engine/viewport'
 import { EndScreen } from './EndScreen'
 import { Home, Menu, TopBar } from './Home'
 import { Hud, InputDock, PromptCard, RevealCard } from './Play'
+import { StatsScreen } from './StatsScreen'
 import { ThemeContext, type Theme } from './theme'
 import { useGame } from './useGame'
 import './ui.css'
@@ -30,6 +30,7 @@ function Game({ theme }: { theme: Theme }) {
   const g = useGame(theme, inputRef)
   const { keyboardOpen } = useVisualViewport()
   const [menu, setMenu] = useState(false)
+  const [stats, setStats] = useState(false)
   const [homeGone, setHomeGone] = useState(false)
   const distRef = useRef<HTMLSpanElement>(null)
   const topRef = useRef<HTMLDivElement>(null)
@@ -38,6 +39,17 @@ function Game({ theme }: { theme: Theme }) {
   const ready = g.phase !== 'loading' && g.phase !== 'error'
   const topBottom = useMeasure(topRef, (r) => r.bottom, ready)
   const dockH = useMeasure(dockRef, (r) => r.height, ready)
+
+  // older browsers without overflow: clip: undo any focus-driven scroll of the fixed layout
+  useEffect(() => {
+    const els = [rootRef.current, rootRef.current?.firstElementChild as HTMLElement | null].filter(Boolean) as HTMLElement[]
+    const reset = (e: Event) => {
+      const el = e.currentTarget as HTMLElement
+      if (el.scrollTop || el.scrollLeft) el.scrollTo(0, 0)
+    }
+    els.forEach((el) => el.addEventListener('scroll', reset))
+    return () => els.forEach((el) => el.removeEventListener('scroll', reset))
+  })
 
   const total = theme.secondsPerPrompt * 1000
   const remaining = useCountdown(g.phase === 'play' ? g.clockStart : null, total, g.timeout)
@@ -69,12 +81,6 @@ function Game({ theme }: { theme: Theme }) {
   const mults = theme.tiers.streakBonus.multipliers
   const nextMult = streakNow > 0 ? mults[Math.min(streakNow + 1, mults.length) - 1] : 1
   const doneCount = g.rec?.plays.length ?? 0
-  const playedDays = Object.values(g.save.days).filter((d) => d.completed)
-  const played = playedDays.length
-  const avg = played
-    ? Math.round(playedDays.reduce((a, d) => a + totals(scorePlays(theme.tiers, d.plays)).total, 0) / played)
-    : 0
-
   if (g.phase === 'loading' || g.phase === 'error') {
     return (
       <div className="app-root" style={theme.cssVars as React.CSSProperties}>
@@ -133,7 +139,10 @@ function Game({ theme }: { theme: Theme }) {
               remaining={remaining}
               total={total}
               feedback={g.feedback}
+              suggestions={g.suggestions}
               onSubmit={g.submit}
+              onPick={g.pick}
+              onType={g.dismissSuggestions}
             />
           </div>
           {g.phase === 'reveal' && lastPlay && (
@@ -172,12 +181,18 @@ function Game({ theme }: { theme: Theme }) {
             scored={g.scored}
             total={g.sums.total}
             bonus={g.sums.bonus}
+            base={g.sums.base}
             streak={g.streak}
+            known={g.known}
+            label={import.meta.env.DEV && g.randomMode ? 'DEV · RANDOM GAME' : undefined}
             onMenu={() => setMenu(true)}
+            onStats={() => setStats(true)}
           />
         )}
-        <Menu open={menu} onClose={() => setMenu(false)} streak={g.streak} best={g.save.bestStreak} played={played} avg={avg} />
+        <Menu open={menu} onClose={() => setMenu(false)} onStats={() => { setMenu(false); setStats(true) }} />
+        {stats && <StatsScreen save={g.save} today={g.today} onClose={() => setStats(false)} />}
       </div>
+      {import.meta.env.DEV && g.randomMode && <div className="dev-badge">DEV · RANDOM GAME</div>}
       <div className="crt" aria-hidden />
     </div>
   )

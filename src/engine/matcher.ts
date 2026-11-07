@@ -1,22 +1,25 @@
 /**
- * Client-side answer matching for a single prompt.
+ * Client-side answer matching for a single prompt (confirm-before-throw).
  *
- * Rules (see SPEC.md "Name matching"):
- *  - case / punctuation / diacritic insensitive; ignores Jr. Sr. II III IV V
- *  - aliases and nicknames (shipped per answer in prompts.json)
- *  - small typos accepted, but never when the guess is at least as close to a different
- *    entry (an out-of-range one, or any known name from names.json)
- *  - the short name alone (e.g. a surname) is accepted only when exactly one answer in the
- *    prompt has it
+ *  - Exact name or known alias of an answer: accepted immediately.
+ *  - Exact name of an out-of-range entry: "before our time".
+ *  - Exact name of any other known entry: wrong (never "corrected").
+ *  - Typo on a full name: one suggestion to confirm, from THIS prompt's answers first (with a
+ *    forgiving edit limit), else the closest known name (names.json).
+ *  - A bare surname: up to 3 suggestions from the FULL known-name list, most famous first,
+ *    so a surname alone never reveals which entries are valid answers.
+ *  - Case / punctuation / diacritic insensitive; ignores Jr. Sr. II III IV V.
+ * A suggestion is only a name: the UI submits it again, and it is then judged exactly.
  */
 import type { Answer, AnswerRef, PromptData } from './types'
 
 export type { Answer, AnswerRef, PromptData }
 
 export type MatchResult =
-  | { kind: 'correct'; answer: Answer; via: 'name' | 'alias' | 'shortName' | 'typo' }
+  | { kind: 'correct'; answer: Answer; via: 'name' | 'alias' }
   | { kind: 'outOfRange'; entry: AnswerRef }
-  | { kind: 'ambiguous'; candidates: Answer[] }
+  /** Not accepted yet: ask "Did you mean …?" with these names (most likely first). */
+  | { kind: 'suggest'; suggestions: string[]; reason: 'typo' | 'shortName' }
   | { kind: 'wrong' }
 
 const SUFFIXES = new Set(['jr', 'sr', 'ii', 'iii', 'iv', 'v'])
@@ -80,38 +83,51 @@ export function editDistance(a: string, b: string, limit = Infinity): number {
 
 // --------------------------------------------------------------------------- known names
 
-/** Every known name in the domain (public/data/names.json). */
+/** Every known name in the domain (public/data/names.json), most famous first. */
 export interface NameIndex {
   keys: Set<string>
-  lastKeys: Set<string>
-  byLength: Map<number, string[]>
+  /** Display names by length of their compact key (for typo search). */
+  byLength: Map<number, { key: string; name: string; rank: number }[]>
+  /** Display names by surname key, most famous first. */
+  bySurname: Map<string, string[]>
 }
 
 export function buildNameIndex(names: string[]): NameIndex {
   const keys = new Set<string>()
-  const lastKeys = new Set<string>()
-  const byLength = new Map<number, string[]>()
-  for (const n of names) {
+  const byLength: NameIndex['byLength'] = new Map()
+  const bySurname: NameIndex['bySurname'] = new Map()
+  names.forEach((n, rank) => {
     const t = tokens(n)
     const k = t.join('')
-    if (!k) continue
-    if (t.length > 1) lastKeys.add(t[t.length - 1])
-    if (keys.has(k)) continue
+    if (!k || keys.has(k)) return
     keys.add(k)
     const list = byLength.get(k.length)
-    if (list) list.push(k)
-    else byLength.set(k.length, [k])
-  }
-  return { keys, lastKeys, byLength }
+    if (list) list.push({ key: k, name: n, rank })
+    else byLength.set(k.length, [{ key: k, name: n, rank }])
+    if (t.length > 1) {
+      const last = t[t.length - 1]
+      const s = bySurname.get(last)
+      if (s) s.push(n)
+      else bySurname.set(last, [n])
+    }
+  })
+  return { keys, byLength, bySurname }
 }
 
-function knownWithin(known: NameIndex, q: string, d: number, exclude: Set<string>): boolean {
-  for (let len = q.length - d; len <= q.length + d; len++) {
-    for (const k of known.byLength.get(len) ?? []) {
-      if (!exclude.has(k) && editDistance(q, k, d) <= d) return true
+/** Closest known names within `limit` edits (ties: most famous first). */
+function closestKnown(known: NameIndex, q: string, limit: number, max: number): string[] {
+  let best = limit + 1
+  let hits: { name: string; rank: number }[] = []
+  for (let len = q.length - limit; len <= q.length + limit; len++) {
+    for (const e of known.byLength.get(len) ?? []) {
+      const d = editDistance(q, e.key, Math.min(limit, best))
+      if (d < best) {
+        best = d
+        hits = [e]
+      } else if (d === best && d <= limit) hits.push(e)
     }
   }
-  return false
+  return hits.sort((a, b) => a.rank - b.rank).slice(0, max).map((h) => h.name)
 }
 
 // --------------------------------------------------------------------------- matcher
@@ -137,42 +153,27 @@ export interface PromptMatcher {
 export function createMatcher(prompt: PromptData, known?: NameIndex): PromptMatcher {
   const answers = prompt.answers.map(entry)
   const outOfRange = prompt.outOfRange.map(entry)
-  const promptKeys = new Set([...answers, ...outOfRange].flatMap((e) => [...e.keys]))
+  const surnames = new Map<string, string[]>() // fallback when there is no known-name list
+  for (const e of [...answers, ...outOfRange]) {
+    if (!e.last) continue
+    const l = surnames.get(e.last) ?? []
+    if (!l.includes(e.ref.name)) l.push(e.ref.name)
+    surnames.set(e.last, l)
+  }
 
-  /**
-   * Closest entry within `limit` edits, comparing `q` against `keysOf(entry)`. Accepted only
-   * if every entry at the best distance is an answer with the same name (namesakes resolve
-   * to the most famous), and no out-of-range or other known entry is as close.
-   */
-  function fuzzy(q: string, limit: number, keysOf: (e: Entry<AnswerRef>) => Iterable<string>, checkKnown: boolean): MatchResult | null {
+  /** Closest answer (or out-of-range entry) within a forgiving limit; most famous on ties. */
+  function closestInPrompt(q: string, limit: number): string | null {
     let best = limit + 1
-    let hitAnswers: Entry<Answer>[] = []
-    let hitOut: Entry<AnswerRef>[] = []
-    const visit = (e: Entry<AnswerRef>, isAnswer: boolean) => {
+    let name: string | null = null
+    for (const e of [...answers, ...outOfRange]) {
       let d = limit + 1
-      for (const k of keysOf(e)) d = Math.min(d, editDistance(q, k, limit))
-      if (d > limit || d > best) return
+      for (const k of e.keys) d = Math.min(d, editDistance(q, k, limit))
       if (d < best) {
         best = d
-        hitAnswers = []
-        hitOut = []
+        name = e.ref.name
       }
-      if (isAnswer) hitAnswers.push(e as Entry<Answer>)
-      else hitOut.push(e)
     }
-    answers.forEach((e) => visit(e, true))
-    outOfRange.forEach((e) => visit(e, false))
-    if (best > limit) return null
-    if (hitAnswers.length > 0 && hitOut.length > 0) return null // as close to a non-answer
-    if (checkKnown && known && knownWithin(known, q, best, promptKeys)) return null
-
-    if (hitAnswers.length > 0) {
-      const names = new Set(hitAnswers.map((e) => e.nameKey))
-      if (names.size > 1) return { kind: 'ambiguous', candidates: hitAnswers.map((e) => e.ref) }
-      return { kind: 'correct', answer: hitAnswers[0].ref, via: 'typo' }
-    }
-    const names = new Set(hitOut.map((e) => e.nameKey))
-    return names.size === 1 ? { kind: 'outOfRange', entry: hitOut[0].ref } : null
+    return name
   }
 
   function match(guess: string): MatchResult {
@@ -188,29 +189,38 @@ export function createMatcher(prompt: PromptData, known?: NameIndex): PromptMatc
     const oor = outOfRange.find((e) => e.keys.has(q))
     if (oor) return { kind: 'outOfRange', entry: oor.ref }
 
-    // 3. exact name of some other real entry: a real but wrong answer, never typo-corrected
+    // 3. exact name of some other real entry: a real but wrong answer
     if (known?.keys.has(q)) return { kind: 'wrong' }
 
-    // 4. short name (surname) only, unambiguous within this prompt's answers
-    const byLast = answers.filter((e) => e.last === q)
-    if (new Set(byLast.map((e) => e.ref.id)).size === 1) {
-      return { kind: 'correct', answer: byLast[0].ref, via: 'shortName' }
+    // 4. a bare surname: suggest from the full name list (most famous first), never from
+    //    this prompt's answers, so a surname alone doesn't reveal what's valid
+    if (t.length === 1) {
+      const pool = known?.bySurname ?? surnames
+      let names = pool.get(q) ?? []
+      if (!names.length) {
+        const limit = maxEdits(q.length)
+        if (limit > 0) {
+          let best = limit + 1
+          for (const [last, list] of pool) {
+            if (Math.abs(last.length - q.length) > limit) continue
+            const d = editDistance(q, last, limit)
+            if (d < best) {
+              best = d
+              names = [...list]
+            } else if (d === best && d <= limit) names = names.concat(list)
+          }
+        }
+      }
+      return names.length ? { kind: 'suggest', suggestions: names.slice(0, 3), reason: 'shortName' } : { kind: 'wrong' }
     }
-    if (byLast.length > 1) return { kind: 'ambiguous', candidates: byLast.map((e) => e.ref) }
-    const oorLast = outOfRange.filter((e) => e.last === q)
-    if (oorLast.length === 1) return { kind: 'outOfRange', entry: oorLast[0].ref }
 
+    // 5. typo on a full name: closest in this prompt (forgiving), else closest known name
+    const inPrompt = closestInPrompt(q, maxEdits(q.length) + 1)
+    if (inPrompt) return { kind: 'suggest', suggestions: [inPrompt], reason: 'typo' }
     const limit = maxEdits(q.length)
-    if (limit === 0) return { kind: 'wrong' }
-
-    // 5. typo on a full name or alias
-    const full = fuzzy(q, limit, (e) => e.keys, true)
-    if (full) return full
-
-    // 6. typo on a last name: single-word guesses that are not themselves a real last name
-    if (t.length === 1 && !known?.lastKeys.has(q)) {
-      const last = fuzzy(q, limit, (e) => [e.last], false)
-      if (last) return last
+    if (known && limit > 0) {
+      const names = closestKnown(known, q, limit, 1)
+      if (names.length) return { kind: 'suggest', suggestions: names, reason: 'typo' }
     }
     return { kind: 'wrong' }
   }

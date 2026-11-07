@@ -232,9 +232,15 @@ def main() -> dict:
     C.PROMPTS_JSON.parent.mkdir(parents=True, exist_ok=True)
     C.PROMPTS_JSON.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")))
 
-    # every known player name, so the matcher can refuse a typo that is closer to someone else
-    known = players[(players["first_season"].notna()) | players.index.str.startswith("dp-")]["name"]
-    names = sorted({n for n in known if isinstance(n, str)} | set(wiki_names.values()))
+    # every known player name: exact non-answers are rejected, and suggestions come from here
+    # ordered most famous first: the matcher suggests surnames in this order
+    known_ids = players.index[(players["first_season"].notna()) | players.index.str.startswith("dp-")]
+    by_fame = fame_df["fame"].reindex(known_ids).fillna(0).sort_values(ascending=False, kind="stable")
+    names, seen = [], set()
+    for n in [players.at[i, "name"] for i in by_fame.index] + sorted(set(wiki_names.values())):
+        if isinstance(n, str) and n not in seen:
+            seen.add(n)
+            names.append(n)
     C.NAMES_JSON.write_text(json.dumps({"names": names}, ensure_ascii=False, separators=(",", ":")))
 
     fame_df.sort_values("fame", ascending=False).to_csv(C.OUT_DIR / "fame.csv")

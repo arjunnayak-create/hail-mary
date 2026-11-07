@@ -6,10 +6,11 @@ body { -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%;
 
 .app-root {
   position: fixed; left: 0; right: 0; top: var(--vv-top, 0); height: var(--vv-h, 100dvh);
-  overflow: hidden; color: var(--text); background: var(--bg);
+  overflow: hidden; overflow: clip; color: var(--text); background: var(--bg);
   font: 400 14px/1.45 var(--font-mono);
 }
-.stage { position: relative; height: 100%; max-width: 560px; margin: 0 auto; overflow: hidden; }
+/* clip (not just hidden): focus / scrollIntoView must never scroll the fixed layout */
+.stage { position: relative; height: 100%; max-width: 560px; margin: 0 auto; overflow: hidden; overflow: clip; }
 .screen { position: absolute; inset: 0; }
 
 /* ---------- shared bits */
@@ -295,3 +296,60 @@ body { -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%;
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
+
+/* ---------- end score split */
+.score-split { margin: 10px 0 0; font: 700 12px/1.4 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: #d9dcf2; }
+.of { font: 400 14px/1 var(--font-pixel); color: var(--dim); margin-left: 8px; }
+
+/* ---------- film room search */
+.film-search { position: sticky; top: 0; z-index: 1; padding: 4px 0 2px; background: var(--panel); }
+.film-search input {
+  width: 100%; height: 44px; padding: 0 12px; border: 2px solid rgba(214, 222, 255, 0.45); border-radius: 0;
+  background: rgba(4, 6, 18, 0.9); color: #fff; outline: none; font: 400 16px/1 var(--font-mono); -webkit-appearance: none;
+}
+.film-search input:focus { border-color: var(--secondary); }
+.film-search-result { min-height: 18px; margin: 6px 0 0; font-size: 12px; }
+.search-hit { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.search-hit b { color: var(--c, var(--warn)); font-weight: 700; letter-spacing: 0.08em; }
+.search-hit.is-oor b { color: var(--warn); }
+.chip.is-hit { outline: 2px solid var(--c); outline-offset: 1px; color: #fff; }
+.film-tier.is-oor .chip { opacity: 0.8; }
+.oor-tag { font-style: normal; font-size: 9px; letter-spacing: 0.1em; color: var(--warn); margin-left: 4px; text-transform: uppercase; }
+
+/* ---------- stats */
+.stats-screen { z-index: 45; background: var(--bg); }
+.stats-screen .end-scroll { background: var(--bg); }
+.stats-close { margin-left: auto; }
+.stat-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.stat-tile { padding: 12px 6px; text-align: center; display: flex; flex-direction: column; gap: 6px; }
+.stat-tile b { font: 400 18px/1.2 var(--font-pixel); color: var(--primary); }
+.stat-tile .label { font-size: 8px; letter-spacing: 0.14em; }
+.tier-bars { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.tier-bars li { display: grid; grid-template-columns: 18px minmax(0, 1.3fr) 1fr 28px; align-items: center; gap: 8px; font-size: 11px; }
+.tier-bar-name { color: var(--c); letter-spacing: 0.06em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tier-bar { height: 10px; background: rgba(255, 255, 255, 0.08); }
+.tier-bar i { display: block; height: 100%; background: var(--c); box-shadow: 0 0 6px var(--c); }
+.tier-bars b { text-align: right; font: 400 11px/1 var(--font-pixel); }
+.history { height: 120px; display: flex; align-items: flex-end; gap: 2px; border-bottom: 2px solid #fff; }
+.history-col { flex: 1; height: 100%; display: flex; align-items: flex-end; max-width: 18px; }
+.history-col i { display: block; width: 100%; background: var(--primary); box-shadow: 0 0 6px var(--primary); min-height: 2px; }
+.history-x { display: flex; justify-content: space-between; margin-top: 6px; font-size: 8px; }
+.sheet-stats { margin: 8px 3px 4px; }
+.dev-badge { position: absolute; left: 50%; top: calc(env(safe-area-inset-top) + 4px); transform: translateX(-50%); z-index: 55; padding: 3px 8px; background: var(--warn); color: #000; font: 700 10px/1 var(--font-mono); letter-spacing: 0.12em; pointer-events: none; }
+
+/* ---------- did-you-mean suggestions (sit in the dock, above the keyboard) */
+/* one scrollable row: keeps the dock short when the keyboard is open */
+.suggest {
+  display: flex; flex-wrap: nowrap; align-items: center; gap: 6px; margin: 6px -8px 8px; padding: 0 8px;
+  overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
+}
+.suggest::-webkit-scrollbar { display: none; }
+.suggest-label { flex: none; }
+.suggest-chip { flex: none; }
+.suggest-label { font: 700 10px/1 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--warn); }
+.suggest-chip {
+  min-height: 44px; padding: 0 12px; border: 2px solid var(--secondary); background: color-mix(in srgb, var(--secondary) 14%, #070a1a);
+  color: #fff; font: 700 14px/1 var(--font-mono); cursor: pointer; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.suggest-chip:active { background: color-mix(in srgb, var(--secondary) 35%, #070a1a); }
+.search-hit b + b::before { content: ', '; color: var(--dim); }

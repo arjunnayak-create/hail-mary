@@ -50,45 +50,40 @@ describe('prompts.json shape', () => {
   })
 })
 
+const sug = (r: MatchResult) => (r.kind === 'suggest' ? r.suggestions : [])
+
 describe('real prompts', () => {
-  it('Giants WR: nickname, typo, last name', () => {
+  it('Giants WR: nickname accepted, typo and surname become suggestions', () => {
     const m = matcher('team-nyg-wr')
     expect(name(m.match('OBJ'))).toBe('Odell Beckham Jr.')
-    expect(name(m.match('odell beckam'))).toBe('Odell Beckham Jr.')
-    expect(name(m.match('Toomer'))).toBe('Amani Toomer')
-    expect(name(m.match('Plaxico'))).toBe('wrong') // first name alone is not accepted
-    expect(name(m.match('Plaxico Buress'))).toBe('Plaxico Burress')
+    expect(sug(m.match('odell beckam'))).toEqual(['Odell Beckham Jr.'])
+    expect(sug(m.match('Plaxico Buress'))).toEqual(['Plaxico Burress'])
+    expect(sug(m.match('Toomer'))).toContain('Amani Toomer')
     expect(m.match('Jerry Rice').kind).toBe('wrong')
   })
 
-  it('Giants QB: rejects a typo closer to a non-answer', () => {
+  it('Giants QB: a typo of a non-answer suggests that non-answer, which then misses', () => {
     const m = matcher('team-nyg-qb')
     expect(name(m.match('Eli Manning'))).toBe('Eli Manning')
-    expect(name(m.match('Simms'))).toBe('Phil Simms')
-    // Peyton was never a Giant; "Payton Manning" is 1 edit from Peyton, far from Eli
-    expect(m.match('Payton Manning').kind).toBe('wrong')
+    expect(sug(m.match('Manning'))[0]).toBe('Peyton Manning') // global fame order
+    expect(sug(m.match('Manning'))).toContain('Eli Manning')
     expect(m.match('Peyton Manning').kind).toBe('wrong')
   })
 
-  it('Chiefs prompts: Pat Mahomes via first-name variants', () => {
-    const m = matcher('team-kc-te')
-    expect(name(m.match('Kelce'))).toBe('Travis Kelce')
+  it('surname suggestions come from the full list, capped at 3', () => {
+    const r = sug(matcher('team-nyg-wr').match('Smith'))
+    expect(r).toHaveLength(3)
+    // the most famous Smiths in the league, not "the Smiths who were Giants WRs"
+    expect(r.slice(0, 2).sort()).toEqual(['Bruce Smith', 'Emmitt Smith'])
+  })
+
+  it('Super Bowl MVP: Pat Mahomes alias, pre-1980 winners out of range', () => {
     const sb = matcher('award-sb-mvp')
     expect(name(sb.match('Pat Mahomes'))).toBe('Patrick Mahomes')
-    expect(name(sb.match('mahomes'))).toBe('Patrick Mahomes')
-  })
-
-  it('Super Bowl MVP: pre-1980 winners are out of range, not wrong', () => {
-    const m = matcher('award-sb-mvp')
-    expect(m.match('Joe Namath')).toMatchObject({ kind: 'outOfRange' })
-    expect(m.match('Terry Bradshaw')).toMatchObject({ kind: 'outOfRange' })
-    expect(name(m.match('Joe Montana'))).toBe('Joe Montana')
-    expect(name(m.match('Kenneth Walker'))).toBe('Kenneth Walker III')
-    expect(m.match('Dan Marino').kind).toBe('wrong')
-  })
-
-  it('Jets QB: Namath is before our time', () => {
-    expect(matcher('team-nyj-qb').match('Namath')).toMatchObject({ kind: 'outOfRange' })
+    expect(sb.match('Joe Namath')).toMatchObject({ kind: 'outOfRange' })
+    expect(sb.match('Terry Bradshaw')).toMatchObject({ kind: 'outOfRange' })
+    expect(name(sb.match('Kenneth Walker'))).toBe('Kenneth Walker III')
+    expect(sb.match('Dan Marino').kind).toBe('wrong')
   })
 
   it('Steelers LB: T.J. vs TJ', () => {
@@ -103,11 +98,7 @@ describe('real prompts', () => {
     expect(name(m.match('Pat Surtain'))).toMatch(/Surtain/)
   })
 
-  it('Panthers / 49ers RB: CMC', () => {
+  it('49ers RB: CMC', () => {
     expect(name(matcher('team-sf-rb').match('CMC'))).toBe('Christian McCaffrey')
-  })
-
-  it('ambiguous last names ask for more', () => {
-    expect(matcher('team-nyg-wr').match('Smith').kind).toBe('ambiguous')
   })
 })

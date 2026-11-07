@@ -1,6 +1,6 @@
 /* NFL theme: field-scene overlays. Palette + fonts come from cssVars in index.ts. */
 
-.field-scene { position: absolute; inset: 0; overflow: hidden; background: #0d1230; }
+.field-scene { position: absolute; inset: 0; overflow: hidden; overflow: clip; background: #0d1230; }
 .field-canvas { position: absolute; left: 0; bottom: 0; image-rendering: pixelated; }
 .field-world { position: absolute; bottom: 0; pointer-events: none; will-change: transform; }
 
@@ -76,5 +76,5 @@
   padding: 2px 3px; border-radius: 2px; box-shadow: 0 0 8px var(--primary);
 }
 
-.stadium-scene { position: absolute; inset: 0; overflow: hidden; background: #140b33; }
+.stadium-scene { position: absolute; inset: 0; overflow: hidden; overflow: clip; background: #140b33; }
 .stadium-scene canvas { position: absolute; left: 0; top: 0; image-rendering: pixelated; }

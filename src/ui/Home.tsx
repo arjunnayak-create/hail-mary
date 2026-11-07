@@ -56,7 +56,7 @@ export function Home(props: {
   )
 }
 
-export function Menu(props: { open: boolean; onClose: () => void; streak: number; best: number; played: number; avg: number }) {
+export function Menu(props: { open: boolean; onClose: () => void; onStats: () => void }) {
   const { copy } = useTheme()
   if (!props.open) return null
   return (
@@ -66,19 +66,15 @@ export function Menu(props: { open: boolean; onClose: () => void; streak: number
           <span className="label is-primary">{copy.title}</span>
           <button className="icon-btn" onClick={props.onClose} aria-label="close">✕</button>
         </div>
+        <button className="btn btn-secondary btn-wide sheet-stats" onClick={props.onStats}>
+          {copy.statsTitle}
+        </button>
         <h3 className="label">How to play</h3>
         <ul className="sheet-list">
           {copy.howToPlay.map((l) => (
             <li key={l}>{l}</li>
           ))}
         </ul>
-        <h3 className="label">Your stats</h3>
-        <div className="stats">
-          <div><b>{props.played}</b><span className="label">played</span></div>
-          <div><b>{props.avg}</b><span className="label">avg</span></div>
-          <div><b>{props.streak}</b><span className="label">streak</span></div>
-          <div><b>{props.best}</b><span className="label">best</span></div>
-        </div>
         <ul className="sheet-list dim">
           {copy.credits.map((l) => (
             <li key={l}>{l}</li>

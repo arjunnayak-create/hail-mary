@@ -25,7 +25,8 @@ export const nflTheme: Theme = {
   countdownSeconds: 3,
   dataUrl: '/data/prompts.json',
   namesUrl: '/data/names.json',
-  shareUrl: 'hailmary.vercel.app',
+  // single config value: VITE_SITE_URL in .env (shown without the protocol in share text)
+  shareUrl: (import.meta.env.VITE_SITE_URL ?? '').replace(/^https?:\/\//, ''),
   tiers: tiersJson as TierConfig,
   copy,
   bands,
