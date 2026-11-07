@@ -79,7 +79,7 @@ Rows you add by hand with `status=manual` are never overwritten.
 ## Fame score
 
 All weights live in `config.py`. Tier names, yards and percentile cutoffs live in
-`src/config/tiers.json`, which the app also reads.
+`src/themes/nfl/tiers.json`, which the app also reads.
 
 ```
 fame = honors + awards + value + recency
@@ -109,8 +109,9 @@ recency = 4 * min(1, starts in the last 3 seasons / 34)     (start = >= 50% of o
   K/P/LS 0.5.
 * **Award prompts** ("Name a Super Bowl MVP"): add award-specific fame on top of career
   fame. +60 per win of *that* award beyond the first (Brady's 5 SB MVPs, Mahomes' 3), plus a
-  recency bonus of 200 × (3 − age) / 3 for the player's latest win, where age 0 is the
-  award's most recent season. Last year's winner gets +200, two seasons ago +133, three +67.
+  recency bonus of 150 × (3 − age) / 3 for the player's latest win, where age 0 is the
+  award's most recent season (+150 / +100 / +50). For OROY/DROY the bonus is scaled to 25%,
+  so recent rookies don't outrank established stars.
 * **Team tenure** (team + position prompts only): `fame * min(1, seasons with the
   franchise / 4) ** 2`. A star's one late-career season with a team is a deep cut for that
   team (Herman Moore as a Giant), while a 4+ season player keeps full fame.
@@ -118,7 +119,7 @@ recency = 4 * min(1, starts in the last 3 seasons / 34)     (start = >= 50% of o
 ### Tiers
 
 Answers are ranked by adjusted score, most famous first. Tiers are hybrid
-(`src/config/tiers.json`):
+(`src/themes/nfl/tiers.json`):
 
 | Tier | Share |
 |---|---|

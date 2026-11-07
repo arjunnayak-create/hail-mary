@@ -1,6 +1,6 @@
 """Every tunable number in the data pipeline lives here.
 
-Tier names / yards / shares / caps live in src/config/tiers.json (shared with the
+Tier names / points / shares / caps live in src/themes/nfl/tiers.json (shared with the
 app) and are loaded below. See scripts/README.md for how these weights combine.
 """
 
@@ -17,13 +17,14 @@ DATA = SCRIPTS / "data"
 AWARDS_DIR = DATA / "awards"
 HONORS_OVERRIDE = DATA / "honors_override.csv"
 ALIASES = DATA / "aliases.csv"
+BLURBS = DATA / "blurbs.csv"  # optional per-answer fun facts
 FIRST_NAME_VARIANTS = DATA / "first_name_variants.csv"
 OUT_DIR = SCRIPTS / "out"  # debug artifacts + reports (gitignored)
 PROMPTS_JSON = ROOT / "public" / "data" / "prompts.json"
 NAMES_JSON = ROOT / "public" / "data" / "names.json"
 
 # --------------------------------------------------------------------------- tiers
-TIERS = json.loads((ROOT / "src" / "config" / "tiers.json").read_text())["tiers"]
+TIERS = json.loads((ROOT / "src" / "themes" / "nfl" / "tiers.json").read_text())["tiers"]
 HEAD_TIERS = [t for t in TIERS if "share" in t]  # top tiers: share of the list, capped
 TAIL_TIERS = [t for t in TIERS if "restShare" in t]  # the rest, split by restShare
 assert HEAD_TIERS + TAIL_TIERS == TIERS, "head tiers (share) must come before tail tiers (restShare)"
@@ -79,7 +80,10 @@ AWARD_POINTS = {
 # data (0 = most recent winner) and N = AWARD_RECENT_SEASONS.
 AWARD_EXTRA_WIN = 60.0
 AWARD_RECENT_SEASONS = 3
-AWARD_RECENT_BONUS = 200.0
+AWARD_RECENT_BONUS = 150.0
+# Per-award scale on the recency bonus: rookies have little career fame, so a full bonus
+# would put last year's ROY above established stars.
+AWARD_RECENT_SCALE = {"oroy": 0.25, "droy": 0.25}
 
 # Recency: small bump for current starters, capped so a recent backup never outranks
 # a decorated veteran. bump = RECENCY_MAX * min(1, starts_in_last_N / RECENCY_FULL_STARTS)

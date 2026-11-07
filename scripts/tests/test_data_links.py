@@ -55,5 +55,5 @@ def test_award_bonus_rewards_repeat_and_recent_wins(data):
     w = aw.wins[aw.wins["award"] == "sb_mvp"]
     latest = w.loc[w["season"].idxmax(), "player_id"]
     brady = w.loc[w["name"] == "Tom Brady", "player_id"].iloc[0]
-    assert b[latest] == pytest.approx(C.AWARD_RECENT_BONUS)
+    assert b[latest] == pytest.approx(C.AWARD_RECENT_BONUS * C.AWARD_RECENT_SCALE.get("sb_mvp", 1.0))
     assert b[brady] == pytest.approx(4 * C.AWARD_EXTRA_WIN)

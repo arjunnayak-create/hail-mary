@@ -7,17 +7,17 @@ import {
   normalize,
   type Answer,
   type MatchResult,
-  type PlayerRef,
+  type AnswerRef,
   type PromptData,
 } from './matcher'
 
 function a(name: string, tier: number, extra: Partial<Answer> = {}): Answer {
   const last = name.replace(/\s+(Jr\.?|Sr\.?|II|III|IV|V)$/i, '').split(' ').slice(-1)[0]
-  return { playerId: name.toLowerCase().replace(/\W+/g, '-'), name, aliases: [], lastName: last, tier, ...extra }
+  return { id: name.toLowerCase().replace(/\W+/g, '-'), name, aliases: [], shortName: last, tier, ...extra }
 }
-function ref(name: string): PlayerRef {
-  const { playerId, aliases, lastName } = a(name, 0)
-  return { playerId, name, aliases, lastName }
+function ref(name: string): AnswerRef {
+  const { id, aliases, shortName } = a(name, 0)
+  return { id, name, aliases, shortName }
 }
 const answerName = (r: MatchResult) => (r.kind === 'correct' ? r.answer.name : null)
 
@@ -28,12 +28,12 @@ const prompt: PromptData = {
     a('Odell Beckham Jr.', 1, { aliases: ['OBJ'] }),
     a('Patrick Mahomes', 1, { aliases: ['Pat Mahomes'] }),
     a('Christian McCaffrey', 1, { aliases: ['CMC'] }),
-    a('T.J. Watt', 2, { lastName: 'Watt' }),
-    a('Amon-Ra St. Brown', 2, { lastName: 'St. Brown' }),
+    a('T.J. Watt', 2, { shortName: 'Watt' }),
+    a('Amon-Ra St. Brown', 2, { shortName: 'St. Brown' }),
     a("Ja'Marr Chase", 2),
-    a('Kenneth Walker III', 3, { lastName: 'Walker' }),
-    a('Mike Williams', 3, { playerId: 'mike-williams-1' }),
-    a('Mike Williams', 5, { playerId: 'mike-williams-2' }),
+    a('Kenneth Walker III', 3, { shortName: 'Walker' }),
+    a('Mike Williams', 3, { id: 'mike-williams-1' }),
+    a('Mike Williams', 5, { id: 'mike-williams-2' }),
     a('Roy Williams', 4),
     a('Brandon Marshall', 4),
     a('Kaʻimi Fairbairn', 5),
@@ -109,13 +109,13 @@ describe('exact names and aliases', () => {
 
   it('resolves namesakes to the most famous (first-listed) one', () => {
     const r = m.match('Mike Williams')
-    expect(r).toMatchObject({ kind: 'correct', answer: { playerId: 'mike-williams-1' } })
+    expect(r).toMatchObject({ kind: 'correct', answer: { id: 'mike-williams-1' } })
   })
 })
 
 describe('last name only', () => {
   it('accepts a last name that is unique within the prompt', () => {
-    expect(m.match('Mahomes')).toMatchObject({ kind: 'correct', via: 'lastName', answer: { name: 'Patrick Mahomes' } })
+    expect(m.match('Mahomes')).toMatchObject({ kind: 'correct', via: 'shortName', answer: { name: 'Patrick Mahomes' } })
     expect(answerName(m.match('mccaffrey'))).toBe('Christian McCaffrey')
     expect(answerName(m.match('Watt'))).toBe('T.J. Watt')
     expect(answerName(m.match('St Brown'))).toBe('Amon-Ra St. Brown')
@@ -129,7 +129,7 @@ describe('last name only', () => {
   })
 
   it('flags out-of-range players by last name', () => {
-    expect(m.match('Namath')).toMatchObject({ kind: 'outOfRange', player: { name: 'Joe Namath' } })
+    expect(m.match('Namath')).toMatchObject({ kind: 'outOfRange', entry: { name: 'Joe Namath' } })
   })
 })
 
@@ -174,7 +174,7 @@ describe('typos', () => {
   })
 
   it('maps typos of out-of-range players to out of range', () => {
-    expect(m.match('Joe Namoth')).toMatchObject({ kind: 'outOfRange', player: { name: 'Joe Namath' } })
+    expect(m.match('Joe Namoth')).toMatchObject({ kind: 'outOfRange', entry: { name: 'Joe Namath' } })
   })
 })
 

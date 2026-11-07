@@ -53,7 +53,7 @@ def main() -> None:
     fame = pd.read_csv(C.OUT_DIR / "fame.csv", index_col=0)
     seed = args.seed if args.seed is not None else random.randrange(10_000)
 
-    print(f"{len(prompts)} prompts, data through {data['dataThrough']}\n")
+    print(f"{len(prompts)} prompts, data through {data['meta']['dataThrough']}\n")
     print(f"=== {args.random} random prompts (seed {seed}) ===")
     for p in random.Random(seed).sample(list(prompts.values()), args.random):
         print(f"\n  {p['text']} ({p['qualifier']}) - {len(p['answers'])} answers, {len(p['outOfRange'])} out of range")

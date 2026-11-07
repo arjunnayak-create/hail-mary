@@ -5,31 +5,17 @@
  *  - case / punctuation / diacritic insensitive; ignores Jr. Sr. II III IV V
  *  - aliases and nicknames (shipped per answer in prompts.json)
  *  - small typos accepted, but never when the guess is at least as close to a different
- *    player (an out-of-range player, or any known NFL player from names.json)
- *  - last name alone accepted only when exactly one answer in the prompt has that last name
+ *    entry (an out-of-range one, or any known name from names.json)
+ *  - the short name alone (e.g. a surname) is accepted only when exactly one answer in the
+ *    prompt has it
  */
+import type { Answer, AnswerRef, PromptData } from './types'
 
-export interface PlayerRef {
-  playerId: string
-  name: string
-  aliases: string[]
-  lastName: string
-}
-
-export interface Answer extends PlayerRef {
-  tier: number
-}
-
-export interface PromptData {
-  id: string
-  /** Sorted most famous first (the pipeline guarantees this). */
-  answers: Answer[]
-  outOfRange: PlayerRef[]
-}
+export type { Answer, AnswerRef, PromptData }
 
 export type MatchResult =
-  | { kind: 'correct'; answer: Answer; via: 'name' | 'alias' | 'lastName' | 'typo' }
-  | { kind: 'outOfRange'; player: PlayerRef }
+  | { kind: 'correct'; answer: Answer; via: 'name' | 'alias' | 'shortName' | 'typo' }
+  | { kind: 'outOfRange'; entry: AnswerRef }
   | { kind: 'ambiguous'; candidates: Answer[] }
   | { kind: 'wrong' }
 
@@ -94,7 +80,7 @@ export function editDistance(a: string, b: string, limit = Infinity): number {
 
 // --------------------------------------------------------------------------- known names
 
-/** Every known NFL player name (public/data/names.json). */
+/** Every known name in the domain (public/data/names.json). */
 export interface NameIndex {
   keys: Set<string>
   lastKeys: Set<string>
@@ -130,18 +116,18 @@ function knownWithin(known: NameIndex, q: string, d: number, exclude: Set<string
 
 // --------------------------------------------------------------------------- matcher
 
-interface Entry<T extends PlayerRef> {
-  player: T
+interface Entry<T extends AnswerRef> {
+  ref: T
   nameKey: string
   aliasKeys: Set<string>
   keys: Set<string>
   last: string
 }
 
-function entry<T extends PlayerRef>(p: T): Entry<T> {
+function entry<T extends AnswerRef>(p: T): Entry<T> {
   const nameKey = normalize(p.name)
   const aliasKeys = new Set(p.aliases.map(normalize).filter((k) => k && k !== nameKey))
-  return { player: p, nameKey, aliasKeys, keys: new Set([nameKey, ...aliasKeys]), last: normalize(p.lastName) }
+  return { ref: p, nameKey, aliasKeys, keys: new Set([nameKey, ...aliasKeys]), last: normalize(p.shortName ?? '') }
 }
 
 export interface PromptMatcher {
@@ -154,15 +140,15 @@ export function createMatcher(prompt: PromptData, known?: NameIndex): PromptMatc
   const promptKeys = new Set([...answers, ...outOfRange].flatMap((e) => [...e.keys]))
 
   /**
-   * Closest player within `limit` edits, comparing `q` against `keysOf(entry)`. Accepted only
-   * if every player at the best distance is an answer with the same name (namesakes resolve
-   * to the most famous), and no out-of-range or other known player is as close.
+   * Closest entry within `limit` edits, comparing `q` against `keysOf(entry)`. Accepted only
+   * if every entry at the best distance is an answer with the same name (namesakes resolve
+   * to the most famous), and no out-of-range or other known entry is as close.
    */
-  function fuzzy(q: string, limit: number, keysOf: (e: Entry<PlayerRef>) => Iterable<string>, checkKnown: boolean): MatchResult | null {
+  function fuzzy(q: string, limit: number, keysOf: (e: Entry<AnswerRef>) => Iterable<string>, checkKnown: boolean): MatchResult | null {
     let best = limit + 1
     let hitAnswers: Entry<Answer>[] = []
-    let hitOut: Entry<PlayerRef>[] = []
-    const visit = (e: Entry<PlayerRef>, isAnswer: boolean) => {
+    let hitOut: Entry<AnswerRef>[] = []
+    const visit = (e: Entry<AnswerRef>, isAnswer: boolean) => {
       let d = limit + 1
       for (const k of keysOf(e)) d = Math.min(d, editDistance(q, k, limit))
       if (d > limit || d > best) return
@@ -182,11 +168,11 @@ export function createMatcher(prompt: PromptData, known?: NameIndex): PromptMatc
 
     if (hitAnswers.length > 0) {
       const names = new Set(hitAnswers.map((e) => e.nameKey))
-      if (names.size > 1) return { kind: 'ambiguous', candidates: hitAnswers.map((e) => e.player) }
-      return { kind: 'correct', answer: hitAnswers[0].player, via: 'typo' }
+      if (names.size > 1) return { kind: 'ambiguous', candidates: hitAnswers.map((e) => e.ref) }
+      return { kind: 'correct', answer: hitAnswers[0].ref, via: 'typo' }
     }
     const names = new Set(hitOut.map((e) => e.nameKey))
-    return names.size === 1 ? { kind: 'outOfRange', player: hitOut[0].player } : null
+    return names.size === 1 ? { kind: 'outOfRange', entry: hitOut[0].ref } : null
   }
 
   function match(guess: string): MatchResult {
@@ -196,23 +182,23 @@ export function createMatcher(prompt: PromptData, known?: NameIndex): PromptMatc
 
     // 1. exact name or alias of an answer (first = most famous among namesakes)
     const exact = answers.find((e) => e.keys.has(q))
-    if (exact) return { kind: 'correct', answer: exact.player, via: exact.nameKey === q ? 'name' : 'alias' }
+    if (exact) return { kind: 'correct', answer: exact.ref, via: exact.nameKey === q ? 'name' : 'alias' }
 
-    // 2. exact name of an out-of-range player ("before our time")
+    // 2. exact name of an out-of-range entry ("before our time")
     const oor = outOfRange.find((e) => e.keys.has(q))
-    if (oor) return { kind: 'outOfRange', player: oor.player }
+    if (oor) return { kind: 'outOfRange', entry: oor.ref }
 
-    // 3. exact name of some other real player: a real but wrong answer, never typo-corrected
+    // 3. exact name of some other real entry: a real but wrong answer, never typo-corrected
     if (known?.keys.has(q)) return { kind: 'wrong' }
 
-    // 4. last name only, unambiguous within this prompt's answers
+    // 4. short name (surname) only, unambiguous within this prompt's answers
     const byLast = answers.filter((e) => e.last === q)
-    if (new Set(byLast.map((e) => e.player.playerId)).size === 1) {
-      return { kind: 'correct', answer: byLast[0].player, via: 'lastName' }
+    if (new Set(byLast.map((e) => e.ref.id)).size === 1) {
+      return { kind: 'correct', answer: byLast[0].ref, via: 'shortName' }
     }
-    if (byLast.length > 1) return { kind: 'ambiguous', candidates: byLast.map((e) => e.player) }
+    if (byLast.length > 1) return { kind: 'ambiguous', candidates: byLast.map((e) => e.ref) }
     const oorLast = outOfRange.filter((e) => e.last === q)
-    if (oorLast.length === 1) return { kind: 'outOfRange', player: oorLast[0].player }
+    if (oorLast.length === 1) return { kind: 'outOfRange', entry: oorLast[0].ref }
 
     const limit = maxEdits(q.length)
     if (limit === 0) return { kind: 'wrong' }

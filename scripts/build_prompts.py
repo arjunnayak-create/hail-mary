@@ -91,6 +91,18 @@ def build_aliases(data: nfl.Data, fame_df: pd.DataFrame) -> tuple[dict[str, list
     return out, problems
 
 
+def load_blurbs() -> dict[tuple[str, str], str]:
+    """(prompt_id or "", player_id) -> blurb from scripts/data/blurbs.csv (optional fun facts
+    shown on the reveal card). An empty prompt_id applies to every prompt."""
+    out = {}
+    if C.BLURBS.exists():
+        with open(C.BLURBS) as f:
+            for r in csv.DictReader(f):
+                if r.get("blurb", "").strip():
+                    out[(r.get("prompt_id", "").strip(), r["player_id"].strip())] = r["blurb"].strip()
+    return out
+
+
 def last_name_of(r: pd.Series) -> str:
     if isinstance(r.get("last_name"), str) and r["last_name"].strip():
         return r["last_name"].strip()
@@ -104,7 +116,8 @@ def award_bonus(aw: awards.AwardData, key: str) -> pd.Series:
     extra = (g["size"] - 1) * C.AWARD_EXTRA_WIN
     age = w["season"].max() - g["max"]
     n = C.AWARD_RECENT_SEASONS
-    recent = (C.AWARD_RECENT_BONUS * (n - age) / n).where(age < n, 0.0)
+    bonus = C.AWARD_RECENT_BONUS * C.AWARD_RECENT_SCALE.get(key, 1.0)
+    recent = (bonus * (n - age) / n).where(age < n, 0.0)
     return extra + recent
 
 
@@ -116,7 +129,7 @@ def tenure_weight(data: nfl.Data, fr: str) -> pd.Series:
 
 # --------------------------------------------------------------------------- tiers
 def tier_counts(n: int) -> list[int]:
-    """Answers per tier for a list of n (see src/config/tiers.json). Head tiers take a share of
+    """Answers per tier for a list of n (see src/themes/nfl/tiers.json). Head tiers take a share of
     the whole list (cumulative, rounded up) capped at maxAnswers; tail tiers split the rest."""
     eps = 1e-9
     counts, cum, prev = [], 0.0, 0
@@ -154,12 +167,21 @@ def main() -> dict:
     players = data.players
     wiki_names = dict(zip(aw.wins["player_id"], aw.wins["name"]))  # pre-1980 award winners
 
-    def record(pid: str) -> dict:
+    blurbs = load_blurbs()
+
+    # Generic answer schema (shared by every theme): id, name, aliases, shortName (accepted
+    # alone when unambiguous; here the last name), optional blurb.
+    def record(pid: str, prompt_id: str | None = None) -> dict:
         if pid in players.index:
             r = players.loc[pid]
-            return {"playerId": pid, "name": r["name"], "aliases": aliases.get(pid, []), "lastName": last_name_of(r)}
-        name = wiki_names[pid]
-        return {"playerId": pid, "name": name, "aliases": [], "lastName": SUFFIX_RE.sub("", name).split()[-1]}
+            out = {"id": pid, "name": r["name"], "aliases": aliases.get(pid, []), "shortName": last_name_of(r)}
+        else:
+            name = wiki_names[pid]
+            out = {"id": pid, "name": name, "aliases": [], "shortName": SUFFIX_RE.sub("", name).split()[-1]}
+        blurb = blurbs.get((prompt_id, pid)) or blurbs.get(("", pid))
+        if blurb:
+            out["blurb"] = blurb
+        return out
 
     ctx = Ctx(data, fame_df, aw)
     kept, summary = [], []
@@ -187,10 +209,10 @@ def main() -> dict:
                         "tiers": counts, "status": status})
         if status != "kept":
             continue
-        answers = [{**record(pid), "tier": t} for pid, t in zip(order, tiers)]
+        answers = [{**record(pid, pr.id), "tier": t} for pid, t in zip(order, tiers)]
         kept.append({
             "id": pr.id, "category": pr.category, "text": pr.text, "qualifier": pr.qualifier,
-            "mixedPositions": pr.mixed, "answers": answers,
+            "answers": answers,
             "outOfRange": sorted((record(o) for o in oor), key=lambda r: r["name"]),
         })
         # debug: fame + tier per answer
@@ -202,10 +224,9 @@ def main() -> dict:
         }).to_csv(C.OUT_DIR / "prompts" / f"{pr.id}.csv", index=False)
 
     out = {
-        "version": 1,
+        "version": 2,
         "generatedAt": dt.date.today().isoformat(),
-        "dataThrough": nfl.latest_season(),
-        "rangeStart": C.RANGE_START,
+        "meta": {"dataThrough": nfl.latest_season(), "rangeStart": C.RANGE_START},
         "prompts": kept,
     }
     C.PROMPTS_JSON.parent.mkdir(parents=True, exist_ok=True)

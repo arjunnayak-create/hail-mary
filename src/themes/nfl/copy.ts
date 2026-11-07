@@ -1,0 +1,80 @@
+import type { ScoreBand, ThemeCopy } from '../../ui/theme'
+
+export const copy: ThemeCopy = {
+  title: 'HAIL MARY',
+  subtitle: 'THE DAILY HEAVE',
+  tagline: '7 prompts · 25 seconds each · rarer answers fly farther',
+  cta: '▼ KICK OFF ▼',
+  resume: (n, of) => `▼ RESUME · PLAY ${n} OF ${of} ▼`,
+  gameLabel: 'GAME',
+  streakLabel: 'STREAK',
+  howToPlay: [
+    'Each prompt asks for an NFL player who fits. Type one and hit SNAP.',
+    'Any valid answer scores. Rarer answers fly farther and score more.',
+    'Checkdown 10 · Moving the Chains 30 · Chunk Play 60 · Deep Shot 85 · Hail Mary 100.',
+    'No Huddle: back-to-back Chunk Plays or better score ×1.5, then ×2.',
+    'Wrong guesses cost nothing but time. Surnames work if only one answer has it.',
+    'New game every day at midnight ET. Same 7 prompts for everyone.',
+  ],
+  distanceLabel: 'YARDS',
+  distanceUnit: 'yds',
+  scoreLabel: 'SCORE',
+  pointsUnit: 'PTS',
+  promptLabel: (n, of) => `PROMPT ${n} OF ${of}`,
+  promptHint: '▼ rarer answers fly farther ▼',
+  preCountdown: 'huddle up · the clock starts in',
+  placeholder: 'type one answer…',
+  submit: 'SNAP',
+  wrong: (g) => `"${g}": incomplete. try again`,
+  outOfRange: (g) => `"${g}": before our time. try again`,
+  ambiguous: (g) => `"${g}": which one? add a first name`,
+  multiplierLabel: 'NO HUDDLE',
+  next: 'NEXT PLAY ▼',
+  final: 'FINAL WHISTLE',
+  missTitle: 'INCOMPLETE',
+  completeTitle: (n) => `GAME #${n} COMPLETE`,
+  logTitle: 'THE PLAY CHART',
+  logSubtitle: 'farther = rarer',
+  bandsTitle: 'THE SCOUTING REPORT',
+  copyResult: 'COPY RESULT',
+  share: 'SHARE…',
+  copied: 'copied to clipboard',
+  catchTitle: 'THE FILM ROOM',
+  catchSubtitle: 'tap a play for every answer',
+  rarestLabel: 'rarest',
+  nextGameIn: 'NEXT GAME IN',
+  shareTitle: '🏈 Hail Mary',
+  credits: [
+    'Player data: nflverse (rosters, draft picks, stats).',
+    'Awards and honors: Wikipedia.',
+    'Not affiliated with the NFL.',
+  ],
+}
+
+export const bands: ScoreBand[] = [
+  { min: 0, title: 'CHECKDOWN CHARLIE', text: 'Safe, short, forgettable. The film room awaits.' },
+  { min: 151, title: 'GAME MANAGER', text: 'You moved the chains. Coaches love you.' },
+  { min: 251, title: 'GUNSLINGER', text: 'Pushing the ball downfield. Defenses are worried.' },
+  { min: 351, title: 'DEEP THREAT', text: 'You live behind the safeties. Real ball knowledge.' },
+  { min: 450, title: 'HALL OF FAMER', text: 'Absurd. You know guys their own mothers forgot.' },
+]
+
+/** Football facts pinned at real yardages along the throw (sides alternate). */
+export const FIELD_FACTS: { yard: number; text: string }[] = [
+  { yard: 5, text: 'defensive holding: 5 yards and a first down' },
+  { yard: 15, text: 'a personal foul costs 15' },
+  { yard: 33, text: 'PATs moved back to a 33-yd kick in 2015' },
+  { yard: 50, text: "Staubach's original Hail Mary, 1975, went 50" },
+  { yard: 63, text: "Tom Dempsey's 63-yd field goal, 1970" },
+  { yard: 74, text: "Marcus Allen's 74-yd run, Super Bowl XVIII" },
+  { yard: 98, text: 'Tony Dorsett and Derrick Henry each ran 99 from their own 1' },
+  { yard: 107, text: "Antonio Cromartie's 109-yd return, 2007" },
+]
+
+export const ZONES: { yard: number; text: string }[] = [
+  { yard: 2, text: 'OWN TERRITORY' },
+  { yard: 48, text: 'MIDFIELD' },
+  { yard: 58, text: 'ENEMY TERRITORY' },
+  { yard: 80, text: 'THE RED ZONE' },
+  { yard: 101, text: 'THE END ZONE' },
+]

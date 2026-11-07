@@ -4,11 +4,10 @@
  */
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
-import { TIERS } from '../config/tiers'
-import { buildNameIndex, createMatcher, normalize, type MatchResult, type PromptData } from './matcher'
+import tiersJson from './tiers.json'
+import { buildNameIndex, createMatcher, normalize, type MatchResult, type PromptData } from '../../engine/matcher'
 
 interface PromptsFile {
-  rangeStart: number
   prompts: (PromptData & { text: string; qualifier: string; category: string })[]
 }
 const data: PromptsFile = JSON.parse(readFileSync('public/data/prompts.json', 'utf8'))
@@ -27,7 +26,7 @@ describe('prompts.json shape', () => {
     for (const p of data.prompts) {
       expect(p.answers.length, p.id).toBeGreaterThanOrEqual(15)
       const tiers = new Set(p.answers.map((a) => a.tier))
-      for (const t of TIERS) expect(tiers.has(t.tier), `${p.id} tier ${t.tier}`).toBe(true)
+      for (const t of tiersJson.tiers) expect(tiers.has(t.tier), `${p.id} tier ${t.tier}`).toBe(true)
     }
   })
 
@@ -40,8 +39,8 @@ describe('prompts.json shape', () => {
 
   it('never lists a player as both valid and out of range', () => {
     for (const p of data.prompts) {
-      const ids = new Set(p.answers.map((a) => a.playerId))
-      for (const o of p.outOfRange) expect(ids.has(o.playerId), `${p.id} ${o.name}`).toBe(false)
+      const ids = new Set(p.answers.map((a) => a.id))
+      for (const o of p.outOfRange) expect(ids.has(o.id), `${p.id} ${o.name}`).toBe(false)
     }
   })
 

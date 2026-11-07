@@ -1,0 +1,80 @@
+/* NFL theme: field-scene overlays. Palette + fonts come from cssVars in index.ts. */
+
+.field-scene { position: absolute; inset: 0; overflow: hidden; background: #0d1230; }
+.field-canvas { position: absolute; left: 0; bottom: 0; image-rendering: pixelated; }
+.field-world { position: absolute; bottom: 0; pointer-events: none; will-change: transform; }
+
+.tier-line {
+  position: absolute; left: 0; right: 0; height: 0;
+  border-top: 2px dashed color-mix(in srgb, var(--c) 70%, transparent);
+  opacity: 0.85; transition: opacity 0.3s;
+}
+.tier-line-label {
+  position: absolute; right: 4px; bottom: 3px; display: flex; align-items: center; gap: 4px;
+  font: 700 9px/1 var(--font-mono); letter-spacing: 0.14em; color: var(--c);
+  text-shadow: 0 1px 0 #000, 0 0 6px rgba(0, 0, 0, 0.9); white-space: nowrap;
+}
+.tier-line.is-flash { animation: line-flash 0.55s ease-out; }
+.tier-line.is-passed { opacity: 1; border-top-style: solid; }
+@keyframes line-flash {
+  0% { filter: brightness(3) drop-shadow(0 0 8px var(--c)); transform: scaleY(2); }
+  100% { filter: none; transform: none; }
+}
+
+.field-fact {
+  position: absolute; max-width: 44%; transform: translateY(50%);
+  font: 400 9px/1.35 var(--font-mono); letter-spacing: 0.06em; color: rgba(255, 255, 255, 0.78);
+  text-shadow: 0 1px 0 #000, 0 0 4px #000; opacity: 0; transition: opacity 0.6s;
+}
+.field-fact.is-left { left: 26px; }
+.field-fact.is-right { right: 26px; text-align: right; }
+.field-zone {
+  position: absolute; left: 4px; transform: translateY(50%);
+  font: 400 8px/1 var(--font-pixel); letter-spacing: 0.12em; color: var(--primary);
+  text-shadow: 0 0 8px rgba(255, 79, 139, 0.8), 0 1px 0 #000; opacity: 0; transition: opacity 0.6s;
+}
+.field-fact.is-on, .field-zone.is-on { opacity: 1; }
+
+.answer-pill {
+  position: absolute; left: 0; top: 0; z-index: 3; pointer-events: none; will-change: transform;
+  max-width: 72%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  padding: 5px 9px; border-radius: 999px; border: 2px solid var(--c);
+  background: color-mix(in srgb, var(--c) 22%, #070a1a);
+  color: #fff; font: 700 11px/1 var(--font-mono); letter-spacing: 0.08em;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--c) 60%, transparent);
+  transition: opacity 0.2s;
+}
+
+.td-slam {
+  position: absolute; left: 50%; top: 34%; z-index: 4; pointer-events: none;
+  font: 400 clamp(26px, 9vw, 46px)/1 var(--font-pixel); color: var(--done);
+  text-shadow: 3px 0 #ff4f8b, -3px 0 #4fe3ff, 0 0 24px rgba(255, 210, 63, 0.8);
+  transform: translate(-50%, -50%) scale(3); opacity: 0;
+}
+.td-slam.is-on { animation: td-slam 1.9s cubic-bezier(0.2, 1.4, 0.4, 1) forwards; }
+@keyframes td-slam {
+  0% { transform: translate(-50%, -50%) scale(3) rotate(-6deg); opacity: 0; }
+  18% { transform: translate(-50%, -50%) scale(1) rotate(-3deg); opacity: 1; }
+  24% { transform: translate(-49%, -51%) scale(1.04) rotate(-3deg); }
+  30% { transform: translate(-51%, -49%) scale(1) rotate(-3deg); }
+  85% { opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1.1) rotate(-3deg); opacity: 0; }
+}
+
+.yard-ruler {
+  position: absolute; right: 0; z-index: 2; pointer-events: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+.ruler-tick {
+  position: absolute; left: 0; width: 5px; height: 1px; background: rgba(255, 255, 255, 0.4);
+  font: 700 7px/1 var(--font-mono); color: rgba(255, 255, 255, 0.55); text-indent: 7px; white-space: nowrap;
+}
+.ruler-tick.is-major { width: 9px; background: rgba(255, 255, 255, 0.7); }
+.ruler-you {
+  position: absolute; left: -4px; transform: translateY(-50%);
+  font: 700 7px/1 var(--font-mono); color: #fff; background: var(--primary);
+  padding: 2px 3px; border-radius: 2px; box-shadow: 0 0 8px var(--primary);
+}
+
+.stadium-scene { position: absolute; inset: 0; overflow: hidden; background: #140b33; }
+.stadium-scene canvas { position: absolute; left: 0; top: 0; image-rendering: pixelated; }
