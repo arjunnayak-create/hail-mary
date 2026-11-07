@@ -50,40 +50,58 @@ describe('prompts.json shape', () => {
   })
 })
 
+
 const sug = (r: MatchResult) => (r.kind === 'suggest' ? r.suggestions : [])
+const entryNames = (id: string) => {
+  const p = byId.get(id)!
+  return new Set([...p.answers, ...p.outOfRange].map((a) => a.name))
+}
 
 describe('real prompts', () => {
-  it('Giants WR: nickname accepted, typo and surname become suggestions', () => {
+  it('Giants WR: nickname accepted, typo suggests, surname rules', () => {
     const m = matcher('team-nyg-wr')
     expect(name(m.match('OBJ'))).toBe('Odell Beckham Jr.')
     expect(sug(m.match('odell beckam'))).toEqual(['Odell Beckham Jr.'])
     expect(sug(m.match('Plaxico Buress'))).toEqual(['Plaxico Burress'])
-    expect(sug(m.match('Toomer'))).toContain('Amani Toomer')
+    expect(name(m.match('Toomer'))).toBe('Amani Toomer')
+    expect(m.match('Smith').kind).toBe('ambiguous')
     expect(m.match('Jerry Rice').kind).toBe('wrong')
   })
 
-  it('Giants QB: a typo of a non-answer suggests that non-answer, which then misses', () => {
+  it('Giants QB: surname suggests only Giants QBs; non-answer typos get no chips', () => {
     const m = matcher('team-nyg-qb')
     expect(name(m.match('Eli Manning'))).toBe('Eli Manning')
-    expect(sug(m.match('Manning'))[0]).toBe('Peyton Manning') // global fame order
-    expect(sug(m.match('Manning'))).toContain('Eli Manning')
+    expect(name(m.match('Manning'))).toBe('Eli Manning')
+    expect(name(m.match('Simms'))).toBe('Phil Simms')
     expect(m.match('Peyton Manning').kind).toBe('wrong')
+    expect(m.match('Payton Manning').kind).toBe('wrong')
   })
 
-  it('surname suggestions come from the full list, capped at 3', () => {
-    const r = sug(matcher('team-nyg-wr').match('Smith'))
-    expect(r).toHaveLength(3)
-    // the most famous Smiths in the league, not "the Smiths who were Giants WRs"
-    expect(r.slice(0, 2).sort()).toEqual(['Bruce Smith', 'Emmitt Smith'])
+  it('Jets QB: an out-of-range surname is "before our time"', () => {
+    const m = matcher('team-nyj-qb')
+    expect(m.match('Namath')).toMatchObject({ kind: 'outOfRange' })
+    expect(m.match('Joe Namath')).toMatchObject({ kind: 'outOfRange' })
   })
 
   it('Super Bowl MVP: Pat Mahomes alias, pre-1980 winners out of range', () => {
     const sb = matcher('award-sb-mvp')
     expect(name(sb.match('Pat Mahomes'))).toBe('Patrick Mahomes')
-    expect(sb.match('Joe Namath')).toMatchObject({ kind: 'outOfRange' })
+    expect(sug(sb.match('Patrik Mahomse'))).toEqual(['Patrick Mahomes'])
     expect(sb.match('Terry Bradshaw')).toMatchObject({ kind: 'outOfRange' })
     expect(name(sb.match('Kenneth Walker'))).toBe('Kenneth Walker III')
     expect(sb.match('Dan Marino').kind).toBe('wrong')
+  })
+
+  it('every suggestion on every prompt is one of that prompt\'s entries', () => {
+    for (const p of data.prompts.slice(0, 30)) {
+      const m = createMatcher(p, known)
+      const names = entryNames(p.id)
+      for (const a of p.answers.slice(0, 5)) {
+        for (const g of [a.name.slice(0, -1), a.name.slice(0, 1) + a.name.slice(2)]) {
+          for (const n of sug(m.match(g))) expect(names.has(n), `${p.id}: ${g} -> ${n}`).toBe(true)
+        }
+      }
+    }
   })
 
   it('Steelers LB: T.J. vs TJ', () => {

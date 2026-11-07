@@ -57,8 +57,9 @@ export function useGame(theme: Theme, inputRef: React.RefObject<HTMLInputElement
   const [countdown, setCountdown] = useState(0)
   const [clockStart, setClockStart] = useState<number | null>(null)
   const [feedback, setFeedback] = useState<Feedback | null>(null)
-  /** "Did you mean …?" names awaiting confirmation (typing dismisses them). */
-  const [suggestions, setSuggestions] = useState<string[]>([])
+  /** "Did you mean …?" names awaiting confirmation, and the exact text they were made for. */
+  const [suggest, setSuggest] = useState<{ forText: string; names: string[] }>({ forText: '', names: [] })
+  const setSuggestions = useCallback((names: string[], forText = '') => setSuggest({ forText, names }), [])
   const [throwInfo, setThrowInfo] = useState<ThrowInfo>({ key: 0, mode: 'idle', tier: null, label: '' })
   const known = useRef<NameIndex | null>(null)
   const matchers = useRef(new Map<string, PromptMatcher>())
@@ -193,7 +194,7 @@ export function useGame(theme: Theme, inputRef: React.RefObject<HTMLInputElement
       setThrowInfo((t) => ({ key: t.key + 1, mode, tier: play.tier, label }))
       setPhase('throw')
     },
-    [inputRef, persist],
+    [inputRef, persist, setSuggestions],
   )
 
   const submit = useCallback(
@@ -210,11 +211,12 @@ export function useGame(theme: Theme, inputRef: React.RefObject<HTMLInputElement
       if (res.kind === 'suggest') {
         // confirm before throwing; the clock keeps running
         setFeedback(null)
-        setSuggestions(res.suggestions)
+        setSuggestions(res.suggestions, guess)
         theme.sounds.play('click')
         return
       }
-      const text = res.kind === 'outOfRange' ? theme.copy.outOfRange(g) : theme.copy.wrong(g)
+      const text =
+        res.kind === 'outOfRange' ? theme.copy.outOfRange(g) : res.kind === 'ambiguous' ? theme.copy.ambiguous(g) : theme.copy.wrong(g)
       setFeedback((f) => ({ text, key: (f?.key ?? 0) + 1 }))
       theme.sounds.play('wrong')
       // improve on the reference: select the bad guess so typing replaces it
@@ -224,7 +226,7 @@ export function useGame(theme: Theme, inputRef: React.RefObject<HTMLInputElement
         el.setSelectionRange(0, el.value.length)
       }
     },
-    [phase, prompt, matcher, resolve, theme, inputRef],
+    [phase, prompt, matcher, resolve, theme, inputRef, setSuggestions],
   )
 
   /** Accept a suggestion: it is submitted as if typed, and judged exactly. */
@@ -236,7 +238,7 @@ export function useGame(theme: Theme, inputRef: React.RefObject<HTMLInputElement
     [inputRef, submit],
   )
 
-  const dismissSuggestions = useCallback(() => setSuggestions((s) => (s.length ? [] : s)), [])
+  const dismissSuggestions = useCallback(() => setSuggest((s) => (s.names.length ? { forText: '', names: [] } : s)), [])
 
   const timeout = useCallback(() => {
     if (!prompt) return
@@ -272,7 +274,7 @@ export function useGame(theme: Theme, inputRef: React.RefObject<HTMLInputElement
   const sums = useMemo(() => totals(scored), [scored])
 
   return {
-    phase, prompts, prompt, index, rec, save, today, countdown, clockStart, feedback, throwInfo, suggestions,
+    phase, prompts, prompt, index, rec, save, today, countdown, clockStart, feedback, throwInfo, suggestions: suggest.names, suggestionsFor: suggest.forText,
     known: known.current, randomMode: dev.random,
     scored, sums, streak: currentStreak(save, today),
     kickOff, submit, pick, dismissSuggestions, timeout, throwDone, next, toggleMute,

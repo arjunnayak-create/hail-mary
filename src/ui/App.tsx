@@ -140,6 +140,7 @@ function Game({ theme }: { theme: Theme }) {
               total={total}
               feedback={g.feedback}
               suggestions={g.suggestions}
+              suggestionsFor={g.suggestionsFor}
               onSubmit={g.submit}
               onPick={g.pick}
               onType={g.dismissSuggestions}

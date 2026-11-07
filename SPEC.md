@@ -99,13 +99,13 @@ Bad data kills this game. Treat it as the main work.
 
 **Each answer:** `{ id, name, aliases[], shortName, tier, blurb? }`. Optional blurbs come from `scripts/data/blurbs.csv`.
 
-**Name matching** (TypeScript, used client-side), confirm-before-throw:
+**Name matching** (TypeScript, used client-side):
 - Case/punctuation-insensitive; ignores Jr./Sr./II/III.
 - **Exact name or known alias** (OBJ, Pat Mahomes, CMC, T.J. vs TJ): accepted immediately.
-- Exact name of an out-of-range player: "before our time". Exact name of any other known player: wrong.
-- **Typo on a full name:** never auto-accepted. One chip above the input, "Did you mean Brandon Marshall?". The suggestion is the closest answer in THIS prompt (forgiving: one edit more than the strict limit), else the closest name in the full player list (`names.json`).
-- **Surname only:** up to 3 chips from the FULL player list, most famous first (`names.json` is ordered by fame), never from the prompt's answers, so a bare surname doesn't reveal valid answers.
-- Tapping a chip or pressing Enter submits that name (then judged exactly); typing more dismisses the chips; the clock keeps running. Chips are 44 px tall, in one scrollable row in the dock, above the keyboard; the prompt and timer stay visible.
+- Exact name of an out-of-range player: "before our time". Exact name of any other known player (`names.json`): wrong.
+- **Surname only** (one word, or a multi-word surname like "St. Brown"), never chips: exactly one valid answer with it → accepted; more than one → `"Williams": more than one, add a first name` (clock keeps running); none, but an out-of-range player has it → "before our time"; otherwise the wrong-guess flow.
+- **Typo on a full name:** one chip, "Did you mean Brandon Marshall?", suggested ONLY from this prompt's entries (valid answers + out-of-range), never the full player list. Forgiving budget: about a quarter of the guess's length (1 edit for ≤4 letters, up to 4). If nothing in the prompt is that close, no chip: the wrong-guess flow runs immediately.
+- Tapping the chip, or pressing Enter with the text unchanged, submits that name (then judged exactly); typing more dismisses it; the clock keeps running. Chips are 44 px tall, in the dock above the keyboard; the prompt and timer stay visible.
 - Unit tests for all of the above.
 
 ## Build phases (stop and report after each)

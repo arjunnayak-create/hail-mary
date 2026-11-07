@@ -28,6 +28,7 @@ export const copy: ThemeCopy = {
   wrong: (g) => `"${g}": incomplete. try again`,
   outOfRange: (g) => `"${g}": before our time. try again`,
   didYouMean: 'Did you mean',
+  ambiguous: (g) => `"${g}": more than one, add a first name`,
   multiplierLabel: 'NO HUDDLE',
   next: 'NEXT PLAY ▼',
   final: 'FINAL WHISTLE',

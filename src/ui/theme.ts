@@ -44,6 +44,7 @@ export interface ThemeCopy {
   wrong: (guess: string) => string
   outOfRange: (guess: string) => string
   didYouMean: string
+  ambiguous: (guess: string) => string
   multiplierLabel: string
   next: string
   final: string

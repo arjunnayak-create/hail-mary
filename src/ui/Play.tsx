@@ -74,6 +74,8 @@ export function InputDock(props: {
   total: number
   feedback: Feedback | null
   suggestions: string[]
+  /** The exact input text the suggestions were made for. */
+  suggestionsFor: string
   onSubmit: (v: string) => void
   onPick: (name: string) => void
   onType: () => void
@@ -90,10 +92,12 @@ export function InputDock(props: {
   }, [props.feedback])
 
   const showChips = props.active && props.suggestions.length > 0
-  // Enter with a suggestion showing submits the first (most likely) suggestion
+  // Enter submits the suggestion only if the text is unchanged since it was made; this also
+  // covers fast typing where the "dismiss on type" update hasn't rendered yet
   const submit = () => {
-    if (showChips) props.onPick(props.suggestions[0])
-    else if (props.inputRef.current) props.onSubmit(props.inputRef.current.value)
+    const value = props.inputRef.current?.value ?? ''
+    if (showChips && value === props.suggestionsFor) props.onPick(props.suggestions[0])
+    else props.onSubmit(value)
   }
   return (
     <footer className="dock">

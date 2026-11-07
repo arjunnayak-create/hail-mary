@@ -4,6 +4,7 @@ import {
   createMatcher,
   editDistance,
   maxEdits,
+  suggestEdits,
   normalize,
   type Answer,
   type MatchResult,
@@ -117,69 +118,80 @@ describe('exact names and aliases', () => {
   })
 })
 
-describe('surname only: suggestions from the full name list, never auto-accepted', () => {
-  it('suggests up to 3, most famous first, including non-answers', () => {
-    expect(m.match('Manning')).toEqual({ kind: 'suggest', suggestions: ['Peyton Manning', 'Eli Manning', 'Archie Manning'], reason: 'shortName' })
+const promptNames = new Set([...prompt.answers, ...prompt.outOfRange].map((x) => x.name))
+
+describe('surname only: no chips', () => {
+  it('accepts directly when exactly one answer has that surname', () => {
+    expect(m.match('Mahomes')).toMatchObject({ kind: 'correct', via: 'shortName', answer: { name: 'Patrick Mahomes' } })
+    expect(answerName(m.match('Watt'))).toBe('T.J. Watt')
+    expect(answerName(m.match('St Brown'))).toBe('Amon-Ra St. Brown')
+    expect(answerName(m.match('Walker'))).toBe('Kenneth Walker III')
   })
 
-  it('a unique surname is still only a suggestion', () => {
-    expect(m.match('Mahomes')).toEqual({ kind: 'suggest', suggestions: ['Patrick Mahomes'], reason: 'shortName' })
-    expect(suggested(m.match('Watt'))).toEqual(['T.J. Watt'])
-    expect(suggested(m.match('Walker'))).toEqual(['Kenneth Walker III'])
+  it('asks for a first name when several answers share it', () => {
+    // two Mike Williamses + Roy Williams
+    expect(m.match('Williams')).toEqual({ kind: 'ambiguous', count: 3 })
   })
 
-  it('does not reveal answers: order is global fame, not prompt membership', () => {
-    expect(suggested(m.match('Williams'))).toEqual(['Mike Williams', 'Roy Williams'])
+  it('out-of-range surname -> before our time', () => {
+    expect(m.match('Namath')).toMatchObject({ kind: 'outOfRange', entry: { name: 'Joe Namath' } })
   })
 
-  it('tolerates a surname typo', () => {
-    expect(suggested(m.match('Mahomse'))).toEqual(['Patrick Mahomes'])
-  })
-
-  it('out-of-range surnames are suggested like any other name', () => {
-    expect(suggested(m.match('Namath'))).toEqual(['Joe Namath'])
-  })
-
-  it('falls back to the prompt when no known-name list is loaded', () => {
-    expect(suggested(createMatcher(prompt).match('Mahomes'))).toEqual(['Patrick Mahomes'])
+  it('a surname outside the prompt is a wrong guess, never a suggestion', () => {
+    expect(m.match('Manning')).toEqual({ kind: 'wrong' })
+    expect(m.match('Brady')).toEqual({ kind: 'wrong' })
+    expect(m.match('Mahomse')).toEqual({ kind: 'wrong' }) // surname typos aren't corrected
   })
 })
 
-describe('typos on full names: one suggestion to confirm', () => {
-  it('suggests the closest answer from this prompt', () => {
+describe('typos on full names: one suggestion from this prompt', () => {
+  it('suggests the closest prompt entry', () => {
     expect(m.match('Odell Beckam')).toEqual({ kind: 'suggest', suggestions: ['Odell Beckham Jr.'], reason: 'typo' })
     expect(suggested(m.match('Patrik Mahomes'))).toEqual(['Patrick Mahomes'])
     expect(suggested(m.match('Christain McCaffery'))).toEqual(['Christian McCaffrey'])
   })
 
-  it('is forgiving inside the prompt (one edit more than the strict limit)', () => {
-    expect(editDistance('christinmccafery', 'christianmccaffrey')).toBe(3)
-    expect(suggested(m.match('Christin McCafery'))).toEqual(['Christian McCaffrey'])
+  it('has a looser budget than strict matching (about a quarter of the guess)', () => {
+    expect([4, 5, 8, 9, 12, 13, 20].map(suggestEdits)).toEqual([1, 2, 2, 3, 3, 4, 4])
+    expect(suggestEdits(16)).toBeGreaterThan(maxEdits(16))
   })
 
-  it('prefers this prompt over a closer-looking known name', () => {
-    // "Brandon Marshel" is 1 edit from the known non-answer and 2 from the answer
-    expect(suggested(m.match('Brandon Marshel'))).toEqual(['Brandon Marshall'])
-  })
-
-  it('falls back to the full name list when nothing in the prompt is close', () => {
-    expect(m.match('Payton Manning')).toEqual({ kind: 'suggest', suggestions: ['Peyton Manning'], reason: 'typo' })
-    expect(suggested(m.match('Tom Bradie'))).toEqual(['Tom Brady'])
+  it('finds near-misses', () => {
+    expect(editDistance('christinmcafery', 'christianmccaffrey')).toBe(4)
+    expect(suggested(m.match('Christin McAfery'))).toEqual(['Christian McCaffrey'])
+    expect(suggested(m.match('Amon Ra St Brwn'))).toEqual(['Amon-Ra St. Brown'])
+    expect(suggested(m.match('Kaimi Fairbarn'))).toEqual(['Kaʻimi Fairbairn'])
   })
 
   it('suggests out-of-range entries too (they resolve to "before our time" on confirm)', () => {
     expect(suggested(m.match('Joe Namoth'))).toEqual(['Joe Namath'])
   })
 
+  it('no chips when nothing in the prompt is close, even if a known player is', () => {
+    expect(m.match('Payton Manning')).toEqual({ kind: 'wrong' })
+    expect(m.match('Tom Bradie')).toEqual({ kind: 'wrong' })
+    expect(m.match('asdfghjkl qwerty')).toEqual({ kind: 'wrong' })
+  })
+
+  it('every suggestion is a prompt entry', () => {
+    for (const g of ['Odell Beckam', 'Joe Namoth', 'Brandon Marshel', 'Jamar Chase', 'Mike Wiliams', 'Ken Walkr']) {
+      for (const n of suggested(m.match(g)) ?? []) expect(promptNames.has(n), `${g} -> ${n}`).toBe(true)
+    }
+  })
+
   it('a confirmed suggestion is then judged exactly', () => {
     expect(answerName(m.match('Odell Beckham Jr.'))).toBe('Odell Beckham Jr.')
-    expect(m.match('Peyton Manning').kind).toBe('wrong')
     expect(m.match('Joe Namath').kind).toBe('outOfRange')
   })
 
-  it('does not suggest for junk', () => {
-    expect(m.match('asdfghjkl qwerty').kind).toBe('wrong')
+  it('a known non-answer typed exactly is wrong, never "corrected"', () => {
+    expect(m.match('Brandon Marshal').kind).toBe('wrong')
+    expect(m.match('Peyton Manning').kind).toBe('wrong')
+  })
+
+  it('short junk is wrong', () => {
     expect(m.match('Wat').kind).toBe('wrong')
+    expect(m.match('x').kind).toBe('wrong')
   })
 })
 

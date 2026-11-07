@@ -132,6 +132,8 @@ function RoundAnswers({ prompt, mine, known }: { prompt: Prompt; mine: string | 
         })}
       </span>
     )
+  } else if (hit?.kind === 'ambiguous') {
+    summary = <span className="search-hit">{copy.ambiguous(q.trim())}</span>
   } else if (searching) {
     summary = <span className="search-hit dim">{copy.searchNoMatch}</span>
   }
