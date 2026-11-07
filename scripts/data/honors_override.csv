@@ -1,0 +1,548 @@
+player_id,name,reason,position,birth_date,pro_bowls,first_team_all_pro,hof,wiki_title,status,wiki_birth_date,career_pass_yds,career_rush_yds,career_rec_yds,career_sacks,career_def_ints,career_fg_made,source
+DUH415290,A.J. Duhe,pre1980_career,ILB,1955-11-27,1,0,False,A. J. Duhe,ok,1955-11-27,,,,38.5,3.0,,https://en.wikipedia.org/wiki/A._J._Duhe
+00-0024495,Ahmad Brooks,pre1980_career,OLB,1984-03-14,1,0,False,Ahmad Brooks,ok,1984-03-14,,,,55.0,3.0,,https://en.wikipedia.org/wiki/Ahmad_Brooks
+RAS249174,Ahmad Rashad,pre1980_career,WR,1949-11-19,4,0,False,Ahmad Rashad,ok,1949-11-19,,,6831.0,,,,https://en.wikipedia.org/wiki/Ahmad_Rashad
+BAK226054,Al Baker,pre1980_career,DE,1956-12-09,3,1,False,Al Baker,ok,1956-12-09,,,,131.0,4.0,,https://en.wikipedia.org/wiki/Al_Baker
+PAG332232,Alan Page,pre1980_career,DT,1945-08-07,9,5,True,Alan Page,ok,1945-08-07,,,,148.5,2.0,,https://en.wikipedia.org/wiki/Alan_Page
+JEN129775,Alfred Jenkins,pre1980_career,WR,1952-01-25,2,1,False,Alfred Jenkins,ok,1952-01-25,,,6267.0,,,,https://en.wikipedia.org/wiki/Alfred_Jenkins
+ELL413940,Allan Ellis,pre1980_career,CB,1951-08-19,1,0,False,Allan Ellis (American football),ok,1951-08-19,,,,,22.0,,https://en.wikipedia.org/wiki/Allan_Ellis_(American_football)
+MAN479160,Archie Manning,pre1980_career,QB,1949-05-19,2,0,False,Archie Manning,ok,1949-05-19,23911.0,2197.0,,,,,https://en.wikipedia.org/wiki/Archie_Manning
+SHE282736,Art Shell,pre1980_career,OT,1946-11-26,8,2,True,Art Shell,ok,1946-11-26,,,,,,,https://en.wikipedia.org/wiki/Art_Shell
+STI373761,Art Still,pre1980_career,DE,1955-12-05,4,0,False,Art Still,ok,1955-12-05,,,,80.0,1.0,,https://en.wikipedia.org/wiki/Art_Still
+WIL505651,Ben Williams,pre1980_career,DE,1954-09-01,1,0,False,"Ben Williams (American football, born 1954)",ok,1954-09-01,,,,52.0,2.0,,"https://en.wikipedia.org/wiki/Ben_Williams_(American_football,_born_1954)"
+00-0009427,Bernie Kosar,pre1980_career,QB,1963-11-25,1,0,False,Bernie Kosar,ok,1963-11-25,23301.0,,,,,,https://en.wikipedia.org/wiki/Bernie_Kosar
+JON086372,Bert Jones,pre1980_career,QB,1951-09-07,1,1,False,Bert Jones,ok,1951-09-07,18190.0,,,,,,https://en.wikipedia.org/wiki/Bert_Jones
+BER151010,Bill Bergey,pre1980_career,MLB,1945-02-09,5,2,False,Bill Bergey,ok,1945-02-09,,,,18.5,27.0,,https://en.wikipedia.org/wiki/Bill_Bergey
+KEN697683,Bill Kenney,pre1980_career,QB,1955-01-20,1,0,False,Bill Kenney,ok,1955-01-20,17277.0,,,,,,https://en.wikipedia.org/wiki/Bill_Kenney
+THO733502,Bill Thompson,pre1980_career,S,1946-10-10,3,1,False,Bill Thompson (American football),ok,1946-10-10,,,,,40.0,,https://en.wikipedia.org/wiki/Bill_Thompson_(American_football)
+DUP519110,Billy Joe DuPree,pre1980_career,TE,1950-03-07,3,0,False,Billy Joe DuPree,ok,1950-03-07,,,3565.0,,,,https://en.wikipedia.org/wiki/Billy_Joe_DuPree
+BAU652597,Bob Baumhower,pre1980_career,NT,1955-08-04,5,2,False,Bob Baumhower,ok,1955-08-04,,,,14.5,1.0,,https://en.wikipedia.org/wiki/Bob_Baumhower
+BRE590139,Bob Breunig,pre1980_career,MLB,1953-07-04,3,0,False,Bob Breunig,ok,1953-07-04,,,,,9.0,,https://en.wikipedia.org/wiki/Bob_Breunig
+GOL566295,Bob Golic,pre1980_career,NT,1957-10-26,3,0,False,Bob Golic,ok,1957-10-26,,,,22.5,1.0,,https://en.wikipedia.org/wiki/Bob_Golic
+GRI037752,Bob Griese,pre1980_career,QB,1945-02-03,6,2,True,Bob Griese,ok,1945-02-03,25092.0,,,,,,https://en.wikipedia.org/wiki/Bob_Griese
+GRU738296,Bob Grupp,pre1980_career,P,1955-05-08,1,0,False,Bob Grupp,ok,1955-05-08,,,,,,,https://en.wikipedia.org/wiki/Bob_Grupp
+KUE138430,Bob Kuechenberg,pre1980_career,G,1947-10-14,6,2,False,Bob Kuechenberg,ok,1947-10-14,,,,,,,https://en.wikipedia.org/wiki/Bob_Kuechenberg
+SWE771251,Bob Swenson,pre1980_career,OLB,1953-07-01,1,1,False,Bob Swenson,ok,1953-07-01,,,,7.5,11.0,,https://en.wikipedia.org/wiki/Bob_Swenson
+YOU524556,Bob Young,pre1980_career,G,1942-09-03,2,1,False,Bob Young (offensive lineman),ok,1942-09-03,,,,,,,https://en.wikipedia.org/wiki/Bob_Young_(offensive_lineman)
+BRY226518,Bobby Bryant,pre1980_career,CB,1944-01-24,2,0,False,Bobby Bryant,ok,1944-01-24,,,,,51.0,,https://en.wikipedia.org/wiki/Bobby_Bryant
+00-0007909,Bobby Humphrey,pre1980_career,RB,1966-10-11,1,0,False,Bobby Humphrey,ok,1966-10-11,,2857.0,,,,,https://en.wikipedia.org/wiki/Bobby_Humphrey
+BEN498336,Brad Benson,pre1980_career,OT,1955-11-25,1,0,False,Brad Benson,ok,1955-11-25,,,,,,,https://en.wikipedia.org/wiki/Brad_Benson
+VAN695888,Brad Van Pelt,pre1980_career,OLB,1951-04-05,5,0,False,Brad Van Pelt,ok,1951-04-05,,,,24.5,20.0,,https://en.wikipedia.org/wiki/Brad_Van_Pelt
+SIP415291,Brian Sipe,pre1980_career,QB,1949-08-08,1,1,False,Brian Sipe,ok,1949-08-08,23713.0,,,,,,https://en.wikipedia.org/wiki/Brian_Sipe
+LAI498348,Bruce Laird,pre1980_career,S,1950-05-23,1,0,False,Bruce Laird (American football),ok,1950-05-23,,,,4.0,19.0,,https://en.wikipedia.org/wiki/Bruce_Laird_(American_football)
+HIL118648,Calvin Hill,pre1980_career,RB,1947-01-02,4,2,False,Calvin Hill,ok,1947-01-02,,6083.0,2861.0,,,,https://en.wikipedia.org/wiki/Calvin_Hill
+EKE553722,Carl Ekern,pre1980_career,LB,1954-05-27,1,0,False,Carl Ekern,ok,1954-05-27,,,,2.0,5.0,,https://en.wikipedia.org/wiki/Carl_Ekern
+ROA593270,Carl Roaches,pre1980_career,WR,1953-10-02,1,0,False,Carl Roaches,ok,1953-10-02,,,,,,,https://en.wikipedia.org/wiki/Carl_Roaches
+HAR068848,Cedrick Hardman,pre1980_career,DE,1948-10-04,2,0,False,Cedrick Hardman,ok,1948-10-04,,,,122.5,,,https://en.wikipedia.org/wiki/Cedrick_Hardman
+YOU131139,Charle Young,pre1980_career,TE,1951-02-05,3,1,False,Charle Young,ok,1951-02-05,,,5106.0,,,,https://en.wikipedia.org/wiki/Charle_Young
+JOH106854,Charlie Johnson,pre1980_career,NT,1952-02-17,3,2,False,Charlie Johnson (defensive tackle),ok,1952-02-17,,,,18.5,5.0,,https://en.wikipedia.org/wiki/Charlie_Johnson_(defensive_tackle)
+JOI207645,Charlie Joiner,pre1980_career,WR,1947-10-14,3,1,True,Charlie Joiner,ok,1947-10-14,,,12146.0,,,,https://en.wikipedia.org/wiki/Charlie_Joiner
+WAT065571,Charlie Waters,pre1980_career,S,1948-09-10,3,0,False,Charlie Waters,ok,1948-09-10,,,,,41.0,,https://en.wikipedia.org/wiki/Charlie_Waters
+MAR063891,Chester Marcol,pre1980_career,K,1949-10-24,2,2,False,Chester Marcol,ok,1949-10-24,,,,,,,https://en.wikipedia.org/wiki/Chester_Marcol
+FOR402704,Chuck Foreman,pre1980_career,RB,1950-10-26,5,2,False,Chuck Foreman,ok,1950-10-26,,5950.0,3156.0,,,,https://en.wikipedia.org/wiki/Chuck_Foreman
+MUN151014,Chuck Muncie,pre1980_career,RB,1953-03-17,3,0,False,Chuck Muncie,ok,1953-03-17,,6702.0,2323.0,,,,https://en.wikipedia.org/wiki/Chuck_Muncie
+SCO208277,Clarence Scott,pre1980_career,CB,1949-04-09,1,0,False,Clarence Scott,ok,1949-04-09,,,,,39.0,,https://en.wikipedia.org/wiki/Clarence_Scott
+00-0016880,Clarence Verdin,pre1980_career,WR,1963-06-14,2,0,False,Clarence Verdin,ok,1963-06-14,,,1329.0,,,,https://en.wikipedia.org/wiki/Clarence_Verdin
+HUM456819,Claude Humphrey,pre1980_career,DE,1944-06-29,6,5,True,Claude Humphrey,ok,1944-06-29,,,,130.0,2.0,,https://en.wikipedia.org/wiki/Claude_Humphrey
+00-0010552,Clay Matthews,pre1980_career,OLB,1956-03-15,4,0,False,Clay Matthews Jr.,ok,1956-03-15,,,,69.5,16.0,,https://en.wikipedia.org/wiki/Clay_Matthews_Jr.
+BRA498336,Cliff Branch,pre1980_career,WR,1948-08-01,4,3,True,Cliff Branch,ok,1948-08-01,,,8685.0,,,,https://en.wikipedia.org/wiki/Cliff_Branch
+RIS207644,Cody Risien,pre1980_career,OT,1957-03-22,2,0,False,Cody Risien,ok,1957-03-22,,,,,,,https://en.wikipedia.org/wiki/Cody_Risien
+DOB692150,Conrad Dobler,pre1980_career,G,1950-10-01,3,0,False,Conrad Dobler,ok,1950-10-01,,,,,,,https://en.wikipedia.org/wiki/Conrad_Dobler
+BAC738296,Coy Bacon,pre1980_career,DE,1942-08-30,3,0,False,Coy Bacon,ok,1942-08-30,,,,130.5,2.0,,https://en.wikipedia.org/wiki/Coy_Bacon
+00-0002721,Cris Carter,pre1980_career,WR,1965-11-25,8,2,True,Cris Carter,ok,1965-11-25,,,13899.0,,,,https://en.wikipedia.org/wiki/Cris_Carter
+CUL528549,Curley Culp,pre1980_career,DT,1946-03-10,6,1,True,Curley Culp,ok,1946-03-10,,,,68.5,,,https://en.wikipedia.org/wiki/Curley_Culp
+DIE415290,Dan Dierdorf,pre1980_career,OT,1949-06-29,6,5,True,Dan Dierdorf,ok,1949-06-29,,,,,,,https://en.wikipedia.org/wiki/Dan_Dierdorf
+FOU692150,Dan Fouts,pre1980_career,QB,1951-06-10,6,2,True,Dan Fouts,ok,1951-06-10,43040.0,476.0,,,,,https://en.wikipedia.org/wiki/Dan_Fouts
+HAM679563,Dan Hampton,pre1980_career,DE,1957-09-19,4,1,True,Dan Hampton,ok,1957-09-19,,,,57.0,,,https://en.wikipedia.org/wiki/Dan_Hampton
+PAS719836,Dan Pastorini,pre1980_career,QB,1949-05-26,1,0,False,Dan Pastorini,ok,1949-05-26,18515.0,,,,,,https://en.wikipedia.org/wiki/Dan_Pastorini
+ROS569520,Dan Ross,pre1980_career,TE,1957-02-09,1,0,False,Dan Ross (American football),ok,1957-02-09,,,3419.0,,,,https://en.wikipedia.org/wiki/Dan_Ross_(American_football)
+WHI578584,Danny White,pre1980_career,QB,1952-02-09,1,0,False,Danny White,ok,1952-02-09,21959.0,,,,,,https://en.wikipedia.org/wiki/Danny_White
+00-0001907,Dave Brown,pre1980_career,QB,1970-02-25,0,0,False,Dave Brown (quarterback),ok,1970-02-25,10248.0,,,,,,https://en.wikipedia.org/wiki/Dave_Brown_(quarterback)
+BRO382398,Dave Brown,pre1980_career,CB,1953-01-16,1,0,False,Dave Brown (cornerback),ok,1953-01-16,,,,,62.0,,https://en.wikipedia.org/wiki/Dave_Brown_(cornerback)
+BUT804605,Dave Butz,pre1980_career,DT,1950-06-23,1,1,False,Dave Butz,ok,1950-06-23,,,,64.0,2.0,,https://en.wikipedia.org/wiki/Dave_Butz
+CAS453042,Dave Casper,pre1980_career,TE,1951-09-26,5,4,True,Dave Casper,ok_approx_bd,1952-02-02,,,5216.0,,,,https://en.wikipedia.org/wiki/Dave_Casper
+DAL069215,Dave Dalby,pre1980_career,C,1950-10-19,1,0,False,Dave Dalby,ok,1950-10-19,,,,,,,https://en.wikipedia.org/wiki/Dave_Dalby
+JEN467190,Dave Jennings,pre1980_career,P,1952-06-08,4,2,False,Dave Jennings (American football),ok,1952-06-08,,,,,,,https://en.wikipedia.org/wiki/Dave_Jennings_(American_football)
+LEW190333,Dave Lewis,pre1980_career,OLB,1954-10-15,1,0,False,Dave Lewis (linebacker),ok,1954-10-15,,,,9.0,10.0,,https://en.wikipedia.org/wiki/Dave_Lewis_(linebacker)
+PEA207642,Dave Pear,pre1980_career,NT,1953-06-01,1,0,False,Dave Pear,ok,1953-06-01,,,,,,,https://en.wikipedia.org/wiki/Dave_Pear
+WAS212970,Dave Washington,pre1980_career,OLB,1948-09-12,1,0,False,Dave Washington,ok,1948-09-12,,,,,6.0,,https://en.wikipedia.org/wiki/Dave_Washington
+HIL148310,David Hill,pre1980_career,TE,1954-01-01,2,0,False,David Hill (tight end),ok,1954-01-01,,,4212.0,,,,https://en.wikipedia.org/wiki/David_Hill_(tight_end)
+WIL226170,Delvin Williams,pre1980_career,RB,1951-04-17,2,1,False,Delvin Williams,ok,1951-04-17,,5598.0,,,,,https://en.wikipedia.org/wiki/Delvin_Williams
+HAR301210,Dennis Harrah,pre1980_career,G,1953-03-09,6,1,False,Dennis Harrah,ok,1953-03-09,,,,,,,https://en.wikipedia.org/wiki/Dennis_Harrah
+HAR576602,Dennis Harrison,pre1980_career,DE,1956-07-31,1,0,False,Dennis Harrison,ok,1956-07-31,,,,61.0,1.0,,https://en.wikipedia.org/wiki/Dennis_Harrison
+JAU415291,Dick Jauron,pre1980_career,FS,1950-10-07,1,0,False,Dick Jauron,ok,1950-10-07,,,,,,,https://en.wikipedia.org/wiki/Dick_Jauron
+TAL118654,Diron Talbert,pre1980_career,DT,1944-07-01,1,0,False,Diron Talbert,ok,1944-07-01,,,,84.5,,,https://en.wikipedia.org/wiki/Diron_Talbert
+WOO469914,Don Woods,pre1980_career,RB,1951-02-17,0,0,False,Don Woods (American football),ok,1951-02-17,,3087.0,,,,,https://en.wikipedia.org/wiki/Don_Woods_(American_football)
+SHE300407,Donnie Shell,pre1980_career,S,1952-08-26,5,3,True,Donnie Shell,ok,1952-08-26,,,,,51.0,,https://en.wikipedia.org/wiki/Donnie_Shell
+BET447237,Doug Betters,pre1980_career,DE,1956-06-11,1,1,False,Doug Betters,ok,1956-06-11,,,,64.5,,,https://en.wikipedia.org/wiki/Doug_Betters
+COS055372,Doug Cosbie,pre1980_career,TE,1956-03-27,3,0,False,Doug Cosbie,ok,1956-03-27,,,3728.0,,,,https://en.wikipedia.org/wiki/Doug_Cosbie
+DIE346075,Doug Dieken,pre1980_career,OT,1949-02-12,1,0,False,Doug Dieken,ok,1949-02-12,,,,,,,https://en.wikipedia.org/wiki/Doug_Dieken
+ENG581406,Doug English,pre1980_career,DT,1953-08-25,4,2,False,Doug English,ok,1953-08-25,,,,55.5,,,https://en.wikipedia.org/wiki/Doug_English
+FRA052732,Doug France,pre1980_career,OT,1953-04-26,2,0,False,Doug France,ok,1953-04-26,,,,,,,https://en.wikipedia.org/wiki/Doug_France
+SMI106720,Doug Smith,pre1980_career,C,1956-11-25,6,0,False,Doug Smith (offensive lineman),ok,1956-11-25,,,,,,,https://en.wikipedia.org/wiki/Doug_Smith_(offensive_lineman)
+WIL074313,Doug Wilkerson,pre1980_career,G,1947-03-27,3,1,False,Doug Wilkerson,ok,1947-03-27,,,,,,,https://en.wikipedia.org/wiki/Doug_Wilkerson
+WIL247171,Doug Williams,pre1980_career,QB,1955-08-09,0,0,False,Doug Williams (quarterback),ok,1955-08-09,16998.0,,,,,,https://en.wikipedia.org/wiki/Doug_Williams_(quarterback)
+00-0007431,Drew Hill,pre1980_career,WR,1956-10-05,2,0,False,Drew Hill,ok,1956-10-05,,,9831.0,,,,https://en.wikipedia.org/wiki/Drew_Hill
+PEA415284,Drew Pearson,pre1980_career,WR,1951-01-12,3,3,True,Drew Pearson (American football),ok,1951-01-12,,,7822.0,,,,https://en.wikipedia.org/wiki/Drew_Pearson_(American_football)
+CLA270396,Dwight Clark,pre1980_career,WR,1957-01-08,2,1,False,Dwight Clark,ok,1957-01-08,,,6750.0,,,,https://en.wikipedia.org/wiki/Dwight_Clark
+HIC395510,Dwight Hicks,pre1980_career,FS,1956-04-05,4,0,False,Dwight Hicks,ok,1956-04-05,,,,,,,https://en.wikipedia.org/wiki/Dwight_Hicks
+WHI167976,Dwight White,pre1980_career,DE,1949-07-30,2,0,False,Dwight White,ok,1949-07-30,,,,,4.0,,https://en.wikipedia.org/wiki/Dwight_White
+CAM251095,Earl Campbell,pre1980_career,RB,1955-03-29,5,3,True,Earl Campbell,ok,1955-03-29,,9407.0,806.0,,,,https://en.wikipedia.org/wiki/Earl_Campbell
+NEW348309,Ed Newman,pre1980_career,G,1951-06-04,4,1,False,Ed Newman,ok,1951-06-04,,,,,,,https://en.wikipedia.org/wiki/Ed_Newman
+WHI177308,Ed White,pre1980_career,G,1947-04-04,4,0,False,Ed White (American football),ok,1947-04-04,,,,,,,https://en.wikipedia.org/wiki/Ed_White_(American_football)
+HER478211,Efren Herrera,pre1980_career,K,1951-07-30,1,1,False,Efrén Herrera,ok,1951-07-30,,,,,,116.0,https://en.wikipedia.org/wiki/Efrén_Herrera
+BET127782,Elvin Bethea,pre1980_career,DE,1946-03-01,8,0,True,Elvin Bethea,ok,1946-03-01,,,,105.0,,,https://en.wikipedia.org/wiki/Elvin_Bethea
+00-0008503,Ezra Johnson,pre1980_career,DE,1955-10-02,1,0,False,Ezra Johnson,ok,1955-10-02,,,,96.0,,,https://en.wikipedia.org/wiki/Ezra_Johnson
+HAR387270,Franco Harris,pre1980_career,RB,1950-03-07,9,1,True,Franco Harris,ok,1950-03-07,,12120.0,2287.0,,,,https://en.wikipedia.org/wiki/Franco_Harris
+COR638910,Frank Corral,pre1980_career,K,1955-06-16,1,0,False,Frank Corral,ok,1955-06-16,,,,,,75.0,https://en.wikipedia.org/wiki/Frank_Corral
+LEM118654,Frank LeMaster,pre1980_career,ILB,1952-03-12,1,0,False,Frank LeMaster,ok,1952-03-12,,,,14.5,10.0,,https://en.wikipedia.org/wiki/Frank_LeMaster
+LEW259545,Frank Lewis,pre1980_career,WR,1947-07-04,1,0,False,Frank Lewis (American football),ok,1947-07-04,,,6724.0,,,,https://en.wikipedia.org/wiki/Frank_Lewis_(American_football)
+DEA177981,Fred Dean,pre1980_career,G,1955-03-30,0,0,False,Fred Dean (offensive lineman),ok,1955-03-30,,,,,,,https://en.wikipedia.org/wiki/Fred_Dean_(offensive_lineman)
+DEA237308,Fred Dean,pre1980_career,DE,1952-02-24,4,2,True,Fred Dean,ok,1952-02-24,,,,92.0,1.0,,https://en.wikipedia.org/wiki/Fred_Dean
+DRY553722,Fred Dryer,pre1980_career,DE,1946-07-06,1,0,False,Fred Dryer,ok,1946-07-06,,,,103.0,1.0,,https://en.wikipedia.org/wiki/Fred_Dryer
+QUI276860,Fred Quillan,pre1980_career,C,1956-01-27,2,0,False,Fred Quillan,ok,1956-01-27,,,,,,,https://en.wikipedia.org/wiki/Fred_Quillan
+00-0015072,Fred Smerlas,pre1980_career,NT,1957-04-08,5,4,False,Fred Smerlas,ok,1957-04-08,,,,29.0,2.0,,https://en.wikipedia.org/wiki/Fred_Smerlas
+YEP415291,Garo Yepremian,pre1980_career,K,1944-06-02,2,2,False,Garo Yepremian,ok,1944-06-02,,,,,,313.0,https://en.wikipedia.org/wiki/Garo_Yepremian
+AND273483,Gary Anderson,pre1980_career,G,1955-09-22,0,0,False,Gary Anderson (offensive lineman),ok,1955-09-22,,,,,,,https://en.wikipedia.org/wiki/Gary_Anderson_(offensive_lineman)
+BAR007415,Gary Barbaro,pre1980_career,FS,1954-02-11,3,0,False,Gary Barbaro,ok,1954-02-11,,,,,39.0,,https://en.wikipedia.org/wiki/Gary_Barbaro
+00-0003038,Gary Clark,pre1980_career,WR,1962-05-01,4,1,False,Gary Clark (American football),ok,1962-05-01,,,10856.0,,,,https://en.wikipedia.org/wiki/Gary_Clark_(American_football)
+FEN138430,Gary Fencik,pre1980_career,S,1954-06-11,2,1,False,Gary Fencik,ok,1954-06-11,,,,2.0,38.0,,https://en.wikipedia.org/wiki/Gary_Fencik
+GRE200466,Gary Green,pre1980_career,CB,1955-10-22,4,0,False,Gary Green (American football),ok_approx_bd,1955-10-02,,,,,33.0,,https://en.wikipedia.org/wiki/Gary_Green_(American_football)
+00-0018511,Gary Zimmerman,pre1980_career,OT,1961-12-13,7,3,True,Gary Zimmerman,ok,1961-12-13,,,,,,,https://en.wikipedia.org/wiki/Gary_Zimmerman
+UPS276861,Gene Upshaw,pre1980_career,G,1945-08-15,6,3,True,Gene Upshaw,ok,1945-08-15,,,,,,,https://en.wikipedia.org/wiki/Gene_Upshaw
+KUN207645,George Kunz,pre1980_career,OT,1947-07-05,7,3,False,George Kunz,ok,1947-07-05,,,,,,,https://en.wikipedia.org/wiki/George_Kunz
+MCN553712,Gerald McNeil,pre1980_career,WR,1962-03-27,1,0,False,Gerald McNeil,ok,1962-03-27,,,380.0,,,,https://en.wikipedia.org/wiki/Gerald_McNeil
+EDW461430,Glen Edwards,pre1980_career,FS,1947-07-31,2,1,False,Glen Edwards (safety),ok,1947-07-31,,,,,39.0,,https://en.wikipedia.org/wiki/Glen_Edwards_(safety)
+LAN159039,Greg Landry,pre1980_career,QB,1946-12-18,1,1,False,Greg Landry,ok,1946-12-18,16052.0,,,,,,https://en.wikipedia.org/wiki/Greg_Landry
+PRU355962,Greg Pruitt,pre1980_career,RB,1951-08-18,5,0,False,Greg Pruitt,ok,1951-08-18,,5672.0,,,,,https://en.wikipedia.org/wiki/Greg_Pruitt
+STE283140,Greg Stemrick,pre1980_career,CB,1951-10-25,1,0,False,Greg Stemrick,ok,1951-10-25,,,,,15.0,,https://en.wikipedia.org/wiki/Greg_Stemrick
+CAR217503,Harold Carmichael,pre1980_career,WR,1949-09-22,4,0,True,Harold Carmichael,ok,1949-09-22,,,8985.0,,,,https://en.wikipedia.org/wiki/Harold_Carmichael
+JAC198616,Harold Jackson,pre1980_career,WR,1946-01-06,5,1,False,Harold Jackson (American football),ok,1946-01-06,,,10372.0,,,,https://en.wikipedia.org/wiki/Harold_Jackson_(American_football)
+CAR573417,Harry Carson,pre1980_career,ILB,1953-11-26,9,0,True,Harry Carson,ok,1953-11-26,,,,8.0,11.0,,https://en.wikipedia.org/wiki/Harry_Carson
+MAR617613,Harvey Martin,pre1980_career,DE,1950-11-16,4,1,False,Harvey Martin,ok,1950-11-16,,,,10.0,2.0,,https://en.wikipedia.org/wiki/Harvey_Martin
+MOS266967,Haven Moses,pre1980_career,WR,1946-07-27,1,0,False,Haven Moses,ok,1946-07-27,,,8091.0,,,,https://en.wikipedia.org/wiki/Haven_Moses
+CHI498348,Henry Childs,pre1980_career,TE,1951-04-16,1,0,False,Henry Childs,ok,1951-04-16,,,3401.0,,,,https://en.wikipedia.org/wiki/Henry_Childs
+LAW361120,Henry Lawrence,pre1980_career,OT,1951-09-26,2,0,False,Henry Lawrence (American football),ok,1951-09-26,,,,,,,https://en.wikipedia.org/wiki/Henry_Lawrence_(American_football)
+SCO332226,Herbert Scott,pre1980_career,G,1953-01-18,3,2,False,Herbert Scott (American football),ok,1953-01-18,,,,,,,https://en.wikipedia.org/wiki/Herbert_Scott_(American_football)
+CUR638900,Isaac Curtis,pre1980_career,WR,1950-10-20,4,0,False,Isaac Curtis,ok,1950-10-20,,,7101.0,,,,https://en.wikipedia.org/wiki/Isaac_Curtis
+ROB315980,Isiah Robertson,pre1980_career,OLB,1949-08-17,6,4,False,Isiah Robertson,ok,1949-08-17,,,,,25.0,,https://en.wikipedia.org/wiki/Isiah_Robertson
+SMI441960,J.T. Smith,pre1980_career,WR,1955-10-29,2,1,False,J. T. Smith (American football),ok,1955-10-29,,,6974.0,,,,https://en.wikipedia.org/wiki/J._T._Smith_(American_football)
+THO218232,J.T. Thomas,pre1980_career,CB,1951-04-22,1,0,False,J. T. Thomas (defensive back),ok,1951-04-22,,,,,20.0,,https://en.wikipedia.org/wiki/J._T._Thomas_(defensive_back)
+HAM025169,Jack Ham,pre1980_career,OLB,1948-12-23,8,6,True,Jack Ham,ok,1948-12-23,,,,,32.0,,https://en.wikipedia.org/wiki/Jack_Ham
+LAM488570,Jack Lambert,pre1980_career,MLB,1952-07-08,9,6,True,Jack Lambert (American football),ok,1952-07-08,,,,8.0,28.0,,https://en.wikipedia.org/wiki/Jack_Lambert_(American_football)
+REY390856,Jack Reynolds,pre1980_career,MLB,1947-11-22,2,0,False,Jack Reynolds (American football),ok,1947-11-22,,,,,6.0,,https://en.wikipedia.org/wiki/Jack_Reynolds_(American_football)
+RUD103822,Jack Rudnay,pre1980_career,C,1947-11-20,4,0,False,Jack Rudnay,ok,1947-11-20,,,,,,,https://en.wikipedia.org/wiki/Jack_Rudnay
+TAT679563,Jack Tatum,pre1980_career,FS,1948-11-18,3,0,False,Jack Tatum,ok,1948-11-18,,,,,37.0,,https://en.wikipedia.org/wiki/Jack_Tatum
+YOU728550,Jack Youngblood,pre1980_career,DE,1950-01-26,7,5,True,Jack Youngblood,ok,1950-01-26,,,,151.5,,,https://en.wikipedia.org/wiki/Jack_Youngblood
+00-0015035,Jackie Slater,pre1980_career,OT,1954-05-27,7,0,True,Jackie Slater,ok,1954-05-27,,,,,,,https://en.wikipedia.org/wiki/Jackie_Slater
+00-0017813,Jamal Williams,pre1980_career,DT,1976-04-28,3,2,False,Jamal Williams,ok,1976-04-28,,,,13.0,1.0,,https://en.wikipedia.org/wiki/Jamal_Williams
+00-0010023,James Lofton,pre1980_career,WR,1956-07-05,8,2,True,James Lofton,ok,1956-07-05,,,14004.0,,,,https://en.wikipedia.org/wiki/James_Lofton
+STE292578,Jan Stenerud,pre1980_career,K,1942-11-26,4,4,True,Jan Stenerud,ok,1942-11-26,,,,,,558.0,https://en.wikipedia.org/wiki/Jan_Stenerud
+SIE533943,Jeff Siemon,pre1980_career,MLB,1950-06-02,4,0,False,Jeff Siemon,ok,1950-06-02,,,,7.0,11.0,,https://en.wikipedia.org/wiki/Jeff_Siemon
+VAN650992,Jeff Van Note,pre1980_career,C,1946-02-07,6,0,False,Jeff Van Note,ok,1946-02-07,,,,,,,https://en.wikipedia.org/wiki/Jeff_Van_Note
+BAR207620,Jerome Barkum,pre1980_career,TE,1950-07-18,1,0,False,Jerome Barkum,ok,1950-07-18,,,4789.0,,,,https://en.wikipedia.org/wiki/Jerome_Barkum
+BUT311460,Jerry Butler,pre1980_career,WR,1957-10-12,1,0,False,Jerry Butler (American football),ok,1957-10-12,,,4301.0,,,,https://en.wikipedia.org/wiki/Jerry_Butler_(American_football)
+ROB541680,Jerry Robinson,pre1980_career,ILB,1956-12-18,1,1,False,Jerry Robinson (linebacker),ok,1956-12-18,,,,19.5,12.0,,https://en.wikipedia.org/wiki/Jerry_Robinson_(linebacker)
+SHE600814,Jerry Sherk,pre1980_career,DT,1948-07-07,4,1,False,Jerry Sherk,ok,1948-07-07,,,,,,,https://en.wikipedia.org/wiki/Jerry_Sherk
+SIS118654,Jerry Sisemore,pre1980_career,OT,1951-07-16,2,0,False,Jerry Sisemore,ok,1951-07-16,,,,,,,https://en.wikipedia.org/wiki/Jerry_Sisemore
+HAR679874,Jim Hart,pre1980_career,QB,1944-04-29,4,0,False,Jim Hart (American football),ok,1944-04-29,34665.0,,,,,,https://en.wikipedia.org/wiki/Jim_Hart_(American_football)
+HAS377535,Jim Haslett,pre1980_career,ILB,1955-12-09,0,0,False,Jim Haslett,ok,1955-12-09,,,,4.5,6.0,,https://en.wikipedia.org/wiki/Jim_Haslett
+LAN547801,Jim Langer,pre1980_career,C,1948-05-16,6,3,True,Jim Langer,ok,1948-05-16,,,,,,,https://en.wikipedia.org/wiki/Jim_Langer
+LEC415288,Jim LeClair,pre1980_career,MLB,1950-10-30,1,0,False,Jim LeClair,ok,1950-10-30,,,,7.5,10.0,,https://en.wikipedia.org/wiki/Jim_LeClair
+PLU604056,Jim Plunkett,pre1980_career,QB,1947-12-05,0,0,False,Jim Plunkett,ok,1947-12-05,25882.0,1337.0,,,,,https://en.wikipedia.org/wiki/Jim_Plunkett
+YOU743121,Jim Youngblood,pre1980_career,OLB,1950-02-23,1,0,False,Jim Youngblood,ok,1950-02-23,,,,15.5,14.0,,https://en.wikipedia.org/wiki/Jim_Youngblood
+GIL269376,Jimmie Giles,pre1980_career,TE,1954-11-08,4,0,False,Jimmie Giles,ok,1954-11-08,,,5084.0,,,,https://en.wikipedia.org/wiki/Jimmie_Giles
+DEL063890,Joe DeLamielleure,pre1980_career,G,1951-03-16,6,3,True,Joe DeLamielleure,ok,1951-03-16,,,,,,,https://en.wikipedia.org/wiki/Joe_DeLamielleure
+FIE766692,Joe Fields,pre1980_career,C,1953-11-14,2,1,False,Joe Fields,ok,1953-11-14,,,,,,,https://en.wikipedia.org/wiki/Joe_Fields
+GRE420024,Joe Greene,pre1980_career,DT,1946-09-24,10,5,True,Joe Greene,ok,1946-09-24,,,,77.5,1.0,,https://en.wikipedia.org/wiki/Joe_Greene
+KLE138430,Joe Klecko,pre1980_career,DE,1953-10-15,4,2,True,Joe Klecko,ok,1953-10-15,,,,78.0,,,https://en.wikipedia.org/wiki/Joe_Klecko
+LAV415290,Joe Lavender,pre1980_career,CB,1949-02-10,2,0,False,Joe Lavender,ok,1949-02-10,,,,,33.0,,https://en.wikipedia.org/wiki/Joe_Lavender
+00-0011493,Joe Montana,pre1980_career,QB,1956-06-11,8,3,True,Joe Montana,ok,1956-06-11,40551.0,1676.0,,,,,https://en.wikipedia.org/wiki/Joe_Montana
+SEN593270,Joe Senser,pre1980_career,TE,1956-08-18,1,0,False,Joe Senser,ok,1956-08-18,,,1822.0,,,,https://en.wikipedia.org/wiki/Joe_Senser
+THE276861,Joe Theismann,pre1980_career,QB,1949-09-09,2,1,False,Joe Theismann,ok,1949-09-09,25206.0,,,,,,https://en.wikipedia.org/wiki/Joe_Theismann
+WAS440487,Joe Washington,pre1980_career,RB,1953-09-24,1,0,False,Joe Washington,ok,1953-09-24,,4839.0,,,,,https://en.wikipedia.org/wiki/Joe_Washington
+DUT276861,John Dutton,pre1980_career,DT,1951-02-06,3,1,False,John Dutton (defensive lineman),ok,1951-02-06,,,,73.0,1.0,,https://en.wikipedia.org/wiki/John_Dutton_(defensive_lineman)
+HAN295312,John Hannah,pre1980_career,G,1951-04-04,9,7,True,John Hannah (American football),ok,1951-04-04,,,,,,,https://en.wikipedia.org/wiki/John_Hannah_(American_football)
+JAM265784,John James,pre1980_career,P,1949-01-21,3,0,False,John James (American football),ok,1949-01-21,,,,,,,https://en.wikipedia.org/wiki/John_James_(American_football)
+JEF259555,John Jefferson,pre1980_career,WR,1956-02-03,4,2,False,John Jefferson (American football),ok,1956-02-03,,,5714.0,,,,https://en.wikipedia.org/wiki/John_Jefferson_(American_football)
+RIG207644,John Riggins,pre1980_career,RB,1949-08-04,1,1,True,John Riggins,ok,1949-08-04,,11352.0,2090.0,,,,https://en.wikipedia.org/wiki/John_Riggins
+SMI436160,John Smith,pre1980_career,K,1949-12-30,1,0,False,John Smith (placekicker),ok,1949-12-30,,,,,,128.0,https://en.wikipedia.org/wiki/John_Smith_(placekicker)
+STA285936,John Stallworth,pre1980_career,WR,1952-07-15,3,1,True,John Stallworth,ok,1952-07-15,,,8723.0,,,,https://en.wikipedia.org/wiki/John_Stallworth
+ADA470662,Julius Adams,pre1980_career,DE,1948-04-26,1,0,False,Julius Adams,ok,1948-04-26,,,,80.5,,,https://en.wikipedia.org/wiki/Julius_Adams
+DOR259555,Keith Dorney,pre1980_career,OT,1957-12-03,1,0,False,Keith Dorney,ok,1957-12-03,,,,,,,https://en.wikipedia.org/wiki/Keith_Dorney
+FAH622935,Keith Fahnhorst,pre1980_career,OT,1952-02-06,1,2,False,Keith Fahnhorst,ok,1952-02-06,,,,,,,https://en.wikipedia.org/wiki/Keith_Fahnhorst
+WIN521505,Kellen Winslow,pre1980_career,TE,1957-11-05,5,3,True,Kellen Winslow,ok,1957-11-05,,,6741.0,,,,https://en.wikipedia.org/wiki/Kellen_Winslow
+AND324128,Ken Anderson,pre1980_career,QB,1949-02-15,4,1,False,Ken Anderson (quarterback),ok,1949-02-15,32838.0,,,,,,https://en.wikipedia.org/wiki/Ken_Anderson_(quarterback)
+BUR622881,Ken Burrough,pre1980_career,WR,1948-07-14,2,0,False,Ken Burrough,ok,1948-07-14,,,7102.0,,,,https://en.wikipedia.org/wiki/Ken_Burrough
+HOU519110,Ken Houston,pre1980_career,S,1944-11-12,12,2,True,Ken Houston,ok,1944-11-12,,,,,49.0,,https://en.wikipedia.org/wiki/Ken_Houston
+RIL332232,Ken Riley,pre1980_career,CB,1947-08-06,0,1,True,Ken Riley,ok,1947-08-06,,,,1.0,65.0,,https://en.wikipedia.org/wiki/Ken_Riley
+STA013616,Ken Stabler,pre1980_career,QB,1945-12-25,4,1,True,Ken Stabler,ok,1945-12-25,27938.0,,,,,,https://en.wikipedia.org/wiki/Ken_Stabler
+KIN558737,Kenny King,pre1980_career,RB,1957-03-07,1,0,False,Kenny King (running back),ok,1957-03-07,,2477.0,,,,,https://en.wikipedia.org/wiki/Kenny_King_(running_back)
+HIL474592,Kent Hill,pre1980_career,G,1957-03-07,5,0,False,Kent Hill,ok,1957-03-07,,,,,,,https://en.wikipedia.org/wiki/Kent_Hill
+00-0010233,Kevin Mack,pre1980_career,RB,1962-08-09,2,0,False,Kevin Mack,ok,1962-08-09,,5123.0,,,,,https://en.wikipedia.org/wiki/Kevin_Mack
+BOK415291,Kim Bokamper,pre1980_career,DE,1954-09-25,1,0,False,Kim Bokamper,ok,1954-09-25,,,,12.0,6.0,,https://en.wikipedia.org/wiki/Kim_Bokamper
+GRE620490,L.C. Greenwood,pre1980_career,DE,1946-09-08,6,2,False,L. C. Greenwood,ok,1946-09-08,,,,,,,https://en.wikipedia.org/wiki/L._C._Greenwood
+BRO140760,Larry Brooks,pre1980_career,DT,1950-06-10,5,2,False,Larry Brooks (American football),ok,1950-06-10,,,,,,,https://en.wikipedia.org/wiki/Larry_Brooks_(American_football)
+LIT593270,Larry Little,pre1980_career,G,1945-11-02,5,5,True,Larry Little,ok,1945-11-02,,,,,,,https://en.wikipedia.org/wiki/Larry_Little
+MCC174405,Larry McCarren,pre1980_career,C,1951-11-09,2,0,False,Larry McCarren,ok,1951-11-09,,,,,,,https://en.wikipedia.org/wiki/Larry_McCarren
+MCC822195,Lawrence McCutcheon,pre1980_career,RB,1950-06-02,5,0,False,Lawrence McCutcheon,ok,1950-06-02,,6578.0,,,,,https://en.wikipedia.org/wiki/Lawrence_McCutcheon
+SEL679563,Lee Roy Selmon,pre1980_career,DE,1954-10-20,6,3,True,Lee Roy Selmon,ok,1954-10-20,,,,78.5,,,https://en.wikipedia.org/wiki/Lee_Roy_Selmon
+00-0017867,Lee Williams,pre1980_career,DE,1962-10-15,2,0,False,Lee Williams (American football),ok,1962-10-15,,,,82.5,2.0,,https://en.wikipedia.org/wiki/Lee_Williams_(American_football)
+PAR680800,Lemar Parrish,pre1980_career,CB,1947-12-13,8,3,False,Lemar Parrish,ok,1947-12-13,,,,,47.0,,https://en.wikipedia.org/wiki/Lemar_Parrish
+GRA725496,Leon Gray,pre1980_career,OT,1951-11-15,4,3,False,Leon Gray,ok,1951-11-15,,,,,,,https://en.wikipedia.org/wiki/Leon_Gray
+HAY296625,Lester Hayes,pre1980_career,CB,1955-01-22,5,4,False,Lester Hayes,ok,1955-01-22,,,,,39.0,,https://en.wikipedia.org/wiki/Lester_Hayes
+KEL016611,Louie Kelcher,pre1980_career,DT,1953-08-23,3,2,False,Louie Kelcher,ok,1953-08-23,,,,,2.0,,https://en.wikipedia.org/wiki/Louie_Kelcher
+WRI553718,Louis Wright,pre1980_career,CB,1953-01-31,5,4,False,Louis Wright (American football),ok,1953-01-31,,,,,26.0,,https://en.wikipedia.org/wiki/Louis_Wright_(American_football)
+PRE775208,Luke Prestridge,pre1980_career,P,1956-09-17,1,1,False,Luke Prestridge,ok,1956-09-17,,,,,,,https://en.wikipedia.org/wiki/Luke_Prestridge
+MIT448960,Lydell Mitchell,pre1980_career,RB,1949-05-30,3,0,False,Lydell Mitchell,ok,1949-05-30,,6534.0,3203.0,,,,https://en.wikipedia.org/wiki/Lydell_Mitchell
+ALZ415291,Lyle Alzado,pre1980_career,DE,1949-04-03,2,2,False,Lyle Alzado,ok,1949-04-03,,,,112.0,,,https://en.wikipedia.org/wiki/Lyle_Alzado
+SWA332232,Lynn Swann,pre1980_career,WR,1952-03-07,3,3,True,Lynn Swann,ok,1952-03-07,,,5462.0,,,,https://en.wikipedia.org/wiki/Lynn_Swann
+GAS664464,Mark Gastineau,pre1980_career,DE,1956-11-20,5,3,False,Mark Gastineau,ok,1956-11-20,,,,107.5,,,https://en.wikipedia.org/wiki/Mark_Gastineau
+MOS088989,Mark Moseley,pre1980_career,K,1948-03-12,2,1,False,Mark Moseley,ok,1948-03-12,,,,,,300.0,https://en.wikipedia.org/wiki/Mark_Moseley
+MUR517845,Mark Murphy,pre1980_career,FS,1955-07-13,1,1,False,Mark Murphy (American football executive),ok,1955-07-13,,,,,27.0,,https://en.wikipedia.org/wiki/Mark_Murphy_(American_football_executive)
+POW349584,Marvin Powell,pre1980_career,OT,1955-08-30,5,3,False,Marvin Powell,ok,1955-08-30,,,,,,,https://en.wikipedia.org/wiki/Marvin_Powell
+BLA519090,Matt Blair,pre1980_career,OLB,1950-09-20,6,1,False,Matt Blair,ok,1950-09-20,,,,23.0,16.0,,https://en.wikipedia.org/wiki/Matt_Blair
+MON807485,Max Montoya,pre1980_career,G,1956-05-12,4,0,False,Max Montoya,ok,1956-05-12,,,,,,,https://en.wikipedia.org/wiki/Max_Montoya
+BLO664464,Mel Blount,pre1980_career,CB,1948-04-10,5,2,True,Mel Blount,ok,1948-04-10,,,,,57.0,,https://en.wikipedia.org/wiki/Mel_Blount
+00-0006282,Mel Gray,pre1980_career,RB,1961-03-16,4,6,False,Mel Gray (return specialist),ok,1961-03-16,,,,,,,https://en.wikipedia.org/wiki/Mel_Gray_(return_specialist)
+GRA744588,Mel Gray,pre1980_career,WR,1948-09-28,4,1,False,Mel Gray (wide receiver),ok_approx_bd,1948-09-29,,,6644.0,,,,https://en.wikipedia.org/wiki/Mel_Gray_(wide_receiver)
+00-0014844,Mickey Shuler,pre1980_career,TE,1956-08-21,2,0,False,Mickey Shuler,ok,1956-08-21,,,5100.0,,,,https://en.wikipedia.org/wiki/Mickey_Shuler
+BAR355920,Mike Barnes,pre1980_career,DT,1950-12-24,1,0,False,Mike Barnes (defensive lineman),ok,1950-12-24,,,,44.5,,,https://en.wikipedia.org/wiki/Mike_Barnes_(defensive_lineman)
+HAY692125,Mike Haynes,pre1980_career,CB,1953-07-01,9,2,True,Mike Haynes (cornerback),ok,1953-07-01,,,,,46.0,,https://en.wikipedia.org/wiki/Mike_Haynes_(cornerback)
+00-0008589,Mike Johnson,pre1980_career,MLB,1962-11-26,2,0,False,Mike Johnson (linebacker),ok,1962-11-26,,,,14.5,13.0,,https://en.wikipedia.org/wiki/Mike_Johnson_(linebacker)
+00-0009142,Mike Kenn,pre1980_career,OT,1956-02-09,5,3,False,Mike Kenn,ok,1956-02-09,,,,,,,https://en.wikipedia.org/wiki/Mike_Kenn
+NEL027686,Mike Nelms,pre1980_career,DB,1955-04-08,3,1,False,Mike Nelms,ok,1955-04-08,,,,,,,https://en.wikipedia.org/wiki/Mike_Nelms
+PRU593270,Mike Pruitt,pre1980_career,RB,1954-04-03,2,0,False,Mike Pruitt,ok,1954-04-03,,7378.0,,,,,https://en.wikipedia.org/wiki/Mike_Pruitt
+REI616239,Mike Reinfeldt,pre1980_career,FS,1953-05-06,1,1,False,Mike Reinfeldt,ok,1953-05-06,,,,,26.0,,https://en.wikipedia.org/wiki/Mike_Reinfeldt
+00-0014120,Mike Rozier,pre1980_career,RB,1961-03-01,2,0,False,Mike Rozier,ok,1961-03-01,,4462.0,715.0,,,,https://en.wikipedia.org/wiki/Mike_Rozier
+THO303100,Mike Thomas,pre1980_career,RB,1953-07-17,1,0,False,Mike Thomas (running back),ok,1953-07-17,,4196.0,2011.0,,,,https://en.wikipedia.org/wiki/Mike_Thomas_(running_back)
+WAG415289,Mike Wagner,pre1980_career,SAF,1949-06-22,2,1,False,Mike Wagner,ok,1949-06-22,,,,,36.0,,https://en.wikipedia.org/wiki/Mike_Wagner
+00-0016990,Mike Wahle,pre1980_career,G,1977-03-29,1,0,False,Mike Wahle,ok,1977-03-29,,,,,,,https://en.wikipedia.org/wiki/Mike_Wahle
+WEB755060,Mike Webster,pre1980_career,C,1952-03-18,9,6,True,Mike Webster,ok,1952-03-18,,,,,,,https://en.wikipedia.org/wiki/Mike_Webster
+JAC424316,Monte Jackson,pre1980_career,CB,1953-07-14,2,2,False,Monte Jackson,ok,1953-07-14,,,,,23.0,,https://en.wikipedia.org/wiki/Monte_Jackson
+TAT755070,Mosi Tatupu,pre1980_career,RB,1955-04-26,1,0,False,Mosi Tatupu,ok,1955-04-26,,2415.0,,,,,https://en.wikipedia.org/wiki/Mosi_Tatupu
+MOO565215,Nat Moore,pre1980_career,WR,1951-09-19,1,1,False,Nat Moore,ok,1951-09-19,,,7546.0,,,,https://en.wikipedia.org/wiki/Nat_Moore
+00-0010124,Nick Lowery,pre1980_career,K,1956-05-27,3,2,False,Nick Lowery,ok,1956-05-27,,,,,,383.0,https://en.wikipedia.org/wiki/Nick_Lowery
+MIK166116,Nick Mike-Mayer,pre1980_career,K,1950-03-01,1,0,False,Nick Mike-Mayer,ok,1950-03-01,,,,,,204.0,https://en.wikipedia.org/wiki/Nick_Mike-Mayer
+CRO171840,Nolan Cromwell,pre1980_career,FS,1955-01-30,4,3,False,Nolan Cromwell,ok,1955-01-30,,,,,37.0,,https://en.wikipedia.org/wiki/Nolan_Cromwell
+ARM537427,Otis Armstrong,pre1980_career,RB,1950-11-15,2,1,False,Otis Armstrong,ok,1950-11-15,,4453.0,,,,,https://en.wikipedia.org/wiki/Otis_Armstrong
+00-0000335,Ottis Anderson,pre1980_career,RB,1957-01-19,2,1,False,Ottis Anderson,ok,1957-01-19,,10273.0,3062.0,,,,https://en.wikipedia.org/wiki/Ottis_Anderson
+NEW589446,Ozzie Newsome,pre1980_career,TE,1956-03-15,3,2,True,Ozzie Newsome,ok_approx_bd,1956-03-16,,,7980.0,,,,https://en.wikipedia.org/wiki/Ozzie_Newsome
+DON766680,Pat Donovan,pre1980_career,OT,1953-07-01,4,0,False,Pat Donovan,ok,1953-07-01,,,,,,,https://en.wikipedia.org/wiki/Pat_Donovan
+HAD484505,Pat Haden,pre1980_career,QB,1953-01-23,1,0,False,Pat Haden,ok,1953-01-23,9296.0,,,,,,https://en.wikipedia.org/wiki/Pat_Haden
+MCI221488,Pat McInally,pre1980_career,P,1953-05-07,1,1,False,Pat McInally,ok,1953-05-07,,,808.0,,,,https://en.wikipedia.org/wiki/Pat_McInally
+THO315224,Pat Thomas,pre1980_career,CB,1954-09-01,2,1,False,Pat Thomas (defensive back),ok,1954-09-01,,,,,26.0,,https://en.wikipedia.org/wiki/Pat_Thomas_(defensive_back)
+TIL296635,Pat Tilley,pre1980_career,WR,1953-02-15,1,0,False,Pat Tilley,ok,1953-02-15,,,7005.0,,,,https://en.wikipedia.org/wiki/Pat_Tilley
+COF702801,Paul Coffman,pre1980_career,TE,1956-03-29,3,0,False,Paul Coffman,ok,1956-03-29,,,4340.0,,,,https://en.wikipedia.org/wiki/Paul_Coffman
+SMI570720,Paul Smith,pre1980_career,DT,1945-08-13,2,0,False,Paul Smith (defensive end),ok,1945-08-13,,,,57.0,2.0,,https://en.wikipedia.org/wiki/Paul_Smith_(defensive_end)
+JOH573126,Pete Johnson,pre1980_career,RB,1954-03-02,1,0,False,"Pete Johnson (American football, born 1954)",ok,1954-03-02,,5626.0,1334.0,,,,"https://en.wikipedia.org/wiki/Pete_Johnson_(American_football,_born_1954)"
+00-0014922,Phil Simms,pre1980_career,QB,1954-11-03,2,0,False,Phil Simms,ok_approx_bd,1955-11-03,33462.0,,,,,,https://en.wikipedia.org/wiki/Phil_Simms
+VIL553720,Phil Villapiano,pre1980_career,OLB,1949-02-26,4,2,False,Phil Villapiano,ok,1949-02-26,,,,,11.0,,https://en.wikipedia.org/wiki/Phil_Villapiano
+THI498348,R.C. Thielemann,pre1980_career,G,1955-08-12,3,1,False,R. C. Thielemann,ok,1955-08-12,,,,,,,https://en.wikipedia.org/wiki/R._C._Thielemann
+SEP415291,Rafael Septien,pre1980_career,K,1953-12-12,1,1,False,Rafael Septién,ok,1953-12-12,,,,,,180.0,https://en.wikipedia.org/wiki/Rafael_Septién
+CRO458240,Randy Cross,pre1980_career,G,1954-04-25,3,3,False,Randy Cross,ok,1954-04-25,,,,,,,https://en.wikipedia.org/wiki/Randy_Cross
+GRA066822,Randy Gradishar,pre1980_career,ILB,1952-03-03,7,2,True,Randy Gradishar,ok,1952-03-03,,,,19.5,20.0,,https://en.wikipedia.org/wiki/Randy_Gradishar
+WHI401276,Randy White,pre1980_career,DT,1953-01-15,9,8,True,Randy White (American football),ok,1953-01-15,,,,111.0,1.0,,https://en.wikipedia.org/wiki/Randy_White_(American_football)
+BRO600576,Ray Brown,pre1980_career,S,1949-01-12,0,0,False,Ray Brown (safety),ok,1949-01-12,,,,,38.0,,https://en.wikipedia.org/wiki/Ray_Brown_(safety)
+GUY474616,Ray Guy,pre1980_career,P,1949-12-22,7,6,True,Ray Guy,ok,1949-12-22,,,,,,,https://en.wikipedia.org/wiki/Ray_Guy
+CHE601910,Raymond Chester,pre1980_career,TE,1948-06-28,4,0,False,Raymond Chester,ok,1948-06-28,,,5013.0,,,,https://en.wikipedia.org/wiki/Raymond_Chester
+00-0003094,Raymond Clayborn,pre1980_career,CB,1955-01-02,3,3,False,Raymond Clayborn,ok,1955-01-02,,,,,36.0,,https://en.wikipedia.org/wiki/Raymond_Clayborn
+00-0017567,Reggie White,pre1980_career,DE,1961-12-19,13,8,True,Reggie White,ok,1961-12-19,,,,198.0,3.0,,https://en.wikipedia.org/wiki/Reggie_White
+CAS679563,Rich Caster,pre1980_career,TE,1948-10-16,3,0,False,Rich Caster,ok,1948-10-16,,,5515.0,,,,https://en.wikipedia.org/wiki/Rich_Caster
+SAU226521,Rich Saul,pre1980_career,C,1948-02-05,6,0,False,Rich Saul,ok,1948-02-05,,,,,,,https://en.wikipedia.org/wiki/Rich_Saul
+UPC415291,Rick Upchurch,pre1980_career,WR,1952-05-20,4,3,False,Rick Upchurch,ok,1952-05-20,,349.0,4369.0,,,,https://en.wikipedia.org/wiki/Rick_Upchurch
+ODO447237,Riley Odoms,pre1980_career,TE,1950-03-01,4,2,False,Riley Odoms,ok,1950-03-01,,,5755.0,,,,https://en.wikipedia.org/wiki/Riley_Odoms
+00-0011601,Rob Moore,pre1980_career,WR,1968-09-27,2,1,False,Rob Moore (American football),ok,1968-09-27,,,9368.0,,,,https://en.wikipedia.org/wiki/Rob_Moore_(American_football)
+BRA809796,Robert Brazile,pre1980_career,OLB,1953-02-07,7,2,True,Robert Brazile,ok,1953-02-07,,,,48.0,13.0,,https://en.wikipedia.org/wiki/Robert_Brazile
+COL174318,Robin Cole,pre1980_career,OLB,1955-09-11,1,0,False,Robin Cole,ok,1955-09-11,,,,19.5,5.0,,https://en.wikipedia.org/wiki/Robin_Cole
+MAR702801,Rod Martin,pre1980_career,OLB,1954-04-07,2,0,False,Rod Martin,ok,1954-04-07,,,,33.5,14.0,,https://en.wikipedia.org/wiki/Rod_Martin
+PER694950,Rod Perry,pre1980_career,CB,1953-09-11,2,0,False,Rod Perry (American football),ok,1953-09-11,,,,1.0,30.0,,https://en.wikipedia.org/wiki/Rod_Perry_(American_football)
+CAR435006,Roger Carr,pre1980_career,WR,1952-07-01,1,0,False,Roger Carr,ok,1952-07-01,,,5071.0,,,,https://en.wikipedia.org/wiki/Roger_Carr
+WEH553722,Roger Wehrli,pre1980_career,CB,1947-11-26,7,5,True,Roger Wehrli,ok,1947-11-26,,,,1.0,40.0,,https://en.wikipedia.org/wiki/Roger_Wehrli
+BEN083056,Rolf Benirschke,pre1980_career,K,1955-02-07,1,0,False,Rolf Benirschke,ok,1955-02-07,,,,,,208.0,https://en.wikipedia.org/wiki/Rolf_Benirschke
+LAW505568,Rolland Lawrence,pre1980_career,CB,1951-03-24,1,1,False,Rolland Lawrence,ok,1951-03-24,,,,,39.0,,https://en.wikipedia.org/wiki/Rolland_Lawrence
+JAW553722,Ron Jaworski,pre1980_career,QB,1951-03-23,1,0,False,Ron Jaworski,ok,1951-03-23,28190.0,,,,,,https://en.wikipedia.org/wiki/Ron_Jaworski
+JES332232,Ron Jessie,pre1980_career,WR,1948-02-04,1,0,False,Ron Jessie,ok,1948-02-04,,,4278.0,,,,https://en.wikipedia.org/wiki/Ron_Jessie
+JOH641124,Ron Johnson,pre1980_career,CB,1956-06-08,0,0,False,Ron Johnson (cornerback),ok,1956-06-08,,,,,13.0,,https://en.wikipedia.org/wiki/Ron_Johnson_(cornerback)
+SMI684400,Ron Smith,pre1980_career,WR,1956-11-20,0,0,False,Ron Smith (wide receiver),ok,1956-11-20,,,1014.0,,,,https://en.wikipedia.org/wiki/Ron_Smith_(wide_receiver)
+YAR726754,Ron Yary,pre1980_career,OT,1946-07-16,7,6,True,Ron Yary,ok,1946-07-16,,,,,,,https://en.wikipedia.org/wiki/Ron_Yary
+00-0006349,Roy Green,pre1980_career,WR,1957-06-30,2,2,False,Roy Green,ok,1957-06-30,,,8965.0,,,,https://en.wikipedia.org/wiki/Roy_Green
+FRA197745,Russ Francis,pre1980_career,TE,1953-04-03,3,0,False,Russ Francis,ok,1953-04-03,,,5262.0,,,,https://en.wikipedia.org/wiki/Russ_Francis
+WAS702801,Russ Washington,pre1980_career,OT,1946-12-17,5,1,False,Russ Washington,ok,1946-12-17,,,,,,,https://en.wikipedia.org/wiki/Russ_Washington
+CUN775208,Sam Cunningham,pre1980_career,RB,1950-08-15,1,0,False,Sam Cunningham,ok,1950-08-15,,5453.0,1905.0,,,,https://en.wikipedia.org/wiki/Sam_Cunningham
+WHI494596,Sammy White,pre1980_career,WR,1954-03-16,2,0,False,Sammy White (American football),ok,1954-03-16,,,6400.0,,,,https://en.wikipedia.org/wiki/Sammy_White_(American_football)
+STU474612,Scott Studwell,pre1980_career,ILB,1954-08-27,2,0,False,Scott Studwell,ok,1954-08-27,,,,10.0,11.0,,https://en.wikipedia.org/wiki/Scott_Studwell
+WAL710754,Stan Walters,pre1980_career,OT,1948-05-27,2,0,False,Stan Walters,ok,1948-05-27,,,,,,,https://en.wikipedia.org/wiki/Stan_Walters
+MOR220350,Stanley Morgan,pre1980_career,WR,1955-02-17,4,0,False,Stanley Morgan,ok,1955-02-17,,,10716.0,,,,https://en.wikipedia.org/wiki/Stanley_Morgan
+BAR734085,Steve Bartkowski,pre1980_career,QB,1952-11-12,2,0,False,Steve Bartkowski,ok,1952-11-12,24124.0,,,,,,https://en.wikipedia.org/wiki/Steve_Bartkowski
+LAR118653,Steve Largent,pre1980_career,WR,1954-09-28,7,3,True,Steve Largent,ok,1954-09-28,,,13089.0,,,,https://en.wikipedia.org/wiki/Steve_Largent
+NEL719836,Steve Nelson,pre1980_career,ILB,1951-04-26,3,1,False,Steve Nelson (American football),ok,1951-04-26,,,,19.5,17.0,,https://en.wikipedia.org/wiki/Steve_Nelson_(American_football)
+WAT546425,Steve Watson,pre1980_career,WR,1957-05-28,1,0,False,Steve Watson (wide receiver),ok,1957-05-28,,,6112.0,,,,https://en.wikipedia.org/wiki/Steve_Watson_(wide_receiver)
+00-0018441,Steve Young,pre1980_career,QB,1961-10-11,7,3,True,Steve Young,ok,1961-10-11,33124.0,4239.0,,,,,https://en.wikipedia.org/wiki/Steve_Young
+HEN313420,Ted Hendricks,pre1980_career,OLB,1947-11-01,8,4,True,Ted Hendricks,ok,1947-11-01,,,,61.0,26.0,,https://en.wikipedia.org/wiki/Ted_Hendricks
+MID664464,Terdell Middleton,pre1980_career,RB,1955-04-08,1,0,False,Terdell Middleton,ok,1955-04-08,,2048.0,,,,,https://en.wikipedia.org/wiki/Terdell_Middleton
+BRA301078,Terry Bradshaw,pre1980_career,QB,1948-09-02,3,1,True,Terry Bradshaw,ok,1948-09-02,27989.0,2257.0,,,,,https://en.wikipedia.org/wiki/Terry_Bradshaw
+MET355962,Terry Metcalf,pre1980_career,RB,1951-09-24,3,0,False,Terry Metcalf,ok,1951-09-24,,3498.0,2457.0,,,,https://en.wikipedia.org/wiki/Terry_Metcalf
+DAR296635,Thom Darden,pre1980_career,FS,1950-08-28,1,0,False,Thom Darden,ok,1950-08-28,,,,,45.0,,https://en.wikipedia.org/wiki/Thom_Darden
+FOL255564,Tim Foley,pre1980_career,CB,1948-01-22,1,0,False,Tim Foley (defensive back),ok,1948-01-22,,,,,22.0,,https://en.wikipedia.org/wiki/Tim_Foley_(defensive_back)
+FOX711924,Tim Fox,pre1980_career,FS,1953-11-01,1,0,False,Tim Fox (American football),ok,1953-11-01,,,,1.0,26.0,,https://en.wikipedia.org/wiki/Tim_Fox_(American_football)
+CHR290703,Todd Christensen,pre1980_career,TE,1956-08-03,5,3,False,Todd Christensen,ok,1956-08-03,,,5872.0,,,,https://en.wikipedia.org/wiki/Todd_Christensen
+BAN636778,Tom Banks,pre1980_career,C,1948-08-20,4,1,False,Tom Banks (American football),ok,1948-08-20,,,,,,,https://en.wikipedia.org/wiki/Tom_Banks_(American_football)
+DEL287505,Tom DeLeone,pre1980_career,C,1950-08-13,2,0,False,Tom DeLeone,ok,1950-08-13,,,,,,,https://en.wikipedia.org/wiki/Tom_DeLeone
+JAC577792,Tom Jackson,pre1980_career,OLB,1951-04-04,3,1,False,"Tom Jackson (American football, born 1951)",ok,1951-04-04,,,,40.0,20.0,,"https://en.wikipedia.org/wiki/Tom_Jackson_(American_football,_born_1951)"
+MYE711924,Tom Myers,pre1980_career,FS,1950-10-24,1,1,False,Tom Myers (safety),ok,1950-10-24,,,,,36.0,,https://en.wikipedia.org/wiki/Tom_Myers_(safety)
+SKL498348,Tom Skladany,pre1980_career,P,1955-06-29,1,2,False,Tom Skladany,ok,1955-06-29,,,,,,,https://en.wikipedia.org/wiki/Tom_Skladany
+HAR705692,Tommy Hart,pre1980_career,DE,1944-11-07,1,0,False,Tommy Hart,ok,1944-11-07,,,,83.0,2.0,,https://en.wikipedia.org/wiki/Tommy_Hart
+KRA478211,Tommy Kramer,pre1980_career,QB,1955-03-07,1,0,False,Tommy Kramer,ok,1955-03-07,24777.0,,,,,,https://en.wikipedia.org/wiki/Tommy_Kramer
+FRI435061,Toni Fritsch,pre1980_career,K,1945-07-10,0,0,False,Toni Fritsch,ok,1945-07-10,,,,,,,https://en.wikipedia.org/wiki/Toni_Fritsch
+DOR467199,Tony Dorsett,pre1980_career,RB,1954-04-07,4,1,True,Tony Dorsett,ok,1954-04-07,,12739.0,3554.0,,,,https://en.wikipedia.org/wiki/Tony_Dorsett
+FRA382307,Tony Franklin,pre1980_career,K,1956-11-18,1,0,False,Tony Franklin (kicker),ok,1956-11-18,,,,,,177.0,https://en.wikipedia.org/wiki/Tony_Franklin_(kicker)
+HIL489423,Tony Hill,pre1980_career,WR,1956-06-23,3,0,False,Tony Hill (wide receiver),ok,1956-06-23,,,7988.0,,,,https://en.wikipedia.org/wiki/Tony_Hill_(wide_receiver)
+PET073828,Tony Peters,pre1980_career,S,1953-04-28,1,0,False,Tony Peters,ok,1953-04-28,,,,3.0,16.0,,https://en.wikipedia.org/wiki/Tony_Peters
+00-0008650,Vaughan Johnson,pre1980_career,ILB,1962-03-24,4,0,False,Vaughan Johnson,ok,1962-03-24,,,,12.0,4.0,,https://en.wikipedia.org/wiki/Vaughan_Johnson
+HEN689524,Wally Henry,pre1980_career,WR,1954-10-30,1,0,False,Wally Henry,ok,1954-10-30,,,229.0,,,,https://en.wikipedia.org/wiki/Wally_Henry
+PAY738296,Walter Payton,pre1980_career,RB,1954-07-25,9,5,True,Walter Payton,ok_approx_bd,1953-07-25,,16726.0,4538.0,,,,https://en.wikipedia.org/wiki/Walter_Payton
+TYL711924,Wendell Tyler,pre1980_career,RB,1955-05-20,1,0,False,Wendell Tyler,ok,1955-05-20,,6378.0,,,,,https://en.wikipedia.org/wiki/Wendell_Tyler
+CHA344386,Wes Chandler,pre1980_career,WR,1956-08-22,4,1,False,Wes Chandler,ok,1956-08-22,,,8966.0,,,,https://en.wikipedia.org/wiki/Wes_Chandler
+WAL367356,Wesley Walker,pre1980_career,WR,1955-05-26,2,1,False,Wesley Walker,ok,1955-05-26,,,8306.0,,,,https://en.wikipedia.org/wiki/Wesley_Walker
+MON692130,Wilbert Montgomery,pre1980_career,RB,1954-09-16,2,0,False,Wilbert Montgomery,ok,1954-09-16,,6789.0,2502.0,,,,https://en.wikipedia.org/wiki/Wilbert_Montgomery
+AND749546,William Andrews,pre1980_career,RB,1955-12-25,4,0,False,William Andrews (American football),ok,1955-12-25,,5986.0,,,,,https://en.wikipedia.org/wiki/William_Andrews_(American_football)
+00-0005639,William Fuller,pre1980_career,DE,1962-03-08,4,0,False,William Fuller (American football),ok,1962-03-08,,,,100.5,2.0,,https://en.wikipedia.org/wiki/William_Fuller_(American_football)
+BUC276857,Willie Buchanon,pre1980_career,CB,1950-11-04,2,1,False,Willie Buchanon,ok,1950-11-04,,,,,28.0,,https://en.wikipedia.org/wiki/Willie_Buchanon
+PAR449328,Willie Parker,pre1980_career,C,1948-12-28,0,0,False,Willie Parker (offensive lineman),ok,1948-12-28,,,,,,,https://en.wikipedia.org/wiki/Willie_Parker_(offensive_lineman)
+PEO553722,Woody Peoples,pre1980_career,G,1943-08-16,2,0,False,Woody Peoples,ok,1943-08-16,,,,,,,https://en.wikipedia.org/wiki/Woody_Peoples
+00-0030228,A.J. Bouye,undrafted,CB,1991-08-16,1,0,False,A. J. Bouye,ok,1991-08-16,,,,1.0,14.0,,https://en.wikipedia.org/wiki/A._J._Bouye
+00-0035190,AJ Cole,undrafted,P,1995-11-27,3,2,False,AJ Cole (American football),ok,1995-11-27,,,,,,,https://en.wikipedia.org/wiki/AJ_Cole_(American_football)
+00-0030035,Adam Thielen,undrafted,WR,1990-08-22,2,0,False,Adam Thielen,ok,1990-08-22,,178.0,8497.0,,,,https://en.wikipedia.org/wiki/Adam_Thielen
+00-0016919,Adam Vinatieri,undrafted,K,1972-12-28,3,3,True,Adam Vinatieri,ok,1972-12-28,,,,,,599.0,https://en.wikipedia.org/wiki/Adam_Vinatieri
+00-0019246,Adewale Ogunleye,undrafted,DE,1977-08-09,1,1,False,Adewale Ogunleye,ok,1977-08-09,,,,67.0,1.0,,https://en.wikipedia.org/wiki/Adewale_Ogunleye
+00-0031404,Adrian Phillips,undrafted,SS,1992-03-28,1,1,False,Adrian Phillips,ok,1992-03-28,,,,1.0,11.0,,https://en.wikipedia.org/wiki/Adrian_Phillips
+00-0021027,Ahmad Brooks,undrafted,DB,1980-03-13,0,0,False,Ahmad Brooks (cornerback),ok,1980-03-13,,,,,1.0,,https://en.wikipedia.org/wiki/Ahmad_Brooks_(cornerback)
+00-0032870,Aldrick Rosas,undrafted,K,1994-12-30,1,0,False,Aldrick Rosas,ok,1994-12-30,,,,,,72.0,https://en.wikipedia.org/wiki/Aldrick_Rosas
+00-0035125,Alec Ingold,undrafted,FB,1996-07-09,1,0,False,Alec Ingold,ok,1996-07-09,,56.0,646.0,,,,https://en.wikipedia.org/wiki/Alec_Ingold
+00-0030648,Alejandro Villanueva,undrafted,T,1988-09-22,2,0,False,Alejandro Villanueva (American football),ok,1988-09-22,,,2.0,,,,https://en.wikipedia.org/wiki/Alejandro_Villanueva_(American_football)
+00-0038801,Andre Carter II,undrafted,OLB,2000-03-28,0,0,False,Andre Carter II,ok_approx_bd,2000-06-02,,,,0.5,,,https://en.wikipedia.org/wiki/Andre_Carter_II
+00-0029714,Andrew DePaola,undrafted,LS,1987-07-28,3,2,False,Andrew DePaola,ok,1987-07-28,,,,,,,https://en.wikipedia.org/wiki/Andrew_DePaola
+00-0021547,Antonio Gates,undrafted,TE,1980-06-18,8,3,True,Antonio Gates,ok,1980-06-18,,,11841.0,,,,https://en.wikipedia.org/wiki/Antonio_Gates
+00-0020006,Antonio Pierce,undrafted,OLB,1978-10-26,1,0,False,Antonio Pierce,ok,1978-10-26,,,,9.0,7.0,,https://en.wikipedia.org/wiki/Antonio_Pierce
+00-0026796,Arian Foster,undrafted,RB,1986-08-24,4,1,False,Arian Foster,ok,1986-08-24,,6527.0,2346.0,,,,https://en.wikipedia.org/wiki/Arian_Foster
+00-0012288,Bart Oates,undrafted,C,1958-12-16,5,0,False,Bart Oates,ok,1958-12-16,,,,,,,https://en.wikipedia.org/wiki/Bart_Oates
+00-0020873,Bart Scott,undrafted,ILB,1980-08-18,1,0,False,Bart Scott,ok,1980-08-18,,,,25.0,4.0,,https://en.wikipedia.org/wiki/Bart_Scott
+00-0016355,Bennie Thompson,undrafted,DB,1963-02-10,2,2,False,Bennie Thompson (gridiron football),ok,1963-02-10,,,,,7.0,,https://en.wikipedia.org/wiki/Bennie_Thompson_(gridiron_football)
+00-0000868,Bill Bates,undrafted,DB,1961-06-06,1,0,False,Bill Bates,ok,1961-06-06,,,,18.0,14.0,,https://en.wikipedia.org/wiki/Bill_Bates
+00-0007190,Bobby Hebert,undrafted,QB,1960-08-19,1,0,False,Bobby Hebert,ok,1960-08-19,21683.0,602.0,,,,,https://en.wikipedia.org/wiki/Bobby_Hebert
+00-0037692,Brandon Aubrey,undrafted,K,1995-03-14,3,1,False,Brandon Aubrey,ok,1995-03-14,,,,,,127.0,https://en.wikipedia.org/wiki/Brandon_Aubrey
+00-0023013,Brandon Browner,undrafted,DB,1984-08-02,1,0,False,Brandon Browner,ok,1984-08-02,,,,,12.0,,https://en.wikipedia.org/wiki/Brandon_Browner
+00-0020664,Brandon Moore,undrafted,LB,1979-01-16,0,0,False,Brandon Moore (American football coach),ok,1979-01-16,,,,15.0,1.0,,https://en.wikipedia.org/wiki/Brandon_Moore_(American_football_coach)
+00-0020969,Brandon Moore,undrafted,G,1980-06-03,1,0,False,Brandon Moore (guard),ok,1980-06-03,,,,,,,https://en.wikipedia.org/wiki/Brandon_Moore_(guard)
+00-0029793,Brandon Williams,undrafted,TE,1987-10-12,0,0,False,Brandon Williams (tight end),ok,1987-10-12,,,201.0,,,,https://en.wikipedia.org/wiki/Brandon_Williams_(tight_end)
+00-0037205,Brenden Schooler,undrafted,FS,1997-05-30,1,1,False,Brenden Schooler,ok,1997-05-30,,,,2.0,,,https://en.wikipedia.org/wiki/Brenden_Schooler
+00-0000551,Brendon Ayanbadejo,undrafted,ILB,1976-09-06,3,2,False,Brendon Ayanbadejo,ok,1976-09-06,,,,4.5,2.0,,https://en.wikipedia.org/wiki/Brendon_Ayanbadejo
+00-0024183,Brent Grimes,undrafted,CB,1983-07-19,4,0,False,Brent Grimes,ok,1983-07-19,,,,,33.0,,https://en.wikipedia.org/wiki/Brent_Grimes
+00-0025825,Brett Kern,undrafted,P,1986-02-17,3,1,False,Brett Kern,ok,1986-02-17,,,,,,,https://en.wikipedia.org/wiki/Brett_Kern
+00-0011626,Brian Moorman,undrafted,P,1976-02-05,2,2,False,Brian Moorman,ok,1976-02-05,,,,,,,https://en.wikipedia.org/wiki/Brian_Moorman
+00-0015380,Brian Sochia,undrafted,NT,1961-07-02,1,0,False,Brian Sochia,ok_approx_bd,1961-07-21,,,,25.5,,,https://en.wikipedia.org/wiki/Brian_Sochia
+00-0018584,Brian Waters,undrafted,C,1977-02-18,6,2,False,Brian Waters,ok,1977-02-18,,,,,,,https://en.wikipedia.org/wiki/Brian_Waters
+00-0000754,Bryan Barker,undrafted,P,1964-06-28,1,1,False,Bryan Barker,ok,1964-06-28,,,,,,,https://en.wikipedia.org/wiki/Bryan_Barker
+00-0030020,Brynden Trawick,undrafted,FS,1989-10-23,1,0,False,Brynden Trawick,ok,1989-10-23,,,,,1.0,,https://en.wikipedia.org/wiki/Brynden_Trawick
+00-0029854,C.J. Anderson,undrafted,RB,1991-02-10,1,0,False,C. J. Anderson,ok,1991-02-10,,3497.0,900.0,,,,https://en.wikipedia.org/wiki/C._J._Anderson
+00-0032918,C.J. Ham,undrafted,FB,1993-07-22,2,0,False,C. J. Ham,ok,1993-07-22,,119.0,681.0,,,,https://en.wikipedia.org/wiki/C._J._Ham
+00-0037224,Cameron Dicker,undrafted,K,2000-05-06,1,0,False,Cameron Dicker,ok,2000-05-06,,,,,,141.0,https://en.wikipedia.org/wiki/Cameron_Dicker
+00-0023368,Cameron Wake,undrafted,DE,1982-01-30,5,1,False,Cameron Wake,ok,1982-01-30,,,,100.5,1.0,,https://en.wikipedia.org/wiki/Cameron_Wake
+BIR415290,Carl Birdsong,undrafted,P,1959-01-01,1,0,False,Carl Birdsong,ok,1959-01-01,,,,,,,https://en.wikipedia.org/wiki/Carl_Birdsong
+00-0001343,Cary Blanchard,undrafted,K,1968-11-05,1,1,False,Cary Blanchard,ok,1968-11-05,,,,,,165.0,https://en.wikipedia.org/wiki/Cary_Blanchard
+00-0030957,Casey Kreiter,undrafted,LS,1990-08-13,1,0,False,Casey Kreiter,ok,1990-08-13,,,,,,,https://en.wikipedia.org/wiki/Casey_Kreiter
+00-0017638,Casey Wiegmann,undrafted,C,1973-07-20,1,0,False,Casey Wiegmann,ok,1973-07-20,,,,,,,https://en.wikipedia.org/wiki/Casey_Wiegmann
+00-0009842,Chad Lewis,undrafted,TE,1971-10-05,3,0,False,Chad Lewis,ok,1971-10-05,,,2361.0,,,,https://en.wikipedia.org/wiki/Chad_Lewis
+00-0034573,Charvarius Ward,undrafted,CB,1996-05-16,1,0,False,Charvarius Ward,ok,1996-05-16,,,,1.0,10.0,,https://en.wikipedia.org/wiki/Charvarius_Ward
+00-0031136,Chris Boswell,undrafted,K,1991-03-16,2,1,False,Chris Boswell,ok,1991-03-16,,,,,,317.0,https://en.wikipedia.org/wiki/Chris_Boswell
+00-0006799,Chris Hanson,undrafted,P,1976-10-25,1,0,False,Chris Hanson (American football),ok,1976-10-25,,,,,,,https://en.wikipedia.org/wiki/Chris_Hanson_(American_football)
+00-0028224,Chris Harris,undrafted,CB,1989-06-18,4,1,False,Chris Harris Jr.,ok,1989-06-18,,,,6.0,22.0,,https://en.wikipedia.org/wiki/Chris_Harris_Jr.
+00-0027531,Chris Ivory,undrafted,RB,1988-03-22,1,0,False,Chris Ivory,ok,1988-03-22,,5237.0,948.0,,,,https://en.wikipedia.org/wiki/Chris_Ivory
+00-0028664,Chris Jones,undrafted,P,1989-07-21,0,0,False,Chris Jones (punter),ok,1989-07-21,,,,,,,https://en.wikipedia.org/wiki/Chris_Jones_(punter)
+00-0034641,Chris Jones,undrafted,CB,1995-08-13,0,0,False,Chris Payton-Jones,ok,1995-08-13,,,,,,,https://en.wikipedia.org/wiki/Chris_Payton-Jones
+00-0021585,Clifton Smith,undrafted,LB,1980-07-21,0,0,False,Clifton Smith (linebacker),ok,1980-07-21,,,,,,,https://en.wikipedia.org/wiki/Clifton_Smith_(linebacker)
+00-0026113,Clifton Smith,undrafted,RB,1985-07-04,1,0,False,Clifton Smith (return specialist),ok,1985-07-04,,47.0,28.0,,,,https://en.wikipedia.org/wiki/Clifton_Smith_(return_specialist)
+00-0030850,Cody Parkey,undrafted,K,1992-02-19,1,0,False,Cody Parkey,ok,1992-02-19,,,,,,121.0,https://en.wikipedia.org/wiki/Cody_Parkey
+00-0032677,Cory Littleton,undrafted,OLB,1993-11-18,1,0,False,Cory Littleton,ok,1993-11-18,,,,9.5,6.0,,https://en.wikipedia.org/wiki/Cory_Littleton
+00-0005074,D'Marco Farr,undrafted,DT,1971-06-09,1,0,False,D'Marco Farr,ok,1971-06-09,,,,36.5,3.0,,https://en.wikipedia.org/wiki/D'Marco_Farr
+00-0028660,Dan Bailey,undrafted,K,1988-01-26,1,0,False,Dan Bailey (American football),ok,1988-01-26,,,,,,249.0,https://en.wikipedia.org/wiki/Dan_Bailey_(American_football)
+00-0027256,Darian Stewart,undrafted,FS,1988-08-04,1,0,False,Darian Stewart,ok,1988-08-04,,,,5.0,11.0,,https://en.wikipedia.org/wiki/Darian_Stewart
+00-0001101,Darren Bennett,undrafted,P,1965-01-09,2,1,False,Darren Bennett (football player),ok,1965-01-09,,,,,,,https://en.wikipedia.org/wiki/Darren_Bennett_(football_player)
+00-0035892,Darryl Williams,undrafted,C,1997-06-10,0,0,False,Darryl Williams (center),ok,1997-06-10,,,,,,,https://en.wikipedia.org/wiki/Darryl_Williams_(center)
+00-0009475,Dave Krieg,undrafted,QB,1958-10-20,3,0,False,Dave Krieg,ok,1958-10-20,38147.0,,,,,,https://en.wikipedia.org/wiki/Dave_Krieg
+00-0000108,David Akers,undrafted,K,1974-12-09,6,2,False,David Akers,ok,1974-12-09,,,,,,386.0,https://en.wikipedia.org/wiki/David_Akers
+00-0001255,David Binn,undrafted,LS,1972-02-06,1,0,False,David Binn,ok,1972-02-06,,,,,,,https://en.wikipedia.org/wiki/David_Binn
+00-0016601,David Treadwell,undrafted,K,1965-02-27,1,0,False,David Treadwell,ok,1965-02-27,,,,,,135.0,https://en.wikipedia.org/wiki/David_Treadwell
+00-0001229,Dean Biasucci,undrafted,K,1962-07-25,1,0,False,Dean Biasucci,ok,1962-07-25,,,,,,262.0,https://en.wikipedia.org/wiki/Dean_Biasucci
+00-0035215,Deonte Harty,undrafted,WR,1997-12-04,1,1,False,Deonte Harty,ok,1997-12-04,,123.0,943.0,,,,https://en.wikipedia.org/wiki/Deonte_Harty
+00-0002927,Deron Cherry,undrafted,FS,1959-09-12,6,3,False,Deron Cherry,ok,1959-09-12,,,,3.5,50.0,,https://en.wikipedia.org/wiki/Deron_Cherry
+00-0023637,Derrick Johnson,undrafted,DB,1982-02-09,4,1,False,Derrick Johnson,ok_approx_bd,1982-11-22,,,,27.5,14.0,,https://en.wikipedia.org/wiki/Derrick_Johnson
+00-0022455,Don Muhlbach,undrafted,LS,1981-08-17,2,0,False,Don Muhlbach,ok,1981-08-17,,,,,,,https://en.wikipedia.org/wiki/Don_Muhlbach
+00-0023894,Donald Penn,undrafted,T,1983-04-27,3,0,False,Donald Penn,ok,1983-04-27,,,26.0,,,,https://en.wikipedia.org/wiki/Donald_Penn
+00-0028434,Doug Baldwin,undrafted,WR,1988-09-21,2,0,False,Doug Baldwin,ok,1988-09-21,,,6563.0,,,,https://en.wikipedia.org/wiki/Doug_Baldwin
+00-0002709,Dwayne Carswell,undrafted,TE,1972-01-18,1,0,False,Dwayne Carswell,ok,1972-01-18,,,1707.0,,,,https://en.wikipedia.org/wiki/Dwayne_Carswell
+00-0020692,Eddie Drummond,undrafted,WR,1980-04-12,1,1,False,Eddie Drummond,ok,1980-04-12,,,7.0,,,,https://en.wikipedia.org/wiki/Eddie_Drummond
+00-0018295,Eric Wright,undrafted,WR,1969-08-04,0,0,False,Eric Wright (wide receiver),ok,1969-08-04,,,56.0,,,,https://en.wikipedia.org/wiki/Eric_Wright_(wide_receiver)
+00-0000121,Ethan Albright,undrafted,OT,1971-05-01,1,0,False,Ethan Albright,ok,1971-05-01,,,,,,,https://en.wikipedia.org/wiki/Ethan_Albright
+00-0013860,Eugene Robinson,undrafted,FS,1963-05-28,3,0,False,Eugene Robinson (American football),ok,1963-05-28,,,,7.5,57.0,,https://en.wikipedia.org/wiki/Eugene_Robinson_(American_football)
+00-0017104,Everson Walls,undrafted,CB,1959-12-28,4,3,False,Everson Walls,ok,1959-12-28,,,,,57.0,,https://en.wikipedia.org/wiki/Everson_Walls
+00-0039471,Frank Gore Jr.,undrafted,RB,2002-03-13,0,0,False,Frank Gore Jr.,ok,2002-03-13,,3.0,,,,,https://en.wikipedia.org/wiki/Frank_Gore_Jr.
+00-0011360,Frank Minnifield,undrafted,CB,1960-01-01,4,1,False,Frank Minnifield,ok,1960-01-01,,,,,20.0,,https://en.wikipedia.org/wiki/Frank_Minnifield
+00-0026858,Graham Gano,undrafted,K,1987-04-09,1,0,False,Graham Gano,ok,1987-04-09,,,,,,342.0,https://en.wikipedia.org/wiki/Graham_Gano
+00-0009447,Greg Kragen,undrafted,NT,1962-03-04,1,0,False,Greg Kragen,ok,1962-03-04,,,,28.5,1.0,,https://en.wikipedia.org/wiki/Greg_Kragen
+00-0023215,Heath Farwell,undrafted,LB,1981-12-31,1,0,False,Heath Farwell,ok,1981-12-31,,,,,,,https://en.wikipedia.org/wiki/Heath_Farwell
+00-0016269,Henry Thomas,undrafted,DT,1965-01-12,2,0,False,Henry Thomas (American football),ok,1965-01-12,,,,93.5,4.0,,https://en.wikipedia.org/wiki/Henry_Thomas_(American_football)
+THO190953,Henry Thomas,undrafted,G,1964-02-12,2,0,False,Henry Thomas (American football),ok_approx_bd,1965-01-12,,,,93.5,4.0,,https://en.wikipedia.org/wiki/Henry_Thomas_(American_football)
+00-0034591,J.C. Jackson,undrafted,CB,1995-11-17,1,0,False,J. C. Jackson,ok,1995-11-17,,,,,26.0,,https://en.wikipedia.org/wiki/J._C._Jackson
+00-0026027,J.J. Jansen,undrafted,LS,1986-01-20,1,0,False,J. J. Jansen,ok,1986-01-20,,,,,,,https://en.wikipedia.org/wiki/J._J._Jansen
+00-0034116,J.T. Gray,undrafted,SS,1996-01-18,1,1,False,J. T. Gray,ok,1996-01-18,,,,2.5,,,https://en.wikipedia.org/wiki/J._T._Gray
+00-0030181,Jack Doyle,undrafted,TE,1990-05-05,2,0,False,Jack Doyle (American football),ok,1990-05-05,,,2729.0,,,,https://en.wikipedia.org/wiki/Jack_Doyle_(American_football)
+00-0035156,Jack Fox,undrafted,P,1996-09-01,2,1,False,Jack Fox (American football),ok,1996-09-01,61.0,,,,,,https://en.wikipedia.org/wiki/Jack_Fox_(American_football)
+00-0004161,Jake Delhomme,undrafted,QB,1975-01-10,1,0,False,Jake Delhomme,ok,1975-01-10,20975.0,,,,,,https://en.wikipedia.org/wiki/Jake_Delhomme
+00-0028394,Jake McQuaide,undrafted,LS,1987-12-07,2,0,False,Jake McQuaide,ok,1987-12-07,,,,,,,https://en.wikipedia.org/wiki/Jake_McQuaide
+00-0027925,James Develin,undrafted,FB,1988-07-23,1,0,False,James Develin,ok,1988-07-23,,26.0,222.0,,,,https://en.wikipedia.org/wiki/James_Develin
+00-0020712,James Harrison,undrafted,OLB,1978-05-04,5,2,False,James Harrison (American football),ok,1978-05-04,,,,84.5,8.0,,https://en.wikipedia.org/wiki/James_Harrison_(American_football)
+00-0017821,James O. Williams,undrafted,OT,1968-03-29,1,0,False,James O. Williams,ok,1968-03-29,,,,,,,https://en.wikipedia.org/wiki/James_O._Williams
+00-0030786,James Wilder Jr.,undrafted,RB,1992-04-14,0,0,False,James Wilder Jr.,ok,1992-04-14,,,,,,,https://en.wikipedia.org/wiki/James_Wilder_Jr.
+00-0031492,Jason Myers,undrafted,K,1991-05-12,2,0,False,Jason Myers,ok,1991-05-12,,,,,,312.0,https://en.wikipedia.org/wiki/Jason_Myers
+00-0022531,Jason Peters,undrafted,T,1982-01-22,9,2,False,Jason Peters,ok,1982-01-22,,,,,,,https://en.wikipedia.org/wiki/Jason_Peters
+00-0007411,Jay Hilgenberg,undrafted,C,1959-03-21,7,2,False,Jay Hilgenberg,ok,1959-03-21,,,,,,,https://en.wikipedia.org/wiki/Jay_Hilgenberg
+00-0001527,Jeff Bostic,undrafted,C,1958-09-18,1,0,False,Jeff Bostic,ok,1958-09-18,,,,,,,https://en.wikipedia.org/wiki/Jeff_Bostic
+00-0005113,Jeff Feagles,undrafted,P,1966-03-07,2,0,False,Jeff Feagles,ok,1966-03-07,,,,,,,https://en.wikipedia.org/wiki/Jeff_Feagles
+00-0005755,Jeff Garcia,undrafted,QB,1970-02-24,4,0,False,Jeff Garcia,ok,1970-02-24,25537.0,2140.0,,,,,https://en.wikipedia.org/wiki/Jeff_Garcia
+00-0006170,Jeff Gossett,undrafted,P,1957-01-25,1,1,False,Jeff Gossett,ok,1957-01-25,,,,,,,https://en.wikipedia.org/wiki/Jeff_Gossett
+00-0014375,Jeff Saturday,undrafted,C,1975-06-18,6,2,False,Jeff Saturday,ok,1975-06-18,,,,,,,https://en.wikipedia.org/wiki/Jeff_Saturday
+00-0017693,Jeff Wilkins,undrafted,K,1972-04-19,1,0,False,Jeff Wilkins,ok,1972-04-19,,,,,,375.0,https://en.wikipedia.org/wiki/Jeff_Wilkins
+00-0034465,Jeremy Reaves,undrafted,FS,1996-08-29,1,1,False,Jeremy Reaves,ok,1996-08-29,,,,2.0,2.0,,https://en.wikipedia.org/wiki/Jeremy_Reaves
+MAY780239,Jerry Mays,undrafted,RB,1967-12-08,0,0,False,Jerry Mays (running back),ok,1967-12-08,,,,,,,https://en.wikipedia.org/wiki/Jerry_Mays_(running_back)
+00-0016667,Jessie Tuggle,undrafted,MLB,1965-04-04,5,0,False,Jessie Tuggle,ok,1965-04-04,,,,21.0,6.0,,https://en.wikipedia.org/wiki/Jessie_Tuggle
+00-0002348,Jim Burt,undrafted,NT,1959-06-07,1,0,False,Jim Burt (American football),ok,1959-06-07,,,,20.0,,,https://en.wikipedia.org/wiki/Jim_Burt_(American_football)
+00-0014518,Jim Schwantz,undrafted,LB,1970-01-23,1,1,False,Jim Schwantz,ok,1970-01-23,,,,,,,https://en.wikipedia.org/wiki/Jim_Schwantz
+00-0008223,Joe Jacoby,undrafted,OT,1959-07-06,4,3,False,Joe Jacoby,ok,1959-07-06,,,,,,,https://en.wikipedia.org/wiki/Joe_Jacoby
+JOH398667,Joe Johnson,undrafted,WR,1962-12-21,0,0,False,Joe Johnson (wide receiver),ok,1962-12-21,,,247.0,,,,https://en.wikipedia.org/wiki/Joe_Johnson_(wide_receiver)
+00-0011929,Joe Nash,undrafted,DT,1960-10-11,1,1,False,Joe Nash,ok,1960-10-11,,,,47.5,1.0,,https://en.wikipedia.org/wiki/Joe_Nash
+00-0030761,Joe Thomas,undrafted,ILB,1991-05-06,0,0,False,Joe Thomas (linebacker),ok,1991-05-06,,,,2.5,1.0,,https://en.wikipedia.org/wiki/Joe_Thomas_(linebacker)
+00-0002655,John Carney,undrafted,K,1964-04-20,2,1,False,John Carney (American football),ok,1964-04-20,,,,,,580.0,https://en.wikipedia.org/wiki/John_Carney_(American_football)
+00-0023173,John Denney,undrafted,LS,1978-12-13,2,0,False,John Denney,ok,1978-12-13,,,,,,,https://en.wikipedia.org/wiki/John_Denney
+00-0022999,John Kuhn,undrafted,FB,1982-09-09,3,1,False,John Kuhn,ok,1982-09-09,,658.0,642.0,,,,https://en.wikipedia.org/wiki/John_Kuhn
+00-0017842,John L. Williams,undrafted,FB,1964-11-23,2,0,False,John L. Williams (American football),ok,1964-11-23,,5006.0,4656.0,,,,https://en.wikipedia.org/wiki/John_L._Williams_(American_football)
+00-0013405,John Randle,undrafted,DT,1967-12-12,7,6,True,John Randle,ok,1967-12-12,,,,137.5,1.0,,https://en.wikipedia.org/wiki/John_Randle
+00-0038741,John Stephens Jr.,undrafted,TE,1999-09-23,0,0,False,John Stephens Jr.,ok,1999-09-23,,,,,,,https://en.wikipedia.org/wiki/John_Stephens_Jr.
+00-0028872,Johnny Hekker,undrafted,P,1990-02-08,4,4,False,Johnny Hekker,ok,1990-02-08,,,,,,,https://en.wikipedia.org/wiki/Johnny_Hekker
+00-0037460,Johnny Johnson III,undrafted,WR,1999-05-14,0,0,False,Johnny Johnson III,ok,1999-05-14,,,,,,,https://en.wikipedia.org/wiki/Johnny_Johnson_III
+00-0023177,Jon Condo,undrafted,LS,1981-08-26,2,0,False,Jon Condo,ok,1981-08-26,,,,,,,https://en.wikipedia.org/wiki/Jon_Condo
+00-0021451,Jon Dorenbos,undrafted,LS,1980-07-21,2,0,False,Jon Dorenbos,ok,1980-07-21,,,,,,,https://en.wikipedia.org/wiki/Jon_Dorenbos
+00-0009311,Jon Kitna,undrafted,QB,1972-09-21,0,0,False,Jon Kitna,ok,1972-09-21,29745.0,,,,,,https://en.wikipedia.org/wiki/Jon_Kitna
+00-0027224,Jon Weeks,undrafted,LS,1986-02-17,2,0,False,Jon Weeks,ok,1986-02-17,,,,,,,https://en.wikipedia.org/wiki/Jon_Weeks
+00-0030833,Josh Allen,undrafted,C,1991-12-30,0,0,False,Josh Allen (offensive lineman),ok,1991-12-30,,,,,,,https://en.wikipedia.org/wiki/Josh_Allen_(offensive_lineman)
+00-0023176,Josh Cribbs,undrafted,WR,1983-06-09,3,1,False,Josh Cribbs,ok,1983-06-09,,808.0,1175.0,,,,https://en.wikipedia.org/wiki/Josh_Cribbs
+00-0029664,Josh Gordon,undrafted,WR,1991-04-13,1,1,False,Josh Gordon,ok,1991-04-13,,,4284.0,,,,https://en.wikipedia.org/wiki/Josh_Gordon
+00-0028845,Josh Harris,undrafted,LS,1989-04-27,1,0,False,Josh Harris (long snapper),ok,1989-04-27,,,,,,,https://en.wikipedia.org/wiki/Josh_Harris_(long_snapper)
+00-0031450,Josh Harris,undrafted,RB,1991-01-22,0,0,False,Josh Harris (running back),ok,1991-01-22,,16.0,,,,,https://en.wikipedia.org/wiki/Josh_Harris_(running_back)
+00-0020828,Josh Norman,undrafted,TE,1980-07-27,0,0,False,Josh Norman (tight end),ok,1980-07-27,,,273.0,,,,https://en.wikipedia.org/wiki/Josh_Norman_(tight_end)
+00-0033770,Justin Hardee,undrafted,CB,1994-02-07,1,0,False,Justin Hardee,ok,1994-02-07,,,,,1.0,,https://en.wikipedia.org/wiki/Justin_Hardee
+00-0020750,Justin Smith,undrafted,LB,1979-06-05,0,0,False,Justin Smith (linebacker),ok,1979-06-05,,,,,,,https://en.wikipedia.org/wiki/Justin_Smith_(linebacker)
+00-0029597,Justin Tucker,undrafted,K,1989-11-21,7,5,False,Justin Tucker,ok,1989-11-21,,,,,,417.0,https://en.wikipedia.org/wiki/Justin_Tucker
+00-0037801,KaVontae Turpin,undrafted,WR,1996-08-02,3,1,False,KaVontae Turpin,ok,1996-08-02,,318.0,991.0,,,,https://en.wikipedia.org/wiki/KaVontae_Turpin
+00-0021570,Kassim Osgood,undrafted,WR,1980-05-20,3,1,False,Kassim Osgood,ok,1980-05-20,,,766.0,,,,https://en.wikipedia.org/wiki/Kassim_Osgood
+00-0011413,Keith Mitchell,undrafted,OLB,1974-07-24,1,0,False,Keith Mitchell (American football),ok,1974-07-24,,,,19.5,4.0,,https://en.wikipedia.org/wiki/Keith_Mitchell_(American_football)
+00-0019890,Kenny Clark,undrafted,WR,1978-05-14,0,0,False,Kenny Clark (wide receiver),ok,1978-05-14,,,,,,,https://en.wikipedia.org/wiki/Kenny_Clark_(wide_receiver)
+00-0033393,Kenny Moore II,undrafted,CB,1995-08-23,1,0,False,Kenny Moore II,ok,1995-08-23,,,,11.5,21.0,,https://en.wikipedia.org/wiki/Kenny_Moore_II
+00-0007901,Kent Hull,undrafted,C,1961-01-13,3,2,False,Kent Hull,ok,1961-01-13,,,,,,,https://en.wikipedia.org/wiki/Kent_Hull
+00-0034854,KhaDarel Hodge,undrafted,WR,1995-01-03,1,0,False,KhaDarel Hodge,ok,1995-01-03,,,1044.0,,,,https://en.wikipedia.org/wiki/KhaDarel_Hodge
+00-0000279,Kimble Anders,undrafted,FB,1966-09-10,3,0,False,Kimble Anders,ok,1966-09-10,,2261.0,,,,,https://en.wikipedia.org/wiki/Kimble_Anders
+00-0021546,Kris Dielman,undrafted,G,1981-02-03,4,0,False,Kris Dielman,ok,1981-02-03,,,,,,,https://en.wikipedia.org/wiki/Kris_Dielman
+00-0017200,Kurt Warner,undrafted,QB,1971-06-22,4,2,True,Kurt Warner,ok,1971-06-22,32344.0,,,,,,https://en.wikipedia.org/wiki/Kurt_Warner
+00-0025780,Kyle Williams,undrafted,OT,1984-03-19,6,0,False,Kyle Williams (defensive tackle),ok_approx_bd,1983-06-10,,,,48.5,1.0,,https://en.wikipedia.org/wiki/Kyle_Williams_(defensive_tackle)
+00-0023298,L.P. LaDouceur,undrafted,LS,1981-03-13,1,0,False,L. P. Ladouceur,ok,1981-03-13,,,,,,,https://en.wikipedia.org/wiki/L._P._Ladouceur
+00-0036152,Lamar Jackson,undrafted,CB,1998-04-13,0,0,False,Lamar Jackson (cornerback),ok,1998-04-13,,,,,,,https://en.wikipedia.org/wiki/Lamar_Jackson_(cornerback)
+BRO542261,Larry Brown,undrafted,WR,1963-09-04,0,0,False,Larry Brown (wide receiver),ok,1963-09-04,,,,,,,https://en.wikipedia.org/wiki/Larry_Brown_(wide_receiver)
+00-0008075,Larry Izzo,undrafted,LB,1974-09-26,3,1,False,Larry Izzo,ok,1974-09-26,,,,,,,https://en.wikipedia.org/wiki/Larry_Izzo
+00-0023063,Leonard Weaver,undrafted,FB,1982-09-23,1,1,False,Leonard Weaver,ok,1982-09-23,,679.0,687.0,,,,https://en.wikipedia.org/wiki/Leonard_Weaver
+00-0005322,London Fletcher,undrafted,MLB,1975-05-19,4,0,False,London Fletcher,ok,1975-05-19,,,,39.0,23.0,,https://en.wikipedia.org/wiki/London_Fletcher
+00-0023259,Lorenzo Alexander,undrafted,OLB,1983-05-31,2,0,False,Lorenzo Alexander,ok,1983-05-31,,,,33.0,3.0,,https://en.wikipedia.org/wiki/Lorenzo_Alexander
+00-0032753,Luke Rhodes,undrafted,LS,1992-12-02,1,1,False,Luke Rhodes,ok,1992-12-02,,,,,,,https://en.wikipedia.org/wiki/Luke_Rhodes
+00-0015830,Mack Strong,undrafted,FB,1971-09-11,2,1,False,Mack Strong,ok,1971-09-11,,909.0,1456.0,,,,https://en.wikipedia.org/wiki/Mack_Strong
+00-0031218,Malcolm Butler,undrafted,CB,1990-03-02,1,0,False,Malcolm Butler,ok,1990-03-02,,,,3.0,17.0,,https://en.wikipedia.org/wiki/Malcolm_Butler
+00-0026393,Marcel Reece,undrafted,FB,1985-06-23,4,0,False,Marcel Reece,ok,1985-06-23,,844.0,2088.0,,,,https://en.wikipedia.org/wiki/Marcel_Reece
+00-0035155,Mark Fields,undrafted,CB,1996-10-10,0,0,False,Mark Fields (cornerback),ok,1996-10-10,,,,,,,https://en.wikipedia.org/wiki/Mark_Fields_(cornerback)
+00-0016673,Mark Tuinei,undrafted,OT,1960-03-31,2,0,False,Mark Tuinei,ok,1960-03-31,,,,,,,https://en.wikipedia.org/wiki/Mark_Tuinei
+00-0013173,Marvin Powell,undrafted,RB,1976-06-06,0,0,False,Marvin Powell (fullback),ok,1976-06-06,,1.0,,,,,https://en.wikipedia.org/wiki/Marvin_Powell_(fullback)
+00-0021488,Mat McBriar,undrafted,P,1979-07-08,2,0,False,Mat McBriar,ok,1979-07-08,,,,,,,https://en.wikipedia.org/wiki/Mat_McBriar
+00-0020578,Matt Bryant,undrafted,K,1975-05-29,1,0,False,Matt Bryant,ok,1975-05-29,,,,,,397.0,https://en.wikipedia.org/wiki/Matt_Bryant
+00-0027187,Matt Overton,undrafted,LS,1985-07-06,1,0,False,Matt Overton,ok,1985-07-06,,,,,,,https://en.wikipedia.org/wiki/Matt_Overton
+00-0023853,Matt Prater,undrafted,K,1984-08-10,2,0,False,Matt Prater,ok,1984-08-10,,,,,,425.0,https://en.wikipedia.org/wiki/Matt_Prater
+00-0016689,Matt Turk,undrafted,P,1968-06-16,3,1,False,Matt Turk,ok,1968-06-16,,,,,,,https://en.wikipedia.org/wiki/Matt_Turk
+00-0026618,Michael Bennett,undrafted,DE,1985-11-13,3,0,False,"Michael Bennett (defensive lineman, born 1985)",ok,1985-11-13,,,,69.5,,,"https://en.wikipedia.org/wiki/Michael_Bennett_(defensive_lineman,_born_1985)"
+00-0001845,Michael Brooks,undrafted,DB,1967-03-12,0,0,False,Michael Brooks (defensive back),ok,1967-03-12,,,,,,,https://en.wikipedia.org/wiki/Michael_Brooks_(defensive_back)
+00-0029882,Michael Brooks,undrafted,DT,1991-08-28,0,0,False,Mic'hael Brooks,ok,1991-08-28,,,,,,,https://en.wikipedia.org/wiki/Mic'hael_Brooks
+00-0028908,Michael Thomas,undrafted,SS,1990-03-17,1,0,False,Michael Thomas (defensive back),ok,1990-03-17,,,,2.0,3.0,,https://en.wikipedia.org/wiki/Michael_Thomas_(defensive_back)
+00-0022247,Mike Adams,undrafted,FS,1981-03-24,2,0,False,Mike Adams (safety),ok,1981-03-24,,,,6.0,30.0,,https://en.wikipedia.org/wiki/Mike_Adams_(safety)
+00-0000849,Mike Bartrum,undrafted,TE,1970-06-23,1,0,False,Mike Bartrum,ok,1970-06-23,,,65.0,,,,https://en.wikipedia.org/wiki/Mike_Bartrum
+00-0007622,Mike Hollis,undrafted,K,1972-05-22,1,0,False,Mike Hollis,ok,1972-05-22,,,,,,200.0,https://en.wikipedia.org/wiki/Mike_Hollis
+00-0018926,Mike Schneck,undrafted,DB,1977-08-04,1,0,False,Mike Schneck,ok,1977-08-04,,,,,,,https://en.wikipedia.org/wiki/Mike_Schneck
+00-0014655,Mike Sellers,undrafted,FB,1975-07-21,1,0,False,Mike Sellers,ok,1975-07-21,,158.0,1095.0,,,,https://en.wikipedia.org/wiki/Mike_Sellers
+00-0026069,Mike Tolbert,undrafted,FB,1985-11-23,3,2,False,Mike Tolbert,ok,1985-11-23,,2649.0,1861.0,,,,https://en.wikipedia.org/wiki/Mike_Tolbert
+00-0016830,Mike Vanderjagt,undrafted,K,1970-03-24,1,1,False,Mike Vanderjagt,ok,1970-03-24,,,,,,230.0,https://en.wikipedia.org/wiki/Mike_Vanderjagt
+00-0023921,Miles Austin,undrafted,WR,1984-06-30,2,0,False,Miles Austin,ok,1984-06-30,,,5273.0,,,,https://en.wikipedia.org/wiki/Miles_Austin
+00-0024103,Montell Owens,undrafted,RB,1984-05-04,2,0,False,Montell Owens,ok,1984-05-04,,292.0,132.0,,,,https://en.wikipedia.org/wiki/Montell_Owens
+00-0027557,Morgan Cox,undrafted,LS,1986-04-26,5,1,False,Morgan Cox,ok,1986-04-26,,,,,,,https://en.wikipedia.org/wiki/Morgan_Cox
+00-0012081,Nate Newton,undrafted,G,1961-12-20,6,2,False,Nate Newton (American football),ok,1961-12-20,,,,,,,https://en.wikipedia.org/wiki/Nate_Newton_(American_football)
+00-0028292,Nick Bellore,undrafted,ILB,1989-05-12,2,0,False,Nick Bellore,ok,1989-05-12,,,75.0,1.0,1.0,,https://en.wikipedia.org/wiki/Nick_Bellore
+00-0008593,Norm Johnson,undrafted,K,1960-05-31,2,1,False,Norm Johnson,ok,1960-05-31,,,,,,366.0,https://en.wikipedia.org/wiki/Norm_Johnson
+00-0010373,Olindo Mare,undrafted,K,1973-06-06,1,1,False,Olindo Mare,ok,1973-06-06,,,,,,356.0,https://en.wikipedia.org/wiki/Olindo_Mare
+00-0017899,Pat Williams,undrafted,DT,1972-10-24,3,0,False,Pat Williams (American football),ok,1972-10-24,,,,20.5,1.0,,https://en.wikipedia.org/wiki/Pat_Williams_(American_football)
+00-0028581,Patrick DiMarco,undrafted,FB,1989-04-30,1,0,False,Patrick DiMarco,ok,1989-04-30,,14.0,404.0,,,,https://en.wikipedia.org/wiki/Patrick_DiMarco
+00-0033376,Patrick Ricard,undrafted,FB,1994-05-27,6,1,False,Patrick Ricard (American football),ok,1994-05-27,,22.0,324.0,1.0,,,https://en.wikipedia.org/wiki/Patrick_Ricard_(American_football)
+00-0004091,Phil Dawson,undrafted,K,1975-01-23,1,0,False,Phil Dawson,ok,1975-01-23,,,,,,441.0,https://en.wikipedia.org/wiki/Phil_Dawson
+00-0034109,Phillip Lindsay,undrafted,RB,1994-07-24,1,0,False,Phillip Lindsay,ok,1994-07-24,,2848.0,529.0,,,,https://en.wikipedia.org/wiki/Phillip_Lindsay
+00-0007661,Priest Holmes,undrafted,RB,1973-10-07,3,3,False,Priest Holmes,ok,1973-10-07,,8172.0,2962.0,,,,https://en.wikipedia.org/wiki/Priest_Holmes
+00-0021512,Quintin Mikell,undrafted,S,1980-09-16,1,0,False,Quintin Mikell,ok,1980-09-16,,,,11.0,12.0,,https://en.wikipedia.org/wiki/Quintin_Mikell
+00-0031687,Raheem Mostert,undrafted,RB,1992-04-09,1,0,False,Raheem Mostert,ok,1992-04-09,,3895.0,969.0,,,,https://en.wikipedia.org/wiki/Raheem_Mostert
+00-0037545,Rashid Shaheed,undrafted,WR,1998-08-31,2,1,False,Rashid Shaheed,ok,1998-08-31,,231.0,2405.0,,,,https://en.wikipedia.org/wiki/Rashid_Shaheed
+00-0020125,Reggie White,undrafted,RB,1979-07-11,0,0,False,Reggie White (running back),ok,1979-07-11,,,,,,,https://en.wikipedia.org/wiki/Reggie_White_(running_back)
+00-0035019,Reggie White Jr.,undrafted,WR,1996-03-10,0,0,False,Reggie White Jr.,ok,1996-03-10,,,1254.0,,,,https://en.wikipedia.org/wiki/Reggie_White_Jr.
+00-0002549,Rich Camarillo,undrafted,P,1959-11-29,5,1,False,Rich Camarillo,ok,1959-11-29,,,,,,,https://en.wikipedia.org/wiki/Rich_Camarillo
+00-0031911,Rick Lovato,undrafted,LS,1992-09-09,1,0,False,Rick Lovato,ok,1992-09-09,,,,,,,https://en.wikipedia.org/wiki/Rick_Lovato
+00-0016753,Rick Tuten,undrafted,P,1965-01-05,1,0,False,Rick Tuten,ok,1965-01-05,,,,,,,https://en.wikipedia.org/wiki/Rick_Tuten
+00-0020962,Rob Bironas,undrafted,K,1978-01-29,1,1,False,Rob Bironas,ok,1978-01-29,,,,,,239.0,https://en.wikipedia.org/wiki/Rob_Bironas
+00-0023252,Robbie Gould,undrafted,K,1982-12-06,1,1,False,Robbie Gould,ok,1982-12-06,,,,,,447.0,https://en.wikipedia.org/wiki/Robbie_Gould
+00-0016505,Robbie Tobeck,undrafted,C,1970-03-06,1,0,False,Robbie Tobeck,ok,1970-03-06,,,15.0,,,,https://en.wikipedia.org/wiki/Robbie_Tobeck
+00-0006459,Robert Griffith,undrafted,S,1970-11-30,1,0,False,Robert Griffith,ok,1970-11-30,,,,8.5,27.0,,https://en.wikipedia.org/wiki/Robert_Griffith
+00-0015290,Rod Smith,undrafted,WR,1970-05-15,3,0,False,Rod Smith (wide receiver),ok,1970-05-15,,,11389.0,,,,https://en.wikipedia.org/wiki/Rod_Smith_(wide_receiver)
+00-0031900,Rod Smith,undrafted,RB,1992-01-10,0,0,False,Rod Smith (running back),ok,1992-01-10,,364.0,272.0,,,,https://en.wikipedia.org/wiki/Rod_Smith_(running_back)
+00-0021505,Ron Johnson,undrafted,DE,1979-10-23,0,0,False,Ron Johnson (defensive end),ok,1979-10-23,,,,,,,https://en.wikipedia.org/wiki/Ron_Johnson_(defensive_end)
+00-0030741,Roosevelt Nix,undrafted,FB,1992-03-30,1,0,False,Roosevelt Nix (fullback),ok,1992-03-30,,4.0,69.0,,,,https://en.wikipedia.org/wiki/Roosevelt_Nix_(fullback)
+00-0035827,Ross Matiscik,undrafted,LS,1996-09-13,3,2,False,Ross Matiscik,ok,1996-09-13,,,,,,,https://en.wikipedia.org/wiki/Ross_Matiscik
+00-0013135,Rufus Porter,undrafted,OLB,1965-05-18,2,1,False,Rufus Porter (American football),ok,1965-05-18,,,,41.0,3.0,,https://en.wikipedia.org/wiki/Rufus_Porter_(American_football)
+00-0020840,Ryan Clark,undrafted,FS,1979-10-12,1,0,False,Ryan Clark (American football),ok,1979-10-12,,,,4.0,16.0,,https://en.wikipedia.org/wiki/Ryan_Clark_(American_football)
+00-0011335,Sam Mills,undrafted,ILB,1959-06-03,5,3,True,Sam Mills,ok,1959-06-03,,,,20.5,11.0,,https://en.wikipedia.org/wiki/Sam_Mills
+00-0027440,Sam Shields,undrafted,CB,1987-12-08,1,0,False,Sam Shields,ok,1987-12-08,,,,1.0,19.0,,https://en.wikipedia.org/wiki/Sam_Shields
+00-0009357,Sammy Knight,undrafted,S,1975-09-10,1,0,False,Sammy Knight,ok,1975-09-10,,,,9.0,42.0,,https://en.wikipedia.org/wiki/Sammy_Knight
+00-0012203,Scott Norwood,undrafted,K,1960-07-17,1,1,False,Scott Norwood,ok,1960-07-17,,,,,,133.0,https://en.wikipedia.org/wiki/Scott_Norwood
+00-0013028,Scott Player,undrafted,P,1969-12-17,1,0,False,Scott Player,ok,1969-12-17,,,,,,,https://en.wikipedia.org/wiki/Scott_Player
+00-0009584,Sean Landeta,undrafted,P,1962-01-06,0,0,False,Sean Landeta,ok,1962-01-06,,,,,,,https://en.wikipedia.org/wiki/Sean_Landeta
+00-0031101,Shaquil Barrett,undrafted,OLB,1992-11-17,2,0,False,Shaquil Barrett,ok,1992-11-17,,,,59.0,3.0,,https://en.wikipedia.org/wiki/Shaquil_Barrett
+00-0019276,Shaun O'Hara,undrafted,C,1977-06-23,3,1,False,Shaun O'Hara,ok,1977-06-23,,,,,,,https://en.wikipedia.org/wiki/Shaun_O'Hara
+00-0019536,Shayne Graham,undrafted,K,1977-12-09,1,0,False,Shayne Graham,ok,1977-12-09,,,,,,277.0,https://en.wikipedia.org/wiki/Shayne_Graham
+00-0013322,Shelton Quarles,undrafted,OLB,1971-09-11,1,0,False,Shelton Quarles,ok,1971-09-11,,,,13.0,4.0,,https://en.wikipedia.org/wiki/Shelton_Quarles
+00-0023852,Steven Jackson,undrafted,RB,1984-05-11,3,0,False,Steven Jackson,ok_approx_bd,1983-07-22,,11438.0,3683.0,,,,https://en.wikipedia.org/wiki/Steven_Jackson
+00-0028924,Tashaun Gipson,undrafted,FS,1990-08-07,1,0,False,Tashaun Gipson,ok,1990-08-07,,,,2.5,33.0,,https://en.wikipedia.org/wiki/Tashaun_Gipson
+HAR542178,Tim Harris,undrafted,RB,1961-06-15,0,0,False,Tim Harris (running back),ok_approx_bd,1961-06-25,,,,,,,https://en.wikipedia.org/wiki/Tim_Harris_(running_back)
+00-0035889,Tommy Townsend,undrafted,P,1996-11-12,1,1,False,Tommy Townsend,ok,1996-11-12,,,,,,,https://en.wikipedia.org/wiki/Tommy_Townsend
+00-0008886,Tony Jones,undrafted,OT,1966-05-24,1,0,False,Tony Jones (offensive tackle),ok,1966-05-24,,,,,,,https://en.wikipedia.org/wiki/Tony_Jones_(offensive_tackle)
+00-0035860,Tony Jones,undrafted,RB,1997-11-24,0,0,False,Tony Jones Jr.,ok,1997-11-24,,329.0,96.0,,,,https://en.wikipedia.org/wiki/Tony_Jones_Jr.
+00-0013694,Tony Richardson,undrafted,RB,1971-12-17,3,0,False,Tony Richardson (American football),ok,1971-12-17,,1727.0,1543.0,,,,https://en.wikipedia.org/wiki/Tony_Richardson_(American_football)
+00-0021678,Tony Romo,undrafted,QB,1980-04-21,4,0,False,Tony Romo,ok,1980-04-21,34183.0,,,,,,https://en.wikipedia.org/wiki/Tony_Romo
+00-0030140,Tress Way,undrafted,P,1990-04-18,3,0,False,Tress Way,ok,1990-04-18,,,,,,,https://en.wikipedia.org/wiki/Tress_Way
+00-0035993,Tyler Huntley,undrafted,QB,1998-02-03,1,0,False,Tyler Huntley,ok,1998-02-03,3939.0,871.0,,,,,https://en.wikipedia.org/wiki/Tyler_Huntley
+00-0031156,Tyler Ott,undrafted,LS,1992-02-28,1,0,False,Tyler Ott,ok,1992-02-28,,,,,,,https://en.wikipedia.org/wiki/Tyler_Ott
+00-0027265,Victor Cruz,undrafted,WR,1986-11-11,1,0,False,Victor Cruz,ok,1986-11-11,,,4599.0,,,,https://en.wikipedia.org/wiki/Victor_Cruz
+00-0022397,Vonta Leach,undrafted,FB,1981-11-06,3,3,False,Vonta Leach,ok,1981-11-06,,93.0,796.0,,,,https://en.wikipedia.org/wiki/Vonta_Leach
+00-0011524,Warren Moon,undrafted,QB,1956-11-18,9,0,True,Warren Moon,ok,1956-11-18,49325.0,1736.0,,,,,https://en.wikipedia.org/wiki/Warren_Moon
+HAD288110,Wayne Haddix,undrafted,CB,1965-07-23,1,0,False,Wayne Haddix,ok,1965-07-23,,,,,7.0,,https://en.wikipedia.org/wiki/Wayne_Haddix
+00-0022427,Wes Welker,undrafted,WR,1981-05-01,5,2,False,Wes Welker,ok,1981-05-01,,,9924.0,,,,https://en.wikipedia.org/wiki/Wes_Welker
+00-0022250,Willie Parker,undrafted,RB,1980-11-11,2,0,False,Willie Parker,ok,1980-11-11,,5378.0,697.0,,,,https://en.wikipedia.org/wiki/Willie_Parker
+00-0033702,Younghoe Koo,undrafted,K,1994-08-03,1,0,False,Younghoe Koo,ok,1994-08-03,,,,,,185.0,https://en.wikipedia.org/wiki/Younghoe_Koo
+THO412216,Zach Thomas,undrafted,WR,1960-09-08,0,0,False,Zach Thomas (wide receiver),ok,1960-09-08,,,182.0,,,,https://en.wikipedia.org/wiki/Zach_Thomas_(wide_receiver)
