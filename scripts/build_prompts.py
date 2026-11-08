@@ -16,6 +16,7 @@ from collections import defaultdict
 import pandas as pd
 
 import awards
+import college_honors
 import config as C
 import fame
 import nfl
@@ -121,6 +122,20 @@ def award_bonus(aw: awards.AwardData, key: str) -> pd.Series:
     return extra + recent
 
 
+def draft_recency_bonus(data: nfl.Data) -> pd.Series:
+    """Draft prompts: DRAFT_RECENT_BONUS * (N - age) / N for picks in the last N drafts,
+    scaled by pick prominence (full for top 10, half for the rest of round 1, none after)."""
+    dp = data.draft.set_index("player_id")
+    latest = int(dp["season"].max())
+    age = latest - dp["season"]
+    n = C.DRAFT_RECENT_DRAFTS
+    P = C.DRAFT_PROMINENCE
+    prominence = pd.Series(P["later"], index=dp.index)
+    prominence[dp["round"] == 1] = P["round1"]
+    prominence[dp["pick"] <= 10] = P["top10"]
+    return (C.DRAFT_RECENT_BONUS * prominence * (n - age) / n).where(age < n, 0.0)
+
+
 def tenure_weight(data: nfl.Data, fr: str) -> pd.Series:
     r = data.rosters
     seasons = r[r["franchise"] == fr].groupby("player_id")["season"].nunique()
@@ -162,6 +177,7 @@ def main() -> dict:
     aw = awards.load(data)
     overrides = fame.load_overrides()
     fame_df = fame.compute(data, aw, overrides)
+    ch = college_honors.load(data)
     calibration = dict(fame_df.attrs["calibration"])
     aliases, alias_problems = build_aliases(data, fame_df)
     players = data.players
@@ -193,6 +209,10 @@ def main() -> dict:
         score = f["fame"] * (f["multiplier"] if pr.mixed else 1.0)
         if pr.award_key:
             score = score + award_bonus(aw, pr.award_key).reindex(score.index).fillna(0)
+        if pr.category == "draft":
+            score = score + draft_recency_bonus(data).reindex(score.index).fillna(0)
+        if pr.schools:
+            score = score + college_honors.bonus_for_school(ch, set(pr.schools)).reindex(score.index).fillna(0)
         if pr.franchise:
             score = score * tenure_weight(data, pr.franchise).reindex(score.index).fillna(0)
         order = sorted(valid, key=lambda v: (-score[v], players.at[v, "name"]))
@@ -245,6 +265,9 @@ def main() -> dict:
 
     fame_df.sort_values("fame", ascending=False).to_csv(C.OUT_DIR / "fame.csv")
     report = write_report(data, aw, calibration, summary, alias_problems)
+    (C.OUT_DIR / "college_unmatched.csv").write_text(pd.DataFrame(ch.unmatched).to_csv(index=False))
+    report["college_matched"] = len(ch.rows)
+    report["college_unmatched"] = len(ch.unmatched)
     return report
 
 
@@ -298,4 +321,5 @@ if __name__ == "__main__":
     print(f"prompts.json {rep['size_kb']:.0f} KB; unmatched in-range awards: {rep['unmatched_in_range']}")
     for p in rep["alias_problems"]:
         print(f"  {p}")
+    print(f"college honors joined: {rep['college_matched']} ({rep['college_unmatched']} unmatched, mostly never reached the NFL)")
     print(f"report: {(C.OUT_DIR / 'report.md').relative_to(C.ROOT)}")

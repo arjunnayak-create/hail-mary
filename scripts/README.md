@@ -28,6 +28,8 @@ every answer's score and tier, and `override_unverified.csv`.
 | `data/awards/{sb_mvp,mvp,opoy,dpoy,oroy,droy,cpoy}.csv` | Wikipedia award pages (`fetch_awards.py`) | award prompts + fame |
 | `data/awards/hof.csv` | Wikipedia "List of Pro Football Hall of Fame inductees" | HOF flag for everyone |
 | `data/honors_override.csv` | Wikipedia player infoboxes (`fetch_honors_override.py`) | honors + career stats for players with no draft_picks row |
+| `data/pageviews.csv` | Wikimedia pageviews API, articles found via Wikidata (P3561, PFR id) (`fetch_pageviews.py`) | fame: how often fans look a player up |
+| `data/college/heisman.csv`, `all_america.csv` | Wikipedia Heisman lists, season voting tables, consensus All-America teams (`fetch_college_honors.py`) | college-prompt bump |
 | `data/aliases.csv` | hand-maintained | nicknames (OBJ, CMC, ...) mapped to existing players; never adds answers |
 | `data/first_name_variants.csv` | hand-maintained | Pat/Patrick, Mike/Michael ... aliases |
 
@@ -78,12 +80,17 @@ Rows you add by hand with `status=manual` are never overwritten.
 
 ## Fame score
 
-All weights live in `config.py`. Tier names, yards and percentile cutoffs live in
-`src/themes/nfl/tiers.json`, which the app also reads.
+North star: how likely a typical NFL fan in 2026 is to say the name. Career numbers alone
+over-rate long, quiet careers and under-rate today's stars, so fame (0-100) blends career fame
+with Wikipedia pageviews. All weights live in `config.py`.
 
 ```
-fame = honors + awards + value + recency
+fame          = 100 * (w * norm(career_fame) + (1 - w) * pageview_fame)
+w             = 0.5 * min(1, NFL seasons / 4)       (career weight ramps in over 4 seasons)
+pageview_fame = 0.6 * norm(views, last 36 months) + 0.4 * norm(views since 2015-07)
+norm(x)       = log1p(x) / log1p(99.9th percentile), clipped to [0, 1]
 
+career_fame = honors + awards + value + recency
 honors  = 8 * first-team All-Pro + 4 * Pro Bowls + 30 * HOF
 awards  = per win: MVP 12, SB MVP 8, OPOY 8, DPOY 8, OROY 4, DROY 4, CPOY 3
 value   = max(career_value, production_value)
@@ -93,24 +100,37 @@ value   = max(career_value, production_value)
 recency = 4 * min(1, starts in the last 3 seasons / 34)     (start = >= 50% of off/def snaps)
 ```
 
+* **Pageviews** are matched to players through Wikidata's Pro-Football-Reference ID, never by
+  name, so namesakes don't share views. Views of same-name disambiguated redirects
+  ("Victor Cruz (American football)") are added in, because a renamed article's history
+  stays under its old title. The recent window makes current stars gimmes; the
+  long window keeps retired legends famous. A player with no article scores 0 there, which
+  is right: obscure players are the rare payoff.
+* **Career ramp:** a rookie has no career yet, so his career weight starts at 0.125 and
+  reaches 0.5 in his 4th season; until then he's judged mostly on name recognition. A
+  famous rookie (a #1 pick, a breakout starter) isn't a Hail Mary; an unknown one still is.
+* **Log normalization** keeps magnitude (Brady > a three-year starter) without letting one
+  huge number dominate.
 * **Production** uses the larger of nflverse 1999+ career totals and the infobox career
-  totals for override players. That covers pre-1999 careers.
-* **Calibration**: production is rescaled per position bucket so that its median equals
-  career value for drafted players whose whole career falls in the stats era. Without
-  this, undrafted and pre-1980 players would be undervalued 1.1-3.4x. The factors are
-  recomputed on every build and printed in `out/report.md`.
-* **Recency** is capped at +4, so a recent backup never outranks a 2x Pro Bowler (who has
-  +8 from honors alone).
+  totals for override players (pre-1999 careers).
+* **Calibration**: production is rescaled per position bucket so its median equals career
+  value for drafted players whose whole career is in the stats era (factors in `out/report.md`).
 
 ### Per-prompt adjustments
 
 * **Position multiplier** (only on prompts that mix positions: awards, colleges, draft
   "#1 overall", 15+ sacks, ...): QB 1.4; RB/WR/TE 1.1; EDGE/LB/CB/S 1.0; DT 0.9; OL 0.6;
   K/P/LS 0.5.
+* **Draft prompts:** picks from the last 3 drafts get +60 × (3 − age) / 3 (latest draft
+  +60, then +40, +20), scaled by prominence: full for top-10 picks, half for the rest of
+  round 1, none after round 1 (an unknown late-rounder isn't a gimme). Fans know who just
+  went #1, but a rookie has no career fame yet.
+* **College prompts:** a school's own Heisman winners (+30), Heisman finalists (top 5 in
+  voting, +12) and consensus All-Americans (+8 each, max +16) on that school's prompt.
 * **Award prompts** ("Name a Super Bowl MVP"): add award-specific fame on top of career
-  fame. +60 per win of *that* award beyond the first (Brady's 5 SB MVPs, Mahomes' 3), plus a
-  recency bonus of 150 × (3 − age) / 3 for the player's latest win, where age 0 is the
-  award's most recent season (+150 / +100 / +50). For OROY/DROY the bonus is scaled to 25%,
+  fame. +15 per win of *that* award beyond the first (Brady's 5 SB MVPs, Mahomes' 3), plus a
+  recency bonus of 50 × (3 − age) / 3 for the player's latest win, where age 0 is the
+  award's most recent season (+50 / +33 / +17). For OROY/DROY the bonus is scaled to 25%,
   so recent rookies don't outrank established stars.
 * **Team tenure** (team + position prompts only): `fame * min(1, seasons with the
   franchise / 4) ** 2`. A star's one late-career season with a team is a deep cut for that
@@ -123,13 +143,12 @@ Answers are ranked by adjusted score, most famous first. Tiers are hybrid
 
 | Tier | Share |
 |---|---|
-| T1 | top 15% of the list, max 6 answers |
-| T2 | next 20%, max 10 |
-| T3 / T4 / T5 | the rest, split 40% / 35% / 25% |
+| T1 | top 10% of the list, max 4 answers |
+| T2 | next 25%, max 15 |
+| T3 / T4 / T5 | the rest, split 45% / 35% / 20% |
 
-For lists under about 30, the caps never bind and T1/T2 match plain percentiles. Big lists
-keep T1/T2 to real household names: 187 Giants WRs split 6 / 10 / 69 / 60 / 42.
-A prompt is cut if it has fewer than 15 answers, any empty tier, or no fame spread.
+187 Giants WRs split 4 / 15 / 76 / 59 / 33. A prompt is cut if it has fewer than 15 answers,
+any empty tier, or no fame spread.
 
 ## Range rules
 

@@ -39,6 +39,7 @@ class Prompt:
     build: Callable[[Ctx], tuple[set, set]] = field(repr=False)
     franchise: str | None = None  # team prompts: weight fame by tenure with this franchise
     award_key: str | None = None  # award prompts: add award-specific fame (repeat + recent wins)
+    schools: frozenset[str] | None = None  # college prompts: add that school's honors
 
 
 # --------------------------------------------------------------------------- builders
@@ -223,7 +224,8 @@ PROMPTS: list[Prompt] = _team_prompts() + [
            season_stat(lambda s: s["rushing_yards"] >= 1000, None, (2000, 2009))),
     # ---- colleges (any school a player attended; played since 1980)
     *[
-        Prompt(f"college-{slug}", "college", f"Name an NFL player from {label}", f"played since {R}", True, college(names))
+        Prompt(f"college-{slug}", "college", f"Name an NFL player from {label}", f"played since {R}", True, college(names),
+               schools=frozenset(names))
         for slug, label, names in [
             ("alabama", "Alabama", {"Alabama"}),
             ("ohio-state", "Ohio State", {"Ohio State", "Ohio St."}),

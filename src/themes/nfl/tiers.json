@@ -1,11 +1,11 @@
 {
   "_comment": "Tier rules + display for the NFL theme. Read by the engine (points, No Huddle), the UI (names, colors) and the data pipeline (share / maxAnswers / restShare). Answers are ranked most famous first: tiers with `share` take that fraction of the list capped at `maxAnswers`; the rest is split by `restShare` (sums to 1). `distance` is where the throw lands (yards from our goal line).",
   "tiers": [
-    { "tier": 1, "name": "Checkdown",         "points": 10,  "distance": 10,  "share": 0.15, "maxAnswers": 6,  "color": "#8ea4c8", "emoji": "⚪", "icon": "whistle", "quip": "The answer everyone blurts out." },
-    { "tier": 2, "name": "Moving the Chains", "points": 30,  "distance": 30,  "share": 0.20, "maxAnswers": 10, "color": "#4fe3ff", "emoji": "🔵", "icon": "chains",  "quip": "Solid. Keeps the drive alive." },
-    { "tier": 3, "name": "Chunk Play",        "points": 60,  "distance": 60,  "restShare": 0.40, "color": "#ff5a5a", "emoji": "🔴", "icon": "football", "quip": "Genuinely uncommon. Nice pull." },
+    { "tier": 1, "name": "Checkdown",         "points": 10,  "distance": 10,  "share": 0.10, "maxAnswers": 4,  "color": "#8ea4c8", "emoji": "⚪", "icon": "whistle", "quip": "The answer everyone blurts out." },
+    { "tier": 2, "name": "Moving the Chains", "points": 30,  "distance": 30,  "share": 0.25, "maxAnswers": 15, "color": "#4fe3ff", "emoji": "🔵", "icon": "chains",  "quip": "Solid. Keeps the drive alive." },
+    { "tier": 3, "name": "Chunk Play",        "points": 60,  "distance": 60,  "restShare": 0.45, "color": "#ff5a5a", "emoji": "🔴", "icon": "football", "quip": "Genuinely uncommon. Nice pull." },
     { "tier": 4, "name": "Deep Shot",         "points": 85,  "distance": 85,  "restShare": 0.35, "color": "#b77dff", "emoji": "🟣", "icon": "spiral",  "quip": "Real fans only. Few throw this deep." },
-    { "tier": 5, "name": "Hail Mary",         "points": 100, "distance": 100, "restShare": 0.25, "color": "#ffd23f", "emoji": "🟡", "icon": "trophy",  "quip": "True obscurity. Touchdown from your own goal line." }
+    { "tier": 5, "name": "Hail Mary",         "points": 100, "distance": 100, "restShare": 0.20, "color": "#ffd23f", "emoji": "🟡", "icon": "trophy",  "quip": "True obscurity. Touchdown from your own goal line." }
   ],
   "miss": { "name": "Incomplete", "points": 0, "emoji": "❌", "color": "#6b7590", "quip": "the clock beat you to it." },
   "streakBonus": {

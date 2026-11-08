@@ -1,12 +1,18 @@
-"""Per-player fame score. Weights are in config.py; the formula is documented in README.md.
+"""Per-player fame score (0-100). Weights are in config.py; see README.md.
 
-    fame = honors + awards + max(career_value, production_value) + recency
+    career_fame    = honors + awards + max(career_value, production_value) + recency
+    pageview_fame  = RECENT * norm(views, last 3 yrs) + TOTAL * norm(views since 2015)
+    fame           = 100 * (w * norm(career_fame) + (1 - w) * pageview_fame)
+                     w = CAREER * min(1, NFL seasons / CAREER_RAMP_SEASONS)   (rookies lean on views)
 
-Position multipliers are applied later, per prompt, only on prompts that mix positions.
+norm(x) = log1p(x) / log1p(99.9th percentile), clipped to [0, 1]: magnitude-preserving, so
+a legend still outranks a solid starter, but a household name today isn't buried by a
+thin stat line. Per-prompt adjustments (position, tenure, awards, draft, college) come after.
 """
 
 from __future__ import annotations
 
+import numpy as np
 import pandas as pd
 
 import config as C
@@ -34,6 +40,23 @@ def load_overrides() -> pd.DataFrame:
         if c not in df:
             df[c] = None
     return df.set_index("player_id")[cols]
+
+
+def load_pageviews() -> pd.DataFrame:
+    if not C.PAGEVIEWS.exists():
+        return pd.DataFrame(columns=["views_recent", "views_total"])
+    df = pd.read_csv(C.PAGEVIEWS)
+    return df.groupby("player_id")[["views_recent", "views_total"]].max()
+
+
+def log_norm(x: pd.Series) -> pd.Series:
+    """log1p scale divided by the 99.9th percentile of positive values, clipped to [0, 1]."""
+    x = x.clip(lower=0).astype(float)
+    pos = x[x > 0]
+    if pos.empty:
+        return x * 0
+    hi = np.log1p(pos.quantile(C.FAME_NORM_QUANTILE))
+    return (np.log1p(x) / hi).clip(upper=1)
 
 
 def production_value(data: Data, overrides: pd.DataFrame | None) -> pd.Series:
@@ -120,7 +143,21 @@ def compute(data: Data, aw: AwardData, overrides: pd.DataFrame | None = None) ->
     out["recent_starts"] = starts
     out["recency"] = C.RECENCY_MAX * (starts / C.RECENCY_FULL_STARTS).clip(upper=1)
 
-    out["fame"] = out["honors"] + out["awards"] + out["value"] + out["recency"]
+    out["career_fame"] = out["honors"] + out["awards"] + out["value"] + out["recency"]
+
+    pv = load_pageviews().reindex(p.index).fillna(0)
+    out["views_recent"] = pv["views_recent"]
+    out["views_total"] = pv["views_total"]
+    B = C.FAME_BLEND
+    out["career_norm"] = log_norm(out["career_fame"])
+    out["pageview_norm"] = (
+        C.PAGEVIEW_BLEND["recent"] * log_norm(out["views_recent"]) + C.PAGEVIEW_BLEND["total"] * log_norm(out["views_total"])
+    )
+    seasons = data.rosters.groupby("player_id")["season"].nunique().reindex(p.index).fillna(1)
+    ramp = (seasons / C.CAREER_RAMP_SEASONS).clip(upper=1)
+    w_career = B["career"] * ramp
+    out["career_weight"] = w_career
+    out["fame"] = 100 * (w_career * out["career_norm"] + (1 - w_career) * out["pageview_norm"])
     out["name"] = p["name"]
     out["position"] = p["position"]
     out["bucket"] = p["bucket"]

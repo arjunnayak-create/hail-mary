@@ -17,7 +17,8 @@ import requests
 from lxml import html as lxml_html
 
 API = "https://en.wikipedia.org/w/api.php"
-USER_AGENT = "HailMaryTrivia/0.1 (data pipeline; https://github.com/nflverse used for stats)"
+# Wikimedia requires a descriptive agent with contact info (otherwise: HTTP 403)
+USER_AGENT = "HailMaryTrivia/0.2 (https://github.com/arjunnayak-create/hail-mary)"
 CACHE = Path(__file__).resolve().parent / ".cache" / "wikipedia"
 
 _session = requests.Session()

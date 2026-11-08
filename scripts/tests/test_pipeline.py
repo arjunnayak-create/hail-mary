@@ -7,30 +7,20 @@ from nfl import franchise, name_key
 from awards import position_groups, team_franchises
 
 
-def test_hybrid_tiers_cap_head_tiers_on_big_lists():
-    assert tier_counts(187) == [6, 10, 69, 60, 42]
+def test_hybrid_tiers_follow_config():
+    # T1 10% max 4, T2 25% max 15, rest 45/35/20
+    assert tier_counts(187) == [4, 15, 76, 59, 33]
+    assert tier_counts(37) == [4, 9, 11, 9, 4]
+    assert tier_counts(15) == [2, 4, 5, 3, 1]
     tiers = assign_tiers(187)
     assert len(tiers) == 187 and tiers == sorted(tiers)  # most famous first
 
 
-def _pure_percentile(n, cutoffs=(0.15, 0.20, 0.25, 0.25, 0.15)):
-    """The Phase-1 rule, for comparison."""
-    out, cum, prev = [], 0.0, 0
-    for c in cutoffs:
-        cum += c
-        upto = math.ceil(cum * n - 1e-9)
-        out.append(upto - prev)
-        prev = upto
-    return out
-
-
-def test_small_lists_match_old_percentiles():
-    for n in range(C.MIN_ANSWERS, 31):
-        new, old = tier_counts(n), _pure_percentile(n)
-        assert sum(new) == n
-        assert new[:2] == old[:2], (n, new, old)  # caps never bind on small lists
-        # tail ratios changed (40/35/25 of the rest vs 25/25/15 of the whole): <= 2 apart
-        assert all(abs(a - b) <= 2 for a, b in zip(new[2:], old[2:])), (n, new, old)
+def test_head_tiers_never_exceed_caps():
+    for n in range(C.MIN_ANSWERS, 800, 7):
+        c = tier_counts(n)
+        assert sum(c) == n
+        assert c[0] <= 4 and c[1] <= 15
 
 
 def test_small_lists_still_hit_every_tier():

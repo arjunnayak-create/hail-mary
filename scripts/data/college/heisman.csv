@@ -1,0 +1,256 @@
+season,player,school,place
+1975,Archie Griffin,Ohio State,1
+1975,Chuck Muncie,California,2
+1975,Ricky Bell,USC,3
+1975,Tony Dorsett,Pittsburgh,4
+1975,Joe Washington,Oklahoma,5
+1976,Tony Dorsett,Pittsburgh,1
+1976,Ricky Bell,USC,2
+1976,Rob Lytle,Michigan,3
+1976,Terry Miller,Oklahoma State,4
+1976,Tommy Kramer,Rice,5
+1977,Earl Campbell,Texas,1
+1977,Terry Miller,Oklahoma State,2
+1977,Ken MacAfee,Notre Dame,3
+1977,Doug Williams,Grambling State,4
+1977,Ross Browner,Notre Dame,5
+1978,Billy Sims,Oklahoma,1
+1978,Chuck Fusina,Penn State,2
+1978,Rick Leach,Michigan,3
+1978,Charles White,USC,4
+1978,Charles Alexander,LSU,5
+1979,Charles White,USC,1
+1979,Billy Sims,Oklahoma,2
+1979,Marc Wilson,BYU,3
+1979,Art Schlichter,Ohio State,4
+1979,Vagas Ferguson,Notre Dame,5
+1980,George Rogers,South Carolina,1
+1980,Hugh Green,Pittsburgh,2
+1980,Herschel Walker,Georgia,3
+1980,Mark Herrmann,Purdue,4
+1980,Jim McMahon,BYU,5
+1981,Marcus Allen,USC,1
+1981,Herschel Walker,Georgia,2
+1981,Jim McMahon,BYU,3
+1981,Dan Marino,Pittsburgh,4
+1981,Art Schlichter,Ohio State,5
+1982,Herschel Walker,Georgia,1
+1982,John Elway,Stanford,2
+1982,Eric Dickerson,SMU,3
+1982,Anthony Carter,Michigan,4
+1982,Dave Rimington,Nebraska,5
+1983,Mike Rozier,Nebraska,1
+1983,Steve Young,BYU,2
+1983,Doug Flutie,Boston College,3
+1983,Turner Gill,Nebraska,4
+1983,Terry Hoage,Georgia,5
+1984,Doug Flutie,Boston College,1
+1984,Keith Byars,Ohio State,2
+1984,Robbie Bosco,BYU,3
+1984,Bernie Kosar,Miami,4
+1984,Kenneth Davis,TCU,5
+1985,Bo Jackson,Auburn,1
+1985,Chuck Long,Iowa,2
+1985,Robbie Bosco,BYU,3
+1985,Lorenzo White,Michigan State,4
+1985,Vinny Testaverde,Miami,5
+1986,Vinny Testaverde,Miami,1
+1986,Paul Palmer,Temple,2
+1986,Jim Harbaugh,Michigan,3
+1986,Brian Bosworth,Oklahoma,4
+1986,Gordie Lockbaum,Holy Cross,5
+1987,Tim Brown,Notre Dame,1
+1987,Don McPherson,Syracuse,2
+1987,Gordie Lockbaum,Holy Cross,3
+1987,Lorenzo White,Michigan State,4
+1987,Craig Heyward,Pittsburgh,5
+1988,Barry Sanders,Oklahoma State,1
+1988,Rodney Peete,USC,2
+1988,Troy Aikman,UCLA,3
+1988,Steve Walsh,Miami,4
+1988,Major Harris,West Virginia,5
+1989,Andre Ware,Houston,1
+1989,Anthony Thompson,Indiana,2
+1989,Major Harris,West Virginia,3
+1989,Tony Rice,Notre Dame,4
+1989,Darian Hagan,Colorado,5
+1990,Ty Detmer,BYU,1
+1990,Raghib Ismail,Notre Dame,2
+1990,Eric Bieniemy,Colorado,3
+1990,Shawn Moore,Virginia,4
+1990,David Klingler,Houston,5
+1991,Desmond Howard,Michigan,1
+1991,Casey Weldon,Florida State,2
+1991,Ty Detmer,BYU,3
+1991,Steve Emtman,Washington,4
+1991,Shane Matthews,Florida,5
+1992,Gino Torretta,Miami,1
+1992,Marshall Faulk,San Diego State,2
+1992,Garrison Hearst,Georgia,3
+1992,Marvin Jones,Florida State,4
+1992,Reggie Brooks,Notre Dame,5
+1993,Charlie Ward,Florida State,1
+1993,Heath Shuler,Tennessee,2
+1993,David Palmer,Alabama,3
+1993,Marshall Faulk,San Diego State,4
+1993,Glenn Foley,Boston College,5
+1994,Rashaan Salaam,Colorado,1
+1994,Ki-Jana Carter,Penn State,2
+1994,Steve McNair,Alcorn State,3
+1994,Kerry Collins,Penn State,4
+1994,Jay Barker,Alabama,5
+1995,Eddie George,Ohio State,1
+1995,Tommie Frazier,Nebraska,2
+1995,Danny Wuerffel,Florida,3
+1995,Darnell Autry,Northwestern,4
+1995,Troy Davis,Iowa State,5
+1996,Danny Wuerffel,Florida,1
+1996,Troy Davis,Iowa State,2
+1996,Jake Plummer,Arizona State,3
+1996,Orlando Pace,Ohio State,4
+1996,Warrick Dunn,Florida State,5
+1997,Charles Woodson,Michigan,1
+1997,Peyton Manning,Tennessee,2
+1997,Ryan Leaf,Washington State,3
+1997,Randy Moss,Marshall,4
+1997,Curtis Enis,Penn State,5
+1998,Ricky Williams,Texas,1
+1998,Michael Bishop,Kansas State,2
+1998,Cade McNown,UCLA,3
+1998,Tim Couch,Kentucky,4
+1998,Donovan McNabb,Syracuse,5
+1999,Ron Dayne,Wisconsin,1
+1999,Joe Hamilton,Georgia Tech,2
+1999,Michael Vick,Virginia Tech,3
+1999,Drew Brees,Purdue,4
+1999,Chad Pennington,Marshall,5
+2000,Chris Weinke,Florida State,1
+2000,Josh Heupel,Oklahoma,2
+2000,Drew Brees,Purdue,3
+2000,LaDainian Tomlinson,TCU,4
+2000,Damien Anderson,Northwestern,5
+2001,Eric Crouch,Nebraska,1
+2001,Rex Grossman,Florida,2
+2001,Ken Dorsey,Miami,3
+2001,Joey Harrington,Oregon,4
+2001,David Carr,Fresno State,5
+2002,Carson Palmer,USC,1
+2002,Brad Banks,Iowa,2
+2002,Larry Johnson,Penn State,3
+2002,Willis McGahee,Miami,4
+2002,Ken Dorsey,Miami,5
+2003,Jason White,Oklahoma,1
+2003,Larry Fitzgerald,Pittsburgh,2
+2003,Eli Manning,Ole Miss,3
+2003,Chris Perry,Michigan,4
+2003,Darren Sproles,Kansas State,5
+2004,Matt Leinart,USC,1
+2004,Adrian Peterson,Oklahoma,2
+2004,Jason White,Oklahoma,3
+2004,Alex Smith,Utah,4
+2004,Reggie Bush,USC,5
+2005,Reggie Bush,USC,1
+2005,Vince Young,Texas,2
+2005,Matt Leinart,USC,3
+2005,Brady Quinn,Notre Dame,4
+2005,Michael Robinson,Penn State,5
+2006,Troy Smith,Ohio State,1
+2006,Darren McFadden,Arkansas,2
+2006,Brady Quinn,Notre Dame,3
+2006,Steve Slaton,West Virginia,4
+2006,Mike Hart,Michigan,5
+2007,Tim Tebow,Florida,1
+2007,Darren McFadden,Arkansas,2
+2007,Colt Brennan,Hawaii,3
+2007,Chase Daniel,Missouri,4
+2007,Dennis Dixon,Oregon,5
+2008,Sam Bradford,Oklahoma,1
+2008,Colt McCoy,Texas,2
+2008,Tim Tebow,Florida,3
+2008,Graham Harrell,Texas Tech,4
+2008,Michael Crabtree,Texas Tech,5
+2009,Mark Ingram II,Alabama,1
+2009,Toby Gerhart,Stanford,2
+2009,Colt McCoy,Texas,3
+2009,Ndamukong Suh,Nebraska,4
+2009,Tim Tebow,Florida,5
+2010,Cam Newton,Auburn,1
+2010,Andrew Luck,Stanford,2
+2010,LaMichael James,Oregon,3
+2010,Kellen Moore,Boise State,4
+2010,Justin Blackmon,Oklahoma State,5
+2011,Robert Griffin III,Baylor,1
+2011,Andrew Luck,Stanford,2
+2011,Trent Richardson,Alabama,3
+2011,Montee Ball,Wisconsin,4
+2011,Tyrann Mathieu,LSU,5
+2012,Johnny Manziel,Texas A&M,1
+2012,Manti Te'o,Notre Dame,2
+2012,Collin Klein,Kansas State,3
+2012,Marqise Lee,USC,4
+2012,Braxton Miller,Ohio State,5
+2013,Jameis Winston,Florida State,1
+2013,A. J. McCarron,Alabama,2
+2013,Jordan Lynch,Northern Illinois,3
+2013,Andre Williams,Boston College,4
+2013,Johnny Manziel,Texas A&M,5
+2014,Marcus Mariota,Oregon,1
+2014,Melvin Gordon,Wisconsin,2
+2014,Amari Cooper,Alabama,3
+2014,Trevone Boykin,TCU,4
+2014,J. T. Barrett,Ohio State,5
+2015,Derrick Henry,Alabama,1
+2015,Christian McCaffrey,Stanford,2
+2015,Deshaun Watson,Clemson,3
+2015,Baker Mayfield,Oklahoma,4
+2015,Keenan Reynolds,Navy,5
+2016,Lamar Jackson,Louisville,1
+2016,Deshaun Watson,Clemson,2
+2016,Baker Mayfield,Oklahoma,3
+2016,Dede Westbrook,Oklahoma,4
+2016,Jabrill Peppers,Michigan,5
+2017,Baker Mayfield,Oklahoma,1
+2017,Bryce Love,Stanford,2
+2017,Lamar Jackson,Louisville,3
+2017,Saquon Barkley,Penn State,4
+2017,Rashaad Penny,San Diego State,5
+2018,Kyler Murray,Oklahoma,1
+2018,Tua Tagovailoa,Alabama,2
+2018,Dwayne Haskins,Ohio State,3
+2018,Will Grier,West Virginia,4
+2018,Gardner Minshew,Washington State,5
+2019,Joe Burrow,LSU,1
+2019,Jalen Hurts,Oklahoma,2
+2019,Justin Fields,Ohio State,3
+2019,Chase Young,Ohio State,4
+2019,Jonathan Taylor,Wisconsin,5
+2020,DeVonta Smith,Alabama,1
+2020,Trevor Lawrence,Clemson,2
+2020,Mac Jones,Alabama,3
+2020,Kyle Trask,Florida,4
+2020,Najee Harris,Alabama,5
+2021,Bryce Young,Alabama,1
+2021,Aidan Hutchinson,Michigan,2
+2021,Kenny Pickett,Pittsburgh,3
+2021,C. J. Stroud,Ohio State,4
+2021,Will Anderson Jr.,Alabama,5
+2022,Caleb Williams,USC,1
+2022,Max Duggan,TCU,2
+2022,C. J. Stroud,Ohio State,3
+2022,Stetson Bennett,Georgia,4
+2022,Hendon Hooker,Tennessee,5
+2023,Jayden Daniels,LSU,1
+2023,Michael Penix Jr.,Washington,2
+2023,Bo Nix,Oregon,3
+2023,Marvin Harrison Jr.,Ohio State,4
+2023,Jordan Travis,Florida State,5
+2024,Travis Hunter,Colorado,1
+2024,Ashton Jeanty,Boise State,2
+2024,Dillon Gabriel,Oregon,3
+2024,Cam Ward,Miami,4
+2024,Cam Skattebo,Arizona State,5
+2025,Fernando Mendoza,Indiana,1
+2025,Diego Pavia,Vanderbilt,2
+2025,Jeremiyah Love,Notre Dame,3
+2025,Julian Sayin,Ohio State,4
+2025,Jacob Rodriguez,Texas Tech,5

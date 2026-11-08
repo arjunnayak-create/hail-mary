@@ -17,11 +17,11 @@ The UX should feel like Krillion: dark, minimal, one prompt centered on screen, 
 ### Tiers (5)
 | Tier | Name | Points | Lands at | Share of prompt's answers (by fame, most famous first) |
 |---|---|---|---|---|
-| 1 | Checkdown | 10 | 10 yds | Top 15%, max 6 answers |
-| 2 | Moving the Chains | 30 | 30 | Next 20%, max 10 answers |
-| 3 | Chunk Play | 60 | 60 | 40% of the rest |
+| 1 | Checkdown | 10 | 10 yds | Top 10%, max 4 answers |
+| 2 | Moving the Chains | 30 | 30 | Next 25%, max 15 answers |
+| 3 | Chunk Play | 60 | 60 | 45% of the rest |
 | 4 | Deep Shot | 85 | 85 | 35% of the rest |
-| 5 | Hail Mary | 100 | 100 (TD) | 25% of the rest |
+| 5 | Hail Mary | 100 | 100 (TD) | 20% of the rest |
 
 **No Huddle multiplier:** consecutive answers at Chunk Play or better build a streak. The 2nd in a row scores ×1.5, the 3rd and later ×2 (cap). A lower tier or a miss resets it. Shown on the reveal card ("+60 × 1.5 = 90 PTS"), in the end-screen score line, and as "🔥×N" in the share header.
 
@@ -95,7 +95,7 @@ Bad data kills this game. Treat it as the main work.
 - Eras: "Name a starting QB from the 2000s"
 - Rules: every prompt needs ≥15 valid answers and real spread across all 5 tiers, or it gets cut.
 
-**Rarity:** compute a fame score per player, then assign tiers by **rank within that prompt's answer list** (shares and caps in the tier table above) (so a list of all-famous Super Bowl MVPs still has a spread). Fame score inputs: Pro Bowls, All-Pros, career approximate value, games started, major awards, maybe a recency bump. Document the formula in `scripts/README.md` with weights in one place.
+**Rarity:** north star = how likely a typical NFL fan in 2026 would say this name. Recent stars and college legends are gimmes; older, niche players are the rare payoff; a current player with little name recognition is a legit deep pull. Fame (0-100) = 50% career fame (Pro Bowls, All-Pros, approximate value, starts, awards) + 50% Wikipedia pageviews (last 3 years + since 2015), both log-normalized. Prompt-specific fame on top: award prompts (repeat + recent wins), draft prompts (picks from the last 3 drafts), college prompts (that school's Heisman winners/finalists, consensus All-Americans), team prompts (tenure), mixed-position prompts (position multiplier). Tiers by **rank within the prompt** (shares and caps above). Formula and weights: `scripts/README.md`, `scripts/config.py`.
 
 **Each answer:** `{ id, name, aliases[], shortName, tier, blurb? }`. Optional blurbs come from `scripts/data/blurbs.csv`.
 
@@ -117,7 +117,6 @@ Bad data kills this game. Treat it as the main work.
 Accounts, multiplayer, leaderboards, archive, unlimited mode. Planned for v2: friends leaderboard via Supabase (enables the end-screen score distribution "bell curve"), unlimited mode, archive of past days, and a **"Trick Play" bonus tier** for valid-but-cheeky answers, flagged by hand per prompt.
 
 ## Backlog
-- Wikipedia pageviews as a fame signal (fixes cases like Victor Cruz ranking below Darius Slayton).
 - Fill `scripts/data/blurbs.csv` with fun facts for top-tier answers.
 - Upload local game history to a backend when accounts arrive (records are already shaped for it).
 

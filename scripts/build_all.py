@@ -24,7 +24,7 @@ def run(script: str, *args: str) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--wikipedia", action="store_true", help="re-pull award + honors CSVs")
+    ap.add_argument("--wikipedia", action="store_true", help="re-pull award, honors, college and pageview CSVs")
     ap.add_argument("--refresh", action="store_true", help="ignore caches (nflverse + Wikipedia)")
     args = ap.parse_args()
     extra = ["--refresh"] if args.refresh else []
@@ -32,6 +32,8 @@ def main() -> None:
     if args.wikipedia:
         run("fetch_awards.py", *extra)
         run("fetch_honors_override.py", *extra)
+        run("fetch_college_honors.py", *extra)
+        run("fetch_pageviews.py", *extra)
     run("build_prompts.py")
 
 

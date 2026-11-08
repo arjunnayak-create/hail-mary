@@ -78,9 +78,9 @@ AWARD_POINTS = {
 #         + AWARD_RECENT_BONUS * (N - age) / N   for age < N          last year's winner is memorable
 # where age = seasons between the player's latest win and the award's latest season in the
 # data (0 = most recent winner) and N = AWARD_RECENT_SEASONS.
-AWARD_EXTRA_WIN = 60.0
+AWARD_EXTRA_WIN = 15.0  # fame is 0-100
 AWARD_RECENT_SEASONS = 3
-AWARD_RECENT_BONUS = 150.0
+AWARD_RECENT_BONUS = 50.0
 # Per-award scale on the recency bonus: rookies have little career fame, so a full bonus
 # would put last year's ROY above established stars.
 AWARD_RECENT_SCALE = {"oroy": 0.25, "droy": 0.25}
@@ -157,3 +157,38 @@ OVERRIDE_CATEGORIES = [
     "Category:National Conference Pro Bowl players",
     "Category:Unconferenced Pro Bowl players",
 ]
+
+# --------------------------------------------------------------------------- college honors
+# scripts/fetch_college_honors.py (Wikipedia): Heisman winners + top vote-getters, consensus
+# All-Americans. Used for the college-prompt bump.
+COLLEGE_HONORS_FIRST_SEASON = 1975  # college seasons of players who reached the NFL by ~1980
+COLLEGE_HONORS_LAST_SEASON = 2025
+HEISMAN_FINALIST_PLACES = 5  # top-N in Heisman voting count as finalists
+
+# --------------------------------------------------------------------------- pageviews
+PAGEVIEWS = DATA / "pageviews.csv"  # scripts/fetch_pageviews.py (Wikimedia REST API)
+PAGEVIEWS_RECENT_MONTHS = 36  # "last ~3 years" window
+PAGEVIEWS_WORKERS = 4
+PAGEVIEWS_RATE = 5.0  # requests/second, global (Wikimedia rate-limits bursts with 429s)
+
+# --------------------------------------------------------------------------- fame blend
+# fame (0-100) = 100 * (career * norm(career_fame) + pageviews * pageview_norm); see fame.py
+FAME_BLEND = {"career": 0.5, "pageviews": 0.5}
+# Young players haven't had time to build career fame: the career weight ramps in linearly over
+# their first N NFL seasons (the rest goes to pageviews). A rookie is judged mostly on how often
+# fans look him up, so a famous rookie isn't a Hail Mary and an unknown one still is.
+CAREER_RAMP_SEASONS = 4
+PAGEVIEW_BLEND = {"recent": 0.6, "total": 0.4}  # last 36 months vs everything since 2015-07
+FAME_NORM_QUANTILE = 0.999  # norm() maps this quantile (and above) to 1.0
+
+# --------------------------------------------------------------------------- prompt bonuses
+# Draft prompts: recent picks are the names fans know. bonus * (N - age) / N for the last N
+# drafts (age 0 = latest draft in the data).
+DRAFT_RECENT_BONUS = 60.0  # rookies have no career fame yet; this makes the newest picks gimmes
+DRAFT_RECENT_DRAFTS = 3
+# ...scaled by how prominent the pick was: an unknown recent late-rounder isn't a gimme
+DRAFT_PROMINENCE = {"top10": 1.0, "round1": 0.5, "later": 0.0}
+
+# College prompts: a school's own Heisman winners / finalists / consensus All-Americans.
+COLLEGE_HONOR_POINTS = {"heisman_win": 30.0, "heisman_finalist": 12.0, "all_american": 8.0}
+COLLEGE_HONOR_CAPS = {"heisman_win": 30.0, "heisman_finalist": 12.0, "all_american": 16.0}
