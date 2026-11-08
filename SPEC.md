@@ -41,9 +41,9 @@ Tier names, points, distances, colors, shares, caps and the No Huddle steps all 
 ```
 🏈 Hail Mary #1 · 348 pts · 🔥×2
 🟡🟣🔴🔵⚪❌🟣
-hailmary.vercel.app
+https://hail-mary-nfl.vercel.app
 ```
-Exactly 7 emojis, one per play (tier emoji, ❌ for a miss). "🔥×N" in the header = number of plays scored with No Huddle; omitted when zero.
+Exactly 7 emojis, one per play (tier emoji, ❌ for a miss). The last line is the full https:// site URL (`VITE_SITE_URL`) so it's always tappable. "🔥×N" in the header = number of plays scored with No Huddle; omitted when zero.
 
 ## Mobile-first (hard requirement)
 Primary target is iPhone portrait (~390 px). The input and SNAP sit above the keyboard (visualViewport); the prompt card and timer stay visible while typing; the throw runs vertically; tap targets ≥ 44 px, no hover-only interactions; the end screen is one column; safe areas respected; `100dvh`; native share sheet. Desktop works as a centered column.
@@ -58,7 +58,7 @@ Primary target is iPhone portrait (~390 px). The input and SNAP sit above the ke
 - `vercel.json`: Vite framework, `npm ci` + `npm run build` → `dist/`; long-lived caching for hashed `/assets`, short caching for `/data/*.json`. The Python pipeline never runs on Vercel; `public/data/*.json` is committed.
 - Link previews: `og.png` (1200×630, the pixel stadium + title + tagline), og:/twitter: tags.
 - Home screen: `favicon.svg`, `apple-touch-icon.png` (180), `icon-192/512.png`, `manifest.webmanifest` (standalone, portrait, `#070a1a`), apple-mobile-web-app tags with a black-translucent status bar (safe areas already handled).
-- Regenerate the OG image / icons from the app's own art: `python3 tools/make_icon.py`, then with the dev server running `node tools/make-assets.mjs` (needs Playwright).
+- App icons in `public/` are hand-made; never regenerate them. Rebuild only the OG card from the app's own art: with the dev server running, `node tools/make-assets.mjs` (needs Playwright).
 - Verify a release: `npm run build && npm run preview`; the production bundle contains no dev-tool code.
 
 ## Dev-only test tools (never in production builds)
@@ -95,7 +95,7 @@ Bad data kills this game. Treat it as the main work.
 - Eras: "Name a starting QB from the 2000s"
 - Rules: every prompt needs ≥15 valid answers and real spread across all 5 tiers, or it gets cut.
 
-**Rarity:** north star = how likely a typical NFL fan in 2026 would say this name. Recent stars and college legends are gimmes; older, niche players are the rare payoff; a current player with little name recognition is a legit deep pull. Fame (0-100) = 50% career fame (Pro Bowls, All-Pros, approximate value, starts, awards) + 50% Wikipedia pageviews (last 3 years + since 2015), both log-normalized. Prompt-specific fame on top: award prompts (repeat + recent wins), draft prompts (picks from the last 3 drafts), college prompts (that school's Heisman winners/finalists, consensus All-Americans), team prompts (tenure), mixed-position prompts (position multiplier). Tiers by **rank within the prompt** (shares and caps above). Formula and weights: `scripts/README.md`, `scripts/config.py`.
+**Rarity:** north star = how likely a typical NFL fan in 2026 would say this name. Recent stars and college legends are gimmes; older, niche players are the rare payoff; a current player with little name recognition is a legit deep pull. Fame (0-100) = 50% career fame (Pro Bowls, All-Pros, approximate value, starts, awards) + 50% Wikipedia pageviews (last 3 years + since 2015), both log-normalized. Prompt-specific fame on top: award prompts (repeat + recent wins), draft prompts (prominent picks from the last 3 drafts), college prompts (that school's Heisman winners/finalists, consensus All-Americans), mixed-position prompts (position multiplier). Then **association strength** multiplies the whole score: team prompts = share of career quality (production, awards) spent with that team × a volume factor; stat-threshold prompts = number of qualifying seasons. Every data build writes `scripts/out/tier_diff.md` (tier changes vs the last committed `prompts.json`). Tiers by **rank within the prompt** (shares and caps above). Formula and weights: `scripts/README.md`, `scripts/config.py`.
 
 **Each answer:** `{ id, name, aliases[], shortName, tier, blurb? }`. Optional blurbs come from `scripts/data/blurbs.csv`.
 

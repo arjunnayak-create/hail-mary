@@ -13,7 +13,7 @@ import { FIELD_FACTS, ZONES } from './copy'
 import { drawDigits, drawSprite, noise2, rasterize, smoothstep } from './pixel'
 import { sounds } from './sound'
 import {
-  BALL_FRAMES, BALL_PAL, QB_FOLLOW, QB_IDLE, QB_WINDUP, RECEIVER, RECEIVER_CATCH, REF, REF_PAL, REF_TD, TEAM,
+  BALL_SMALL, FOOTBALL_PAL, QB_FOLLOW, QB_IDLE, QB_WINDUP, RECEIVER, RECEIVER_CATCH, REF, REF_PAL, REF_TD, TEAM,
 } from './sprites'
 import { TierIcon } from './TierIcon'
 import tiersJson from './tiers.json'
@@ -48,7 +48,7 @@ interface Sim {
   doneFired: boolean
   cam: number
   particles: Particle[]
-  trail: { x: number; y: number }[]
+  trail: { x: number; y: number; h: number }[]
   lastFirework: number
 }
 
@@ -131,7 +131,7 @@ export function FieldScene(props: ThrowSceneProps) {
       follow: rasterize(QB_FOLLOW, TEAM, 'qb-follow'),
       rcv: rasterize(RECEIVER, TEAM, 'rcv'),
       catch: rasterize(RECEIVER_CATCH, TEAM, 'rcv-catch'),
-      ball: BALL_FRAMES.map((f, i) => rasterize(f, BALL_PAL, `ball-${i}`)),
+      ball: rasterize(BALL_SMALL, FOOTBALL_PAL, 'ball-small'),
       ref: REF.map((f, i) => rasterize(f, REF_PAL, `ref-${i}`)),
       refTd: rasterize(REF_TD, REF_PAL, 'ref-td'),
     }
@@ -368,27 +368,33 @@ export function FieldScene(props: ThrowSceneProps) {
         drawSprite(ctx, refFrame, fieldR - 12, sy(4, cam))
       }
 
-      // trail for deep throws
+      // ball: always level (no spin), with a motion streak behind it like the app icon
       const by = sy(ground, cam)
-      if (s.mode === 'throw' && !holding && (s.tier ?? 0) >= 4 && !s.landedAt) {
-        s.trail.push({ x: ballX, y: ground })
-        if (s.trail.length > 14) s.trail.shift()
+      const scale = height > 16 ? 2 : 1
+      if (s.mode === 'throw' && !holding && !s.landedAt) {
+        s.trail.push({ x: ballX, y: ground, h: height })
+        if (s.trail.length > 16) s.trail.shift()
+        const bands = ['#3fd6ff', '#ff4f8b', '#7a2a55'] // cyan, pink, dark pink (favicon streak)
         s.trail.forEach((pt, i) => {
-          ctx.fillStyle = `rgba(183, 125, 255, ${(i / s.trail.length) * 0.6})`
-          ctx.fillRect(Math.round(pt.x), Math.round(sy(pt.y, cam) - height * 0.6), 1, 1)
+          if (i === s.trail.length - 1) return
+          const a = ((i + 1) / s.trail.length) * 0.85
+          const x = Math.round(pt.x)
+          const y = Math.round(sy(pt.y, cam) - pt.h * 0.6) - 2
+          ctx.globalAlpha = a
+          bands.forEach((col, k) => {
+            ctx.fillStyle = col
+            ctx.fillRect(x - 1 + k, y, 1, 2)
+          })
         })
+        ctx.globalAlpha = 1
       }
-      // ball + shadow
       if (!holding) {
-        const scale = height > 20 ? 3 : height > 9 ? 2 : 1
         const caught = s.landedAt !== null && s.mode === 'throw'
         if (!caught) {
           ctx.fillStyle = 'rgba(0,0,0,0.35)'
-          const sw = 2 + scale
+          const sw = 4 + scale * 2
           ctx.fillRect(Math.round(ballX + height * 0.35 - sw / 2), Math.round(by), sw, 1)
-          const spin = BALL_FRAMES.length
-          const f = img.ball[Math.floor(now / 70) % spin]
-          drawSprite(ctx, f, ballX, by - height * 0.6, scale)
+          drawSprite(ctx, img.ball, ballX, by - height * 0.6, scale)
         }
       }
 
@@ -439,7 +445,9 @@ export function FieldScene(props: ThrowSceneProps) {
         pill.current.style.opacity = show ? '1' : '0'
         if (show) {
           const px = (s.landedAt ? s.rcvX : ballX) * P
-          const py = ((s.landedAt ? sy(s.landYard, cam) - 16 : by - height * 0.6 - 6) * P)
+          // sit just above the ball sprite (6 virtual px tall, x2 near the apex) or the catcher
+          const ballTop = by - height * 0.6 - BALL_SMALL.length * (height > 16 ? 2 : 1)
+          const py = ((s.landedAt ? sy(s.landYard, cam) - 16 : ballTop - 3) * P)
           const w = pill.current.offsetWidth
           const clampedX = Math.min(Math.max(px - w / 2, 6), dims.w - w - 34)
           pill.current.style.transform = `translate3d(${clampedX}px, ${py - pill.current.offsetHeight}px, 0)`

@@ -57,3 +57,30 @@ def test_award_bonus_rewards_repeat_and_recent_wins(data):
     brady = w.loc[w["name"] == "Tom Brady", "player_id"].iloc[0]
     assert b[latest] == pytest.approx(C.AWARD_RECENT_BONUS * C.AWARD_RECENT_SCALE.get("sb_mvp", 1.0))
     assert b[brady] == pytest.approx(4 * C.AWARD_EXTRA_WIN)
+
+
+def test_team_association_follows_where_a_player_made_his_name(data):
+    import awards
+    import association
+    aw = awards.load(data)
+    owens = data.players.index[data.players["name"] == "Terrell Owens"][0]
+    sf, dal, cin = (association.team_association(data, aw, fr).get(owens, 0) for fr in ("SF", "DAL", "CIN"))
+    assert sf > dal > cin
+    assert cin < 0.2  # one season in Cincinnati is a weak tie
+
+
+def test_short_stints_are_weak_ties(data):
+    import awards
+    import association
+    aw = awards.load(data)
+    c = association.team_components(data, aw, "SF")
+    fleck = data.players.index[data.players["name"] == "P.J. Fleck"][0]
+    assert c.at[fleck, "share"] == 1.0  # his whole (short) career was in SF...
+    assert c.at[fleck, "association"] < 0.3  # ...but it's still a weak tie
+
+
+def test_stat_association_rewards_repeat_qualifiers():
+    import pandas as pd
+    import association
+    a = association.stat_association(pd.Series({"once": 1, "twice": 2, "often": 6}))
+    assert a["once"] < a["twice"] < a["often"] == 1.0

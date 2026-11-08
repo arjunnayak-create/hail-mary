@@ -14,7 +14,8 @@ scripts/.venv/bin/python -m pytest scripts/tests     # pipeline unit tests
 
 Every step is re-runnable. Downloads are cached in `scripts/.cache/` (gitignored); debug
 output goes to `scripts/out/` (gitignored): `report.md`, `fame.csv`, one CSV per prompt with
-every answer's score and tier, and `override_unverified.csv`.
+every answer's score and tier, `override_unverified.csv`, and `tier_diff.md`: every answer
+whose tier changed vs the last committed `prompts.json`, grouped by prompt, with a summary.
 
 ## Sources
 
@@ -132,9 +133,19 @@ recency = 4 * min(1, starts in the last 3 seasons / 34)     (start = >= 50% of o
   recency bonus of 50 × (3 − age) / 3 for the player's latest win, where age 0 is the
   award's most recent season (+50 / +33 / +17). For OROY/DROY the bonus is scaled to 25%,
   so recent rookies don't outrank established stars.
-* **Team tenure** (team + position prompts only): `fame * min(1, seasons with the
-  franchise / 4) ** 2`. A star's one late-career season with a team is a deep cut for that
-  team (Herman Moore as a Giant), while a 4+ season player keeps full fame.
+* **Association strength** (`association.py`, weights `ASSOC_TEAM` / `ASSOC_STAT`):
+  how strongly the player is tied to *this* prompt. It multiplies the whole prompt score
+  (career + pageview fame and any bonuses), after the bonuses above.
+  * **Team prompts:** `share ** 0.4 × min(1, quality with team / 6)`. Each roster season's
+    quality = 1 + 0.5 × production units that season + 2 × awards won that season (split
+    across teams in a traded season; pre-1999 seasons use the player's average known
+    season). *Share* is the fraction of his career quality spent with the franchise;
+    *volume* stops a short stint, even a whole short career, from counting as a strong tie.
+    Terrell Owens: 49ers 0.79 (8 big seasons), Cowboys 0.54 (3), Bengals ~0.1 (1).
+    nflverse has no per-season Pro Bowl data, so production and awards carry the quality.
+  * **Stat-threshold prompts:** `min(1, qualifying seasons / 3) ** 0.8`. Repeat qualifiers
+    (Brees' 4,500-yard seasons) are gimmes; one-timers (Schaub, Winston) are deep pulls.
+  * College, award and draft prompts keep their bonuses; no association multiplier.
 
 ### Tiers
 

@@ -109,13 +109,59 @@ export const RECEIVER_CATCH: Sprite = [
   '..oKo.oKo..',
 ]
 
-export const BALL_PAL: Palette = { b: '#8a4b25', d: '#5e3014', w: '#f4efe6' }
+// --------------------------------------------------------------------------- football
+// Canonical football, taken pixel-for-pixel from public/favicon.svg: level, white end
+// stripes, a lace bar with stitches. Used for the Chunk Play / Deep Shot icons (and so in the
+// Play Chart and end screen) and, at half size, for the ball in the throw.
+export const FOOTBALL_PAL: Palette = {
+  o: '#06071a', L: '#cf7436', B: '#a3501e', D: '#6e3312', W: '#f6efe0',
+  c: '#3fd6ff', p: '#ff4f8b', q: '#7a2a55', // motion streak
+}
 
-/** Ball nose-up in flight; laces rotate across three frames (the spiral). */
-export const BALL_FRAMES: Sprite[] = [
-  ['.b.', 'bwb', 'bwb', 'dwd', '.d.'],
-  ['.b.', 'wbb', 'wbb', 'wdd', '.d.'],
-  ['.b.', 'bbw', 'bbw', 'ddw', '.d.'],
+export const FOOTBALL: Sprite = [
+  '......oooooooo......',
+  '....ooLLLLLLLLoo....',
+  '...oLLLLLLLLLLLLo...',
+  '..oWBBBBBBBBBBBBWo..',
+  '.oBWBBBWBWBWBBBBWBo.',
+  'oBBWBBWWWWWWWBBBWBBo',
+  'oBBWBBBWBWBWBBBBWBBo',
+  '.oBWBBBBBBBBBBBBWBo.',
+  '..oWDDDDDDDDDDDDWo..',
+  '...oDDDDDDDDDDDDo...',
+  '....ooDDDDDDDDoo....',
+  '......oooooooo......',
+]
+
+/** The app icon composition: the football with its streak. */
+export const FOOTBALL_STREAK: Sprite = [
+  '..............oooooooo......',
+  '............ooLLLLLLLLoo....',
+  '...........oLLLLLLLLLLLLo...',
+  '..........oWBBBBBBBBBBBBWo..',
+  '.........oBWBBBWBWBWBBBBWBo.',
+  '........oBBWBBWWWWWWWBBBWBBo',
+  '........oBBWBBBWBWBWBBBBWBBo',
+  '.........oBWBBBBBBBBBBBBWBo.',
+  '........cpoWDDDDDDDDDDDDWo..',
+  '.......cpq.oDDDDDDDDDDDDo...',
+  '......cpq...ooDDDDDDDDoo....',
+  '.....cpq......oooooooo......',
+  '....cpq.....................',
+  '...cpq......................',
+  '..cpq.......................',
+  '.cpq........................',
+  'cpq.........................',
+]
+
+/** Half-size football for the throw (same look: stripes, lace + stitches); always level. */
+export const BALL_SMALL: Sprite = [
+  '..oooooo..',
+  '.oWLLLLWo.',
+  'oBWWWWWWBo',
+  'oBWBWBBWBo',
+  '.oWDDDDWo.',
+  '..oooooo..',
 ]
 
 export const REF_PAL: Palette = { o: '#0b0f1e', S: '#c58a5c', W: '#f4f4f4', K: '#111111', C: '#111111' }
@@ -155,6 +201,9 @@ export const BLIMP: Sprite = [
 
 // --------------------------------------------------------------------------- tier icons
 // o outline, C tier color, L light, D dark, W white
+/** Icons drawn in their own fixed colors (the rest are tinted with the tier color). */
+export const ICON_PALETTES: Record<string, Palette> = { football: FOOTBALL_PAL, spiral: FOOTBALL_PAL }
+
 export const ICONS: Record<string, Sprite> = {
   whistle: [
     '............',
@@ -184,34 +233,8 @@ export const ICONS: Record<string, Sprite> = {
     'oDo......oDo',
     '.o........o.',
   ],
-  football: [
-    '............',
-    '.......oooo.',
-    '.....ooCCLCo',
-    '....oCCCCCCo',
-    '...oCCWCWCCo',
-    '..oCWWWWWCo.',
-    '.oCCWCWCCo..',
-    '.oCCCCCCo...',
-    '.oDCCCoo....',
-    '..oooo......',
-    '............',
-    '............',
-  ],
-  spiral: [
-    '............',
-    '............',
-    '......oooo..',
-    'LL..ooCCLCo.',
-    '...oCCWCWCCo',
-    'LLLoCWWWWWCo',
-    '...oCCWCWCCo',
-    'LL..ooCCDCo.',
-    '......oooo..',
-    '............',
-    '..LL..LL....',
-    '............',
-  ],
+  football: FOOTBALL,
+  spiral: FOOTBALL_STREAK,
   trophy: [
     '....oooo....',
     '...oCCLCo...',

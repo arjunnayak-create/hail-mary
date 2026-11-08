@@ -92,10 +92,13 @@ RECENCY_SEASONS = 3  # the last N seasons in the data (including the in-progress
 RECENCY_FULL_STARTS = 34  # starts needed for the full bump (two full seasons)
 START_SNAP_SHARE = 0.5  # a game counts as a "start" at >= 50% of offensive or defensive snaps
 
-# Team prompts ("Name a Giants WR"): a star who spent one late-career season with the team is
-# a deep cut *for that team*. score = fame * min(1, seasons_with_franchise / FULL) ** EXPONENT
-TEAM_FULL_TENURE_SEASONS = 4
-TEAM_TENURE_EXPONENT = 2.0
+# Association strength (association.py): prompt fame = fame x association, on the whole score.
+# Team prompts: share ** exponent * min(1, quality_with_team / full_quality) ** volume_exponent
+#   share = quality with the franchise / career quality
+#   quality(season) = base + production * season_units + award * awards_that_season
+ASSOC_TEAM = {"base": 1.0, "production": 0.5, "award": 2.0, "exponent": 0.4, "full_quality": 6.0, "volume_exponent": 1.0}
+# Stat-threshold prompts: min(1, qualifying seasons / full_seasons) ** exponent.
+ASSOC_STAT = {"full_seasons": 3, "exponent": 0.8}
 
 # Applied only on prompts whose answers span positions (no position filter).
 POSITION_MULTIPLIER = {

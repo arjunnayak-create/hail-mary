@@ -37,7 +37,7 @@ class Prompt:
     qualifier: str  # shown under the prompt, e.g. "since 1980"
     mixed: bool
     build: Callable[[Ctx], tuple[set, set]] = field(repr=False)
-    franchise: str | None = None  # team prompts: weight fame by tenure with this franchise
+    franchise: str | None = None  # team prompts: association strength with this franchise
     award_key: str | None = None  # award prompts: add award-specific fame (repeat + recent wins)
     schools: frozenset[str] | None = None  # college prompts: add that school's honors
 
@@ -98,7 +98,7 @@ def hall_of_fame():
 
 def season_stat(cond: Callable[[pd.DataFrame], pd.Series], positions: set[str] | None = None,
                 seasons: tuple[int, int] | None = None):
-    def build(ctx: Ctx):
+    def qualifying(ctx: Ctx) -> pd.DataFrame:
         s = ctx.data.stats
         m = cond(s)
         if positions is not None:  # position listed that season, or the player's primary one
@@ -107,7 +107,13 @@ def season_stat(cond: Callable[[pd.DataFrame], pd.Series], positions: set[str] |
             m &= row_bucket.isin(positions) | player_bucket.isin(positions)
         if seasons is not None:
             m &= s["season"].between(*seasons)
-        return set(s.loc[m, "player_id"]), set()
+        return s.loc[m, ["player_id", "season"]]
+
+    def build(ctx: Ctx):
+        return set(qualifying(ctx)["player_id"]), set()
+
+    # qualifying seasons per player (stat-threshold association strength)
+    build.counts = lambda ctx: qualifying(ctx).drop_duplicates().groupby("player_id").size()  # type: ignore[attr-defined]
     return build
 
 

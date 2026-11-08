@@ -25,8 +25,9 @@ export const nflTheme: Theme = {
   countdownSeconds: 3,
   dataUrl: '/data/prompts.json',
   namesUrl: '/data/names.json',
-  // single config value: VITE_SITE_URL in .env (shown without the protocol in share text)
-  shareUrl: (import.meta.env.VITE_SITE_URL ?? '').replace(/^https?:\/\//, ''),
+  // single config value: VITE_SITE_URL in .env. Kept as a full https:// URL so the copied /
+  // shared result is always a tappable link in group chats.
+  shareUrl: import.meta.env.VITE_SITE_URL ?? '',
   tiers: tiersJson as TierConfig,
   copy,
   bands,

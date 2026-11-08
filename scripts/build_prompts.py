@@ -11,10 +11,12 @@ import datetime as dt
 import json
 import math
 import re
+import subprocess
 from collections import defaultdict
 
 import pandas as pd
 
+import association
 import awards
 import college_honors
 import config as C
@@ -136,12 +138,6 @@ def draft_recency_bonus(data: nfl.Data) -> pd.Series:
     return (C.DRAFT_RECENT_BONUS * prominence * (n - age) / n).where(age < n, 0.0)
 
 
-def tenure_weight(data: nfl.Data, fr: str) -> pd.Series:
-    r = data.rosters
-    seasons = r[r["franchise"] == fr].groupby("player_id")["season"].nunique()
-    return (seasons / C.TEAM_FULL_TENURE_SEASONS).clip(upper=1) ** C.TEAM_TENURE_EXPONENT
-
-
 # --------------------------------------------------------------------------- tiers
 def tier_counts(n: int) -> list[int]:
     """Answers per tier for a list of n (see src/themes/nfl/tiers.json). Head tiers take a share of
@@ -213,8 +209,11 @@ def main() -> dict:
             score = score + draft_recency_bonus(data).reindex(score.index).fillna(0)
         if pr.schools:
             score = score + college_honors.bonus_for_school(ch, set(pr.schools)).reindex(score.index).fillna(0)
+        # association strength multiplies the whole score
         if pr.franchise:
-            score = score * tenure_weight(data, pr.franchise).reindex(score.index).fillna(0)
+            score = score * association.team_association(data, aw, pr.franchise).reindex(score.index).fillna(0)
+        if pr.category == "stats" and hasattr(pr.build, "counts"):
+            score = score * association.stat_association(pr.build.counts(ctx)).reindex(score.index).fillna(0)
         order = sorted(valid, key=lambda v: (-score[v], players.at[v, "name"]))
         tiers = assign_tiers(len(order))
         counts = {t["tier"]: tiers.count(t["tier"]) for t in C.TIERS}
@@ -264,11 +263,60 @@ def main() -> dict:
     C.NAMES_JSON.write_text(json.dumps({"names": names}, ensure_ascii=False, separators=(",", ":")))
 
     fame_df.sort_values("fame", ascending=False).to_csv(C.OUT_DIR / "fame.csv")
+    tier_changes = write_tier_diff(out)
     report = write_report(data, aw, calibration, summary, alias_problems)
     (C.OUT_DIR / "college_unmatched.csv").write_text(pd.DataFrame(ch.unmatched).to_csv(index=False))
+    report["tier_changes"] = tier_changes
     report["college_matched"] = len(ch.rows)
     report["college_unmatched"] = len(ch.unmatched)
     return report
+
+
+def write_tier_diff(new: dict) -> int:
+    """scripts/out/tier_diff.md: every answer whose tier changed vs the last committed
+    prompts.json (git HEAD), grouped by prompt. Returns the number of changed tiers."""
+    rel = C.PROMPTS_JSON.relative_to(C.ROOT).as_posix()
+    try:
+        old_raw = subprocess.run(["git", "show", f"HEAD:{rel}"], cwd=C.ROOT, capture_output=True, text=True, check=True).stdout
+        old = json.loads(old_raw)
+    except (subprocess.CalledProcessError, json.JSONDecodeError, FileNotFoundError):
+        (C.OUT_DIR / "tier_diff.md").write_text("# Tier diff\n\nNo committed prompts.json to compare against.\n")
+        return 0
+    old_by = {p["id"]: p for p in old["prompts"]}
+    names = {t["tier"]: t["name"] for t in C.TIERS}
+    sections, total, up, down, added, removed = [], 0, 0, 0, 0, 0
+    for p in new["prompts"]:
+        o = old_by.get(p["id"])
+        if o is None:
+            sections.append(f"## {p['text']} ({p['id']})\n\nnew prompt\n")
+            continue
+        ot = {a["id"]: (a["name"], a["tier"]) for a in o["answers"]}
+        nt = {a["id"]: (a["name"], a["tier"]) for a in p["answers"]}
+        rows = []
+        for aid, (name, tier) in nt.items():
+            if aid in ot and ot[aid][1] != tier:
+                rows.append((tier - ot[aid][1], f"- {name}: T{ot[aid][1]} {names[ot[aid][1]]} → T{tier} {names[tier]}"))
+                up += tier < ot[aid][1]
+                down += tier > ot[aid][1]
+            elif aid not in ot:
+                rows.append((0, f"- {name}: (new answer) → T{tier}"))
+                added += 1
+        for aid, (name, tier) in ot.items():
+            if aid not in nt:
+                rows.append((0, f"- {name}: T{tier} → (no longer an answer)"))
+                removed += 1
+        if rows:
+            total += len(rows)
+            rows.sort(key=lambda r: r[0])  # biggest moves toward common first
+            sections.append(f"## {p['text']} ({p['id']}): {len(rows)} changed\n\n" + "\n".join(r[1] for r in rows) + "\n")
+    changed_prompts = len(sections)
+    head = (
+        "# Tier diff vs last committed prompts.json\n\n"
+        f"**{total} answers changed tier across {changed_prompts} prompts**: "
+        f"{up} more common (lower tier), {down} rarer (higher tier), {added} new answers, {removed} removed.\n\n"
+    )
+    (C.OUT_DIR / "tier_diff.md").write_text(head + "\n".join(sections))
+    return total
 
 
 def write_report(data, aw, calibration, summary, alias_problems) -> dict:
@@ -322,4 +370,5 @@ if __name__ == "__main__":
     for p in rep["alias_problems"]:
         print(f"  {p}")
     print(f"college honors joined: {rep['college_matched']} ({rep['college_unmatched']} unmatched, mostly never reached the NFL)")
+    print(f"tier changes vs committed prompts.json: {rep['tier_changes']} (scripts/out/tier_diff.md)")
     print(f"report: {(C.OUT_DIR / 'report.md').relative_to(C.ROOT)}")

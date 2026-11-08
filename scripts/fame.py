@@ -7,7 +7,7 @@
 
 norm(x) = log1p(x) / log1p(99.9th percentile), clipped to [0, 1]: magnitude-preserving, so
 a legend still outranks a solid starter, but a household name today isn't buried by a
-thin stat line. Per-prompt adjustments (position, tenure, awards, draft, college) come after.
+thin stat line. Per-prompt adjustments (position, awards, draft, college, association strength) come after.
 """
 
 from __future__ import annotations
