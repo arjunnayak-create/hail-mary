@@ -198,7 +198,8 @@ function RoundAnswers({ prompt, mine, known }: { prompt: Prompt; mine: string | 
 }
 
 function FilmRoom({ prompts, plays, scored, known }: { prompts: Prompt[]; plays: SavedPlay[]; scored: ScoredPlay[]; known: NameIndex | null }) {
-  const { copy, TierIcon } = useTheme()
+  const { copy, tiers, TierIcon } = useTheme()
+  const topTier = Math.max(...tiers.tiers.map((t) => t.tier))
   const [open, setOpen] = useState<number | null>(null)
   return (
     <section className="end-block panel">
@@ -209,8 +210,12 @@ function FilmRoom({ prompts, plays, scored, known }: { prompts: Prompt[]; plays:
           const s = scored[i]
           const ans = play?.answerId ? p.answers.find((a) => a.id === play.answerId) : null
           const isOpen = open === i
+          // same tier colors as the reveal card and the share emojis
+          const tier = s?.tier ?? null
+          const color = tier === null ? tiers.miss.color : tiers.tiers.find((t) => t.tier === tier)!.color
+          const cls = [isOpen && 'is-open', tier === null ? 'is-miss' : tier === topTier && 'is-top'].filter(Boolean).join(' ')
           return (
-            <li key={p.id} className={isOpen ? 'is-open' : ''}>
+            <li key={p.id} className={cls} style={{ ['--c' as string]: color }}>
               <button className="film-row" onClick={() => setOpen(isOpen ? null : i)} aria-expanded={isOpen}>
                 <span className="film-prompt">{p.text}</span>
                 <span className="film-answer">{ans ? ans.name : '–'}</span>
