@@ -11,7 +11,7 @@ The UX should feel like Krillion: dark, minimal, one prompt centered on screen, 
 - Each correct answer is its own throw from our goal line. Tier lines sit at fixed yardages (10/30/60/85); a Hail Mary is a full 100-yard TD bomb.
 - Score is points, Krillion-style. Max base score 700 (7 × 100).
 - Timeout = **Incomplete**, 0 points. Wrong guesses don't end the round: a short "incomplete. try again" line, the guess is selected so typing replaces it, and the clock keeps running.
-- **Input flow (iOS):** on an accepted answer or a timeout the input is cleared and blurred so the keyboard closes and the throw + reveal get the full screen. KICK OFF and NEXT PLAY focus the input synchronously inside the tap (iOS only opens the keyboard from a direct gesture), so the keyboard is already up during the 3-2-1 and the player can type the moment the prompt appears. The prompt card and timer stay visible above the keyboard.
+- **Keyboard (iOS):** the keyboard NEVER opens automatically; it opens only when the player taps the text box (the whole input row is the tap target). No code ever focuses the input or the reveal button. On an accepted answer (SNAP or an accepted suggestion chip) or a timeout, the input is cleared and blurred, so the keyboard closes and stays closed through the throw, the reveal card and the next countdown. On a wrong guess the keyboard stays open (SNAP and chips don't steal focus) and the guess is selected so typing replaces it. While typing, the prompt card and timer stay visible above the keyboard.
 - Duplicate answers across prompts are allowed.
 
 ### Tiers (5)
@@ -57,7 +57,7 @@ Primary target is iPhone portrait (~390 px). The input and SNAP sit above the ke
 - **Site URL is one config value:** `VITE_SITE_URL` in `.env`. It feeds the share text and the absolute Open Graph URLs in `index.html` (`%VITE_SITE_URL%`). Set it to the real Vercel URL after the first deploy and redeploy.
 - `vercel.json`: Vite framework, `npm ci` + `npm run build` → `dist/`; long-lived caching for hashed `/assets`, short caching for `/data/*.json`. The Python pipeline never runs on Vercel; `public/data/*.json` is committed.
 - Link previews: `og.png` (1200×630, the pixel stadium + title + tagline), og:/twitter: tags.
-- Home screen: `favicon.svg`, `apple-touch-icon.png` (180), `icon-192/512.png`, `manifest.webmanifest` (standalone, portrait, `#070a1a`), apple-mobile-web-app tags with a black-translucent status bar (safe areas already handled).
+- Home screen: `favicon-v2.svg`, `apple-touch-icon-v2.png` (180), `icon-192-v2.png`, `icon-512-v2.png`, `manifest.webmanifest` (standalone, portrait, `#070a1a`), apple-mobile-web-app tags with a black-translucent status bar (safe areas already handled).
 - App icons in `public/` are hand-made; never regenerate them. Rebuild only the OG card from the app's own art: with the dev server running, `node tools/make-assets.mjs` (needs Playwright).
 - Verify a release: `npm run build && npm run preview`; the production bundle contains no dev-tool code.
 

@@ -1,6 +1,6 @@
 /**
  * Regenerate public/og.png (the 1200x630 link-preview card) from the app's own art.
- * App icons (favicon.svg, apple-touch-icon.png, icon-192/512.png) are hand-made: this script
+ * App icons (favicon-v2.svg, apple-touch-icon-v2.png, icon-192-v2.png / icon-512-v2.png) are hand-made: this script
  * never touches them.
  *
  * Needs the dev server running (npm run dev) and Playwright:

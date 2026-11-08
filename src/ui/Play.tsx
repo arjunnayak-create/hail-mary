@@ -126,6 +126,11 @@ export function InputDock(props: {
           e.preventDefault()
           submit()
         }}
+        // the whole row is a tap target for the text box (a direct tap, so iOS allows the
+        // keyboard); taps on SNAP are handled by the button itself
+        onClick={(e) => {
+          if (!(e.target as HTMLElement).closest('button')) props.inputRef.current?.focus({ preventScroll: true })
+        }}
       >
         <TimerRing remaining={props.active ? props.remaining : props.total} total={props.total} />
         <input
@@ -170,11 +175,6 @@ export function RevealCard(props: {
   const { tiers, copy, TierIcon } = useTheme()
   const rule = props.play.tier === null ? null : tiers.tiers.find((t) => t.tier === props.play.tier)!
   const color = rule?.color ?? tiers.miss.color
-  const btn = useRef<HTMLButtonElement>(null)
-  useEffect(() => {
-    const t = window.setTimeout(() => btn.current?.focus({ preventScroll: true }), 600)
-    return () => window.clearTimeout(t)
-  }, [])
   return (
     <div className="reveal" style={{ ['--c' as string]: color }}>
       <div className="reveal-card">
@@ -197,7 +197,7 @@ export function RevealCard(props: {
         </p>
         {props.play.multiplier > 1 && <p className="reveal-hot">🔥 {copy.multiplierLabel} ×{props.play.multiplier}</p>}
         <p className="reveal-quip">{props.blurb || rule?.quip || tiers.miss.quip}</p>
-        <button ref={btn} className="btn btn-primary" onClick={props.onNext}>
+        <button className="btn btn-primary" onClick={props.onNext}>
           {props.isLast ? copy.final : copy.next}
         </button>
       </div>

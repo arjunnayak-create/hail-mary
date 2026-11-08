@@ -160,15 +160,15 @@ body { -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%;
 .feedback { min-height: 18px; margin: 6px 4px; font-size: 12px; color: var(--warn); }
 .feedback.is-shake { animation: shake 0.35s; }
 @keyframes shake { 20% { transform: translateX(-6px); } 40% { transform: translateX(5px); } 60% { transform: translateX(-3px); } 80% { transform: translateX(2px); } }
-.dock-row { display: flex; align-items: center; gap: 8px; }
+.dock-row { display: flex; align-items: center; gap: 8px; min-height: 56px; cursor: text; }
 .answer-input {
-  flex: 1; min-width: 0; height: 48px; padding: 0 12px; border: 2px solid rgba(214, 222, 255, 0.6);
+  flex: 1; min-width: 0; height: 52px; padding: 0 12px; border: 2px solid rgba(214, 222, 255, 0.6);
   background: rgba(4, 6, 18, 0.9); color: #fff; outline: none; border-radius: 0;
   font: 700 16px/1 var(--font-mono); /* >= 16px: no iOS zoom */
 }
 .answer-input:focus { border-color: var(--secondary); box-shadow: 0 0 12px color-mix(in srgb, var(--secondary) 40%, transparent); }
 .answer-input.is-danger { border-color: var(--danger); box-shadow: 0 0 14px color-mix(in srgb, var(--danger) 55%, transparent); }
-.btn-snap { min-width: 72px; height: 48px; font-size: 12px; }
+.btn-snap { min-width: 72px; height: 52px; font-size: 12px; cursor: pointer; }
 .drain { height: 3px; margin: 8px 2px 0; background: rgba(255, 255, 255, 0.12); }
 .drain i { display: block; height: 100%; background: var(--secondary); transform-origin: left; transition: transform 0.1s linear; }
 

@@ -139,8 +139,7 @@ export function useGame(theme: Theme, inputRef: React.RefObject<HTMLInputElement
   // ---- pre-prompt countdown
   const countdownTimer = useRef<number | null>(null)
   const beginCountdown = useCallback(() => {
-    // focus synchronously inside the tap so iOS opens the keyboard
-    inputRef.current?.focus({ preventScroll: true })
+    // never focus the input here: the keyboard opens only when the player taps the text box
     setFeedback(null)
     setSuggestions([])
     setThrowInfo((t) => ({ ...t, mode: 'idle' }))
@@ -185,7 +184,8 @@ export function useGame(theme: Theme, inputRef: React.RefObject<HTMLInputElement
       setClockStart(null)
       setFeedback(null)
       setSuggestions([])
-      // close the keyboard so the throw and the reveal get the full screen
+      // accepted or timed out: close the keyboard completely; it stays closed through the
+      // throw, the reveal and the next countdown until the player taps the text box again
       const el = inputRef.current
       if (el) {
         el.value = ''
@@ -219,12 +219,10 @@ export function useGame(theme: Theme, inputRef: React.RefObject<HTMLInputElement
         res.kind === 'outOfRange' ? theme.copy.outOfRange(g) : res.kind === 'ambiguous' ? theme.copy.ambiguous(g) : theme.copy.wrong(g)
       setFeedback((f) => ({ text, key: (f?.key ?? 0) + 1 }))
       theme.sounds.play('wrong')
-      // improve on the reference: select the bad guess so typing replaces it
+      // wrong guess: the input keeps focus (SNAP doesn't steal it), so the keyboard stays open.
+      // Select the bad guess so typing replaces it, without ever focusing programmatically.
       const el = inputRef.current
-      if (el) {
-        el.focus({ preventScroll: true })
-        el.setSelectionRange(0, el.value.length)
-      }
+      if (el && document.activeElement === el) el.setSelectionRange(0, el.value.length)
     },
     [phase, prompt, matcher, resolve, theme, inputRef, setSuggestions],
   )

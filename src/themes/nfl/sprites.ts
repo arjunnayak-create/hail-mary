@@ -110,7 +110,7 @@ export const RECEIVER_CATCH: Sprite = [
 ]
 
 // --------------------------------------------------------------------------- football
-// Canonical football, taken pixel-for-pixel from public/favicon.svg: level, white end
+// Canonical football, taken pixel-for-pixel from public/favicon-v2.svg: level, white end
 // stripes, a lace bar with stitches. Used for the Chunk Play / Deep Shot icons (and so in the
 // Play Chart and end screen) and, at half size, for the ball in the throw.
 export const FOOTBALL_PAL: Palette = {
